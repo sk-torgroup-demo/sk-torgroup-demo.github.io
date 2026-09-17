@@ -590,3 +590,18 @@ b,strong{font-family:var(--ui);font-weight:500}
 @media(max-width:374px){.contacts .phone{font-size:13px}.logo{font-size:17px}}
 /* Шапка после прокрутки ниже (64px): часы и почту прячем, чтобы номер не обрезался сверху */
 .topbar.compact .contacts small,.topbar.compact .contacts .mailtop{display:none}
+
+/* сертифицированные материалы (страница «Гарантии») */
+.certs{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.cert{display:flex;flex-direction:column;gap:6px;padding:14px 14px 18px;border:1px solid var(--line);border-radius:14px;background:#fff;color:var(--ink);text-decoration:none;transition:border-color .15s,box-shadow .15s}
+.cert:hover{border-color:var(--teal);box-shadow:var(--sh-card)}
+.cert-ph{display:block;aspect-ratio:520/735;border-radius:8px;overflow:hidden;background:var(--mist);margin-bottom:8px}
+.cert-ph img{width:100%;height:100%;object-fit:cover}
+.cert b{font:600 15.5px/1.3 var(--ui)}
+.cert span{font-size:14px;color:var(--muted)}
+.cert small{font:400 11.5px/1.4 var(--ui);color:var(--muted);overflow-wrap:anywhere}
+.cert{min-width:0}.cert span{line-height:1.4}
+.cert em{font:600 14px var(--ui);font-style:normal;color:var(--teal);margin-top:4px}
+.logo-sub a{color:inherit;text-decoration:underline;text-underline-offset:2px}
+@media(max-width:980px){.certs{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.certs{grid-template-columns:1fr 1fr;gap:10px}.cert{padding:10px 10px 14px}.cert b{font-size:14px}}
