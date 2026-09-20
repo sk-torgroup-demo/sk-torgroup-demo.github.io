@@ -8,7 +8,7 @@
 .b-btn-amber{color:#fff}
 .b-btn-amber:hover{color:#fff}
 /* на тёмных блоках синий берём светлее, чтобы читалось */
-.b-h1-big em{color:#A9C0FF}
+.b-h1-big em{color:inherit}  /* заголовок целиком белый, синий только у кнопок */
 .b-nap-phone{color:#A9C0FF!important}
 .b-hero-box .b-btn-amber,.b-final .b-btn-amber,.b-calc .b-btn-amber{background:#2A51B0}
 .b-hero-box .b-btn-amber:hover,.b-final .b-btn-amber:hover,.b-calc .b-btn-amber:hover{background:#3763C6}
@@ -16,3 +16,9 @@
 .b-chips .b-chip-more:hover{background:var(--b-amber-h);color:#fff}
 .b-app-docs em,.b-app-btns em.y{color:#fff}
 .b-app-docs li.wait span,.b-pf strong.late,.b-card-note{color:var(--b-muted)}
+
+/* базовые цвета старого сайта (кнопки форм, калькулятор, внутренние страницы) */
+:root{--amber:#1E3F8F; --amber-h:#2A51B0; --amber-d:#4C566A}
+.btn-amber{color:#fff}
+.btn-amber:hover{color:#fff}
+.hero h1 em,.cam-note a,.result .rt,.result .send,.formband .cbx a{color:#A9C0FF}

@@ -8,7 +8,7 @@
 .b-btn-amber{color:#fff}
 .b-btn-amber:hover{color:#fff}
 /* на тёмных блоках синий берём светлее, чтобы читалось */
-.b-h1-big em{color:#A9C0FF}
+.b-h1-big em{color:inherit}  /* заголовок целиком белый, синий только у кнопок */
 .b-nap-phone{color:#A9C0FF!important}
 .b-hero-box .b-btn-amber,.b-final .b-btn-amber,.b-calc .b-btn-amber{background:#2A51B0}
 .b-hero-box .b-btn-amber:hover,.b-final .b-btn-amber:hover,.b-calc .b-btn-amber:hover{background:#3763C6}

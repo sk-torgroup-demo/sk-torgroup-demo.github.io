@@ -20,3 +20,9 @@
 .b-chips .b-chip-more:hover{background:#000;color:#fff}
 .b-app-docs em,.b-app-btns em.y{color:#fff}
 .b-app-docs li.wait span,.b-pf strong.late,.b-card-note{color:var(--b-muted)}
+
+/* базовые цвета старого сайта (кнопки форм, калькулятор, внутренние страницы) */
+:root{--amber:#121417; --amber-h:#000; --amber-d:#636A73}
+.btn-amber{color:#fff}
+.btn-amber:hover{color:#fff}
+.hero h1 em,.cam-note a,.result .rt,.result .send,.formband .cbx a{color:#fff}
