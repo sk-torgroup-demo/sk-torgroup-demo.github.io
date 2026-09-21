@@ -196,3 +196,29 @@ html.ss-open{overflow:hidden}
 .b-right>.b-phone,.a-right>.a-phone{order:3}
 .b-right>.b-top-cta,.a-right>.a-top-cta{order:4}
 .b-right>.b-burger,.a-right>.a-burger{order:5}
+
+/* ---------- «под вашим контролем»: видоискатель камеры вокруг заголовка (Б1, В1, Г1) ---------- */
+.b-vf{position:relative;display:inline-block;padding:54px clamp(28px,3.4vw,56px) 34px;margin-bottom:30px}
+.b-vf .b-h1{margin:0}
+.b-vf-c{position:absolute;width:26px;height:26px;border:0 solid rgba(255,255,255,.85)}
+.b-vf-tl{left:0;top:0;border-left-width:2px;border-top-width:2px}
+.b-vf-tr{right:0;top:0;border-right-width:2px;border-top-width:2px}
+.b-vf-bl{left:0;bottom:0;border-left-width:2px;border-bottom-width:2px}
+.b-vf-br{right:0;bottom:0;border-right-width:2px;border-bottom-width:2px}
+.b-vf-osd{position:absolute;left:clamp(28px,3.4vw,56px);right:clamp(28px,3.4vw,56px);top:18px;display:flex;justify-content:space-between;align-items:center;
+  font:600 14px/1 var(--b-ui);letter-spacing:.16em;color:rgba(255,255,255,.92);font-variant-numeric:tabular-nums}
+.b-vf-rec{display:inline-flex;align-items:center;gap:8px}
+.b-vf-rec i{width:11px;height:11px;border-radius:50%;background:#FF3B30;box-shadow:0 0 0 0 rgba(255,59,48,.6),0 0 10px rgba(255,59,48,.9);animation:vf-blink 1.2s steps(1,end) infinite}
+@keyframes vf-blink{0%{opacity:1}50%{opacity:.15}}
+.b-hero-c .b-cta{margin-top:0}
+@media(max-width:760px){
+  .b-vf{padding:44px 18px 24px;margin-bottom:24px;width:100%}
+  .b-vf-c{width:18px;height:18px}
+  .b-vf-osd{left:18px;right:18px;top:14px;font-size:11px}
+}
+
+/* А1: «● REC» перед «под вашим контролем» (рисуется стилями, в тексте заголовка для поиска его нет) */
+.x-sub em{position:relative;margin-left:62px}
+.x-sub em::before{content:"";position:absolute;left:-60px;top:50%;width:9px;height:9px;margin-top:-4.5px;border-radius:50%;background:#FF3B30;box-shadow:0 0 10px rgba(255,59,48,.9);animation:vf-blink 1.2s steps(1,end) infinite}
+.x-sub em::after{content:"REC";position:absolute;left:-45px;top:50%;transform:translateY(-50%);font:600 12px/1 var(--a-ui);letter-spacing:.16em;color:#fff;font-style:normal}
+@media(prefers-reduced-motion:reduce){.b-vf-rec i,.x-sub em::before{animation:none}}
