@@ -146,38 +146,53 @@ html.ss-open{overflow:hidden}
 @media(max-width:760px){.ss-in{margin:12px;border-radius:18px}.ss-f input{font-size:17px}}
 @media(prefers-reduced-motion:reduce){.ss,.ss-in{transition:none}}
 
-/* ---------- верхняя строка шапки (компьютер): слева о компании, справа поиск и все способы связи ---------- */
-.b-util,.a-util{display:none}
-@media(min-width:901px){
-  .b-util,.a-util{display:block;border-bottom:1px solid var(--b-line,rgba(0,0,0,.08))}
-  .a-util{border-bottom-color:var(--a-line)}
-  .b-util-in,.a-util-in{display:flex;align-items:center;justify-content:space-between;gap:24px;height:44px}
-  .b-util-l,.a-util-l{font:400 12.5px/1 var(--b-ui,Arial);color:var(--b-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .a-util-l{font-family:var(--a-ui);color:inherit;opacity:.7}
-  .b-util-l a,.a-util-l a{color:inherit}
-  .b-msgs-u,.a-msgs-u{display:flex;align-items:center;gap:6px}
-  .b-msgs-u a,.a-msgs-u a,.b-msgs-u .b-search,.a-msgs-u .a-search{width:32px;height:32px}
-  .b-msgs-u a svg,.a-msgs-u a svg,.b-msgs-u .b-search svg,.a-msgs-u .a-search svg{width:17px;height:17px}
-  .b-msgs-u .b-search,.a-msgs-u .a-search{margin-right:10px}
-  /* основная строка: логотип, меню, телефон, кнопка */
-  .b-right .b-msgs:not(.b-msgs-u),.a-right .a-msgs:not(.a-msgs-u){display:none}
-  .b-logo small,.a-logo small,.b-phone small,.a-phone small{display:none}
-  .b-logo b,.a-logo b{grid-row:1 / 3;align-self:center}
-  .mm-top{padding-left:14px;padding-right:14px}
-  .b-bar,.a-bar{gap:26px}
-  .b-right,.a-right{gap:22px}
-}
-@media(max-width:1240px) and (min-width:901px){
-  .mm-top{padding-left:9px;padding-right:9px}
-  .b-bar,.a-bar{gap:16px}
-  .b-right,.a-right{gap:14px}
-  .b-util-l,.a-util-l{font-size:12px}
-}
-/* А1: первый экран ниже на высоту верхней строки шапки */
-@media(min-width:901px){
-  .x-hero-top{top:148px}
-  .x-hero-stick{padding-top:164px}
-  .b-top.compact .b-util-in,.a-top.compact .a-util-in{height:36px}
-}
 /* А1: кнопки первого экрана по сетке (при анимации сбрасывалось центрирование контейнера) */
 .x-anim .x-hero-bottom{margin:0 auto}
+
+/* ---------- шапка в одну строку на всю ширину (Илья: «логотип левее, раздвинуть, в один уровень») ---------- */
+.b-bar-wide,.a-bar-wide{max-width:none;padding-left:clamp(20px,3vw,56px);padding-right:clamp(20px,3vw,56px)}
+@media(min-width:901px){
+  .b-right .b-msgs:not(.b-msgs-m),.a-right .a-msgs:not(.a-msgs-m){display:flex;gap:6px}
+  .b-msgs:not(.b-msgs-m) a,.a-msgs:not(.a-msgs-m) a,.b-search,.a-search{width:36px;height:36px}
+  .b-msgs:not(.b-msgs-m) a svg,.a-msgs:not(.a-msgs-m) a svg,.b-search svg,.a-search svg{width:18px;height:18px}
+  .b-search,.a-search{margin-right:8px}
+  .b-phone small,.a-phone small{display:none}
+  .mm{margin-left:auto;margin-right:auto}
+  .b-right,.a-right{margin-left:0;gap:20px}
+  .b-bar-wide,.a-bar-wide{gap:24px}
+}
+@media(min-width:1600px){.mm-top{padding-left:16px;padding-right:16px}}
+@media(max-width:1439px) and (min-width:901px){
+  .b-logo small,.a-logo small{display:none}
+  .b-logo b,.a-logo b{grid-row:1 / 3;align-self:center}
+  .mm-top{padding-left:10px;padding-right:10px}
+  .b-msgs:not(.b-msgs-m),.a-msgs:not(.a-msgs-m){gap:4px}
+  .b-msgs:not(.b-msgs-m) a,.a-msgs:not(.a-msgs-m) a,.b-search,.a-search{width:32px;height:32px}
+  .b-search,.a-search{margin-right:6px}
+  .b-bar-wide,.a-bar-wide{gap:16px}
+  .b-right,.a-right{gap:14px}
+}
+/* узкий ноутбук: номер телефона превращается в трубку в ряду иконок */
+@media(max-width:1300px) and (min-width:901px){
+  .b-phone,.a-phone{display:none}
+  .b-callico,.a-callico{display:grid;place-items:center;width:32px;height:32px;padding:0;font-size:0;border-radius:999px}
+  .b-callico{background:var(--b-mist);color:var(--b-ink)}
+  .a-callico{border:1px solid var(--a-line)}
+  .b-callico::before,.a-callico::before{content:"";width:16px;height:16px;background:currentColor;
+    -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z'/%3E%3C/svg%3E") center/contain no-repeat;
+            mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z'/%3E%3C/svg%3E") center/contain no-repeat}
+  .b-right,.a-right{gap:10px}
+}
+@media(max-width:1200px) and (min-width:901px){
+  .mm-top{padding-left:8px;padding-right:8px}
+  .b-top-cta,.a-top-cta{padding:10px 14px;font-size:13.5px}
+  .b-logo b,.a-logo b{font-size:18px}
+  .b-bar-wide,.a-bar-wide{gap:12px}
+}
+@media(max-width:900px){.b-bar-wide,.a-bar-wide{padding-left:20px;padding-right:20px}}
+/* порядок справа: иконки, трубка, телефон, кнопка, меню */
+.b-right>.b-msgs,.a-right>.a-msgs{order:1}
+.b-right>.b-callico,.a-right>.a-callico{order:2}
+.b-right>.b-phone,.a-right>.a-phone{order:3}
+.b-right>.b-top-cta,.a-right>.a-top-cta{order:4}
+.b-right>.b-burger,.a-right>.a-burger{order:5}
