@@ -22,3 +22,6 @@
 .btn-amber{color:#fff}
 .btn-amber:hover{color:#fff}
 .hero h1 em,.cam-note a,.result .rt,.result .send,.formband .cbx a{color:#A9C0FF}
+
+/* текст на главной кнопке белый (нижняя панель версий «1») */
+:root{--b-cta-ink:#fff}

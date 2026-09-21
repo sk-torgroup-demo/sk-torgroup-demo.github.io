@@ -291,3 +291,28 @@ html,body{overflow-x:clip}
 /* заставка под видео первого экрана (не слайд: слайд-шоу её не трогает, видео идёт непрерывно) */
 .b-poster{position:absolute;inset:0}
 .b-poster img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* ---------- телефон: снизу всегда мессенджеры, почта и «Рассчитать»; вверху логотип, поиск, трубка, меню (Илья: вариант 3) ---------- */
+.v1-mbar{display:none}
+@media(max-width:760px){
+  .v1-mbar{display:flex!important;transform:none!important;align-items:center;gap:8px;padding:8px 12px calc(8px + env(safe-area-inset-bottom));
+    background:#fff;border-top:1px solid #E3E6EA;box-shadow:0 -8px 24px rgba(18,20,23,.07)}
+  .v1-mb-ic{display:flex;gap:6px;flex:none}
+  .v1-mb-ic a{width:44px;height:44px;border-radius:999px;background:#F3F4F6;display:grid;place-items:center;padding:0;text-decoration:none}
+  .v1-mb-ic a svg{width:21px;height:21px}
+  .v1-mb-ic a[href*="wa.me"]{color:#1FAF54}.v1-mb-ic a[href*="t.me"]{color:#229ED9}.v1-mb-ic a[href*="max.ru"]{color:#5B3DF5}.v1-mb-ic a[href^="mailto"]{color:#121417}
+  .v1-mb-ic .b-max,.v1-mb-ic .a-max{font:800 10px/1 var(--v1-sans)}
+  .v1-mb-cta{flex:1;min-width:0;height:44px;padding:0 12px;font-size:15px;justify-content:center}
+  .v1-mb-cta:hover{transform:none}
+  body{padding-bottom:calc(62px + env(safe-area-inset-bottom))}
+  body:has(#mnav.open) .v1-mbar,html.ss-open .v1-mbar{display:none!important}
+  .vsw{bottom:calc(70px + env(safe-area-inset-bottom))}
+  #ckb{bottom:calc(72px + env(safe-area-inset-bottom))}
+  /* шапка: из иконок остаётся только поиск, мессенджеры и почта уехали вниз */
+  .b-right .b-msgs:not(.b-msgs-m) a,.a-right .a-msgs:not(.a-msgs-m) a{display:none}
+  .b-right .b-msgs .b-search,.a-right .a-msgs .a-search{display:grid;margin:0}
+}
+@media(max-width:340px){.v1-mb-ic{gap:4px}.v1-mb-ic a{width:40px;height:40px}.v1-mb-cta{font-size:14px;padding:0 8px}}
+/* «Рассчитать» в нижней панели в цвете версии (старое правило .mbar a делало её белой) */
+.v1-mbar .v1-mb-cta.b-btn-amber{background:var(--b-amber);color:var(--b-cta-ink,#1A1400);border-radius:999px;font-weight:600}
+.v1-mbar .v1-mb-cta.a-btn-amber{background:var(--a-ink);color:#fff;border-radius:999px;font-weight:600}
