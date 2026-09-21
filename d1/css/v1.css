@@ -1,0 +1,183 @@
+/* Только для версий с единицей (а1, б1, в1, г1): логотип, мессенджеры в шапке, выравнивание.
+   Подключается последним, поверх темы. Картинки по относительному пути (работает и на стенде, и в демо). */
+
+/* ---------- логотип: эмблема слева от названия ---------- */
+.b-logo,.a-logo{display:grid;grid-template-columns:auto auto;column-gap:12px;row-gap:3px;align-items:center;justify-content:start}
+.b-logo::before,.a-logo::before{content:"";grid-row:1 / 3;width:46px;height:44px;background:url(../img/logo/emblem.webp) center/contain no-repeat}
+.b-logo b,.a-logo b{grid-column:2;align-self:end}
+.b-logo small,.a-logo small{grid-column:2;align-self:start}
+
+/* ---------- мессенджеры: видны всегда, в фирменных цветах ---------- */
+.b-right .b-msgs,.a-right .a-msgs{display:flex;gap:6px}
+.b-msgs:not(.b-msgs-m) a,.a-msgs:not(.a-msgs-m) a{width:38px;height:38px}
+.b-msgs:not(.b-msgs-m) a svg,.a-msgs:not(.a-msgs-m) a svg{width:20px;height:20px}
+.b-msgs a[href*="wa.me"],.a-msgs a[href*="wa.me"]{color:#1FAF54}
+.b-msgs a[href*="t.me"],.a-msgs a[href*="t.me"]{color:#229ED9}
+.b-msgs a[href*="max.ru"],.a-msgs a[href*="max.ru"]{color:#5B3DF5}
+.b-max,.a-max{font:800 9.5px/1 var(--b-ui,Arial);letter-spacing:.02em}
+.b-msgs-m a[href*="wa.me"],.b-msgs-m a[href*="t.me"],.b-msgs-m a[href*="max.ru"]{color:var(--b-ink)}
+.a-msgs-m a{color:var(--a-ink)}
+
+@media(max-width:1440px){.b-right .b-msgs,.a-right .a-msgs{display:flex}}
+/* шапка должна влезать: часы и почта есть в подвале и на «Контактах», в шапке только номер */
+.b-mail,.a-mail{display:none}
+.b-right,.a-right{gap:14px}
+@media(max-width:1500px){.b-phone small,.a-phone small{display:none}}
+@media(max-width:1240px){.b-logo small,.a-logo small{display:none}}
+
+/* телефон: иконка трубки вместо слова «Позвонить» */
+@media(max-width:900px){
+  .b-right,.a-right{gap:6px}
+  .b-callico{width:38px;height:38px;padding:0;justify-content:center;font-size:0}
+  .b-callico::before{content:"";width:18px;height:18px;background:currentColor;
+    -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z'/%3E%3C/svg%3E") center/contain no-repeat;
+            mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z'/%3E%3C/svg%3E") center/contain no-repeat}
+  .a-callico{width:38px;height:38px}
+  .b-msgs:not(.b-msgs-m) a,.a-msgs:not(.a-msgs-m) a{width:38px;height:38px}
+  .b-logo::before,.a-logo::before{width:38px;height:36px}
+  .b-logo,.a-logo{column-gap:9px}
+}
+@media(max-width:430px){.b-right .b-msgs a[href*="max.ru"],.a-right .a-msgs a[href*="max.ru"]{display:none}}
+@media(max-width:374px){.b-logo b,.a-logo b{font-size:16px}}
+
+/* ---------- контакты: карта от заголовка до последней строки, верх и низ по одной линии ---------- */
+.wrap:has(> .cgrid){display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);column-gap:40px;align-items:start}
+.wrap:has(> .cgrid) > .eyebrow,.wrap:has(> .cgrid) > h2{grid-column:1}
+.wrap:has(> .cgrid) > .cgrid{display:contents}
+.wrap:has(> .cgrid) .cnap{grid-column:1}
+.wrap:has(> .cgrid) .cmap{grid-column:2;grid-row:1 / span 3;align-self:stretch;min-height:0;margin:0}
+.wrap:has(> .cgrid) .cmap iframe{height:100%;min-height:0}
+@media(max-width:900px){
+  .wrap:has(> .cgrid){display:block}
+  .wrap:has(> .cgrid) .cmap{margin-top:24px;min-height:340px}
+  .wrap:has(> .cgrid) .cmap iframe{min-height:340px}
+}
+
+/* ---------- шапка ровно в сетке страницы: правый край кнопки = правый край блоков ниже ---------- */
+.b-bar,.a-bar{gap:18px}
+.mm-top{padding-left:9px;padding-right:9px}
+.b-logo small,.a-logo small{max-width:168px}
+
+/* ---------- шапка влезает на всех ширинах (проверено 1920, 1440, 1366, 1280, 1180, 390, 360) ---------- */
+@media(max-width:1400px){
+  .b-logo small,.a-logo small{display:none}
+  .b-logo b,.a-logo b{grid-row:1 / 3;align-self:center}   /* без подписи название по центру эмблемы */
+}
+@media(max-width:1240px) and (min-width:901px){
+  .b-right,.a-right{gap:10px}
+  .b-msgs:not(.b-msgs-m) a,.a-msgs:not(.a-msgs-m) a{width:34px;height:34px}
+  .b-nt,.a-nt,.mm-top{padding-left:7px;padding-right:7px}
+  .b-phone>a,.a-phone>a{font-size:15px}
+  .b-top-cta,.a-top-cta{padding:11px 15px;font-size:13.5px}
+  .b-logo b,.a-logo b{font-size:19px}
+}
+@media(max-width:900px){
+  .a-callico{display:grid;font-size:0}
+  .a-callico::before{content:"";width:18px;height:18px;background:currentColor;
+    -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z'/%3E%3C/svg%3E") center/contain no-repeat;
+            mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z'/%3E%3C/svg%3E") center/contain no-repeat}
+  .a-burger{width:38px;height:38px}
+  .a-burger i{top:18px}
+}
+@media(max-width:400px){
+  .a-logo b{font-size:16px;letter-spacing:0}
+  .a-right,.b-right{gap:5px}
+  .a-msgs:not(.a-msgs-m) a,.b-msgs:not(.b-msgs-m) a,.a-callico,.b-callico{width:34px;height:34px}
+  .a-burger,.b-burger{width:36px;height:36px}
+  .a-burger i{top:17px}.b-burger i{top:17px}
+}
+@media(max-width:374px){.a-right .a-msgs a[href*="t.me"]{display:none}}
+@media(max-width:1240px) and (min-width:901px){.a-logo b{font-size:18px;letter-spacing:0}}
+@media(max-width:900px) and (min-width:761px){.a-phone{display:none}}
+@media(max-width:374px){.b-logo::before,.a-logo::before{width:30px;height:30px}.b-logo,.a-logo{column-gap:7px}}
+@media(max-width:389px){.b-logo b{font-size:16px}.b-logo::before{width:30px;height:30px}.b-logo{column-gap:7px}}
+@media(max-width:340px){.b-right .b-msgs a[href*="t.me"]{display:none}.b-logo b{font-size:15px}}
+
+/* ---------- А1: лента работ в одну линию, вступление по верху карточек ---------- */
+.x-wcard:nth-of-type(even){margin-top:0}
+.x-works-intro{align-self:flex-start}
+/* строки договора: подпись и сумма на одной линии */
+.x-doc-r{align-items:baseline}
+/* команда: три фото вместо заглушки, фото и текст одной высоты */
+.a-team{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);align-items:stretch}
+.a-team-photos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;padding:16px;background:none;place-items:stretch}
+.a-team-photos figure{margin:0;display:flex;flex-direction:column}
+.a-team-photos img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 20%}
+.a-team-photos figcaption{display:grid;gap:2px;padding:10px 2px 0;font:400 12.5px/1.35 var(--a-ui);color:var(--a-muted)}
+.a-team-photos figcaption b{font:600 14px var(--a-ui);color:var(--a-ink)}
+.a-team-txt{align-self:center}
+@media(max-width:900px){.a-team{grid-template-columns:1fr}.a-team-photos{padding:12px}}
+.a-team-photos figcaption span{font:400 12.5px/1.35 var(--a-ui);letter-spacing:0;text-transform:none;background:none;padding:0;border-radius:0;color:var(--a-muted)}
+
+/* ---------- лупа и конверт в ряду с мессенджерами ---------- */
+.b-search,.a-search{width:38px;height:38px;border-radius:999px;border:0;display:grid;place-items:center;cursor:pointer;color:inherit;padding:0;transition:background .2s,border-color .2s}
+.b-search{background:var(--b-mist);color:var(--b-ink)}.b-search:hover{background:#E6E8EC}
+.a-search{background:none;border:1px solid var(--a-line)}.a-search:hover{border-color:currentColor}
+.b-msgs a[href^="mailto:"],.a-msgs a[href^="mailto:"]{color:inherit}
+.b-msgs:not(.b-msgs-m) a[href^="mailto:"]{color:var(--b-ink)}
+.b-search{margin-right:6px}.a-search{margin-right:6px}   /* поиск чуть отделён от способов связи */
+.b-msearch,.a-msearch{width:100%}
+@media(max-width:1240px) and (min-width:901px){.b-search,.a-search{width:34px;height:34px}}
+@media(max-width:900px){.b-right .b-msgs .b-search,.a-right .a-msgs .a-search,.b-right .b-msgs a[href^="mailto:"],.a-right .a-msgs a[href^="mailto:"]{display:none}}
+
+/* ---------- окно поиска ---------- */
+html.ss-open{overflow:hidden}
+.ss{position:fixed;inset:0;z-index:9800;background:rgba(12,13,15,.45);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);opacity:0;transition:opacity .18s}
+.ss.on{opacity:1}
+.ss-in{max-width:760px;margin:clamp(70px,10vh,120px) auto 0;background:#fff;color:#121417;border-radius:22px;box-shadow:0 30px 80px rgba(0,0,0,.25);overflow:hidden;transform:translateY(-10px);transition:transform .22s cubic-bezier(.2,.7,.2,1);font-family:'GolosUI',Arial,sans-serif}
+.ss.on .ss-in{transform:none}
+.ss-f{display:flex;align-items:center;gap:12px;padding:16px 18px;border-bottom:1px solid #E3E6EA;color:#636A73}
+.ss-f input{flex:1;min-width:0;border:0;outline:0;font:400 19px/1.3 'GolosUI',Arial,sans-serif;color:#121417;background:none;padding:6px 0}
+.ss-f input::-webkit-search-cancel-button{display:none}
+.ss-x{border:1px solid #E3E6EA;background:#fff;border-radius:8px;padding:5px 9px;font:500 12px 'GolosUI',Arial,sans-serif;color:#636A73;cursor:pointer}
+.ss-r{max-height:min(60vh,520px);overflow:auto;padding:8px}
+.ss-i{display:grid;gap:4px;padding:12px 14px;border-radius:14px;color:#121417;text-decoration:none}
+.ss-i b{font:600 16px/1.3 'GolosUI',Arial,sans-serif}
+.ss-i span{font:400 13.5px/1.5 'GolosUI',Arial,sans-serif;color:#636A73}
+.ss-i mark{background:#FFF1B8;color:inherit;border-radius:3px;padding:0 1px}
+.ss-i:hover,.ss-i.on{background:#F3F4F6}
+.ss-pop{display:flex;flex-wrap:wrap;gap:8px;padding:10px 8px}
+.ss-pop a{padding:10px 16px;border-radius:999px;background:#F3F4F6;color:#121417;text-decoration:none;font:400 14.5px 'GolosUI',Arial,sans-serif}
+.ss-pop a:hover,.ss-pop a.on{background:#121417;color:#fff}
+.ss-none{padding:18px 16px;margin:0;font:400 15px/1.5 'GolosUI',Arial,sans-serif;color:#636A73}
+.ss-none a{color:#121417}
+.ss-h{padding:10px 18px 14px;font:400 12px 'GolosUI',Arial,sans-serif;color:#8A9099;border-top:1px solid #F0F1F3}
+.ss-h:empty{display:none}
+@media(max-width:760px){.ss-in{margin:12px;border-radius:18px}.ss-f input{font-size:17px}}
+@media(prefers-reduced-motion:reduce){.ss,.ss-in{transition:none}}
+
+/* ---------- верхняя строка шапки (компьютер): слева о компании, справа поиск и все способы связи ---------- */
+.b-util,.a-util{display:none}
+@media(min-width:901px){
+  .b-util,.a-util{display:block;border-bottom:1px solid var(--b-line,rgba(0,0,0,.08))}
+  .a-util{border-bottom-color:var(--a-line)}
+  .b-util-in,.a-util-in{display:flex;align-items:center;justify-content:space-between;gap:24px;height:44px}
+  .b-util-l,.a-util-l{font:400 12.5px/1 var(--b-ui,Arial);color:var(--b-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .a-util-l{font-family:var(--a-ui);color:inherit;opacity:.7}
+  .b-util-l a,.a-util-l a{color:inherit}
+  .b-msgs-u,.a-msgs-u{display:flex;align-items:center;gap:6px}
+  .b-msgs-u a,.a-msgs-u a,.b-msgs-u .b-search,.a-msgs-u .a-search{width:32px;height:32px}
+  .b-msgs-u a svg,.a-msgs-u a svg,.b-msgs-u .b-search svg,.a-msgs-u .a-search svg{width:17px;height:17px}
+  .b-msgs-u .b-search,.a-msgs-u .a-search{margin-right:10px}
+  /* основная строка: логотип, меню, телефон, кнопка */
+  .b-right .b-msgs:not(.b-msgs-u),.a-right .a-msgs:not(.a-msgs-u){display:none}
+  .b-logo small,.a-logo small,.b-phone small,.a-phone small{display:none}
+  .b-logo b,.a-logo b{grid-row:1 / 3;align-self:center}
+  .mm-top{padding-left:14px;padding-right:14px}
+  .b-bar,.a-bar{gap:26px}
+  .b-right,.a-right{gap:22px}
+}
+@media(max-width:1240px) and (min-width:901px){
+  .mm-top{padding-left:9px;padding-right:9px}
+  .b-bar,.a-bar{gap:16px}
+  .b-right,.a-right{gap:14px}
+  .b-util-l,.a-util-l{font-size:12px}
+}
+/* А1: первый экран ниже на высоту верхней строки шапки */
+@media(min-width:901px){
+  .x-hero-top{top:148px}
+  .x-hero-stick{padding-top:164px}
+  .b-top.compact .b-util-in,.a-top.compact .a-util-in{height:36px}
+}
+/* А1: кнопки первого экрана по сетке (при анимации сбрасывалось центрирование контейнера) */
+.x-anim .x-hero-bottom{margin:0 auto}

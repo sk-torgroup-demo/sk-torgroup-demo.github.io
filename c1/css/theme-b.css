@@ -488,3 +488,18 @@ footer.b-foot{background:var(--b-mist);color:var(--b-muted);padding:72px 0 0;fon
 /* б1: видео в первом экране (кадр до загрузки, без увеличения, как у фото) */
 .b-video{background:#1a1b1d}
 .b-hero-box:has(.b-video)::after{background:linear-gradient(0deg,rgba(10,11,12,.82) 0%,rgba(10,11,12,.5) 45%,rgba(10,11,12,.18) 72%,rgba(10,11,12,.35) 100%)}
+
+/* б1, в1, г1: заголовок по центру кадра (видео симметричное) */
+.b-hero-c .b-hero-in{left:50%;right:auto;top:54%;bottom:auto;transform:translate(-50%,-50%);width:min(1100px,calc(100% - 48px));max-width:none;padding:0;text-align:center;display:flex;flex-direction:column;align-items:center}
+.b-hero-c .b-pill{margin-bottom:26px}
+.b-hero-c .b-h1-big{max-width:none;white-space:nowrap}
+.b-hero-c .b-h1-small{margin-top:20px}
+.b-hero-c .b-cta{justify-content:center}
+.b-hero-c .b-hero-foot{left:50%;right:auto;transform:translateX(-50%);align-items:center;bottom:28px}
+.b-hero-box.b-hero-c::after{background:radial-gradient(ellipse 75% 60% at 50% 55%,rgba(10,11,12,.58) 0%,rgba(10,11,12,.4) 55%,rgba(10,11,12,.28) 100%)}
+@media(min-width:761px){.b-hero-c .b-hero-in{padding:0}.b-hero-c .b-hero-foot{right:auto}}
+@media(max-width:760px){
+  .b-hero-c .b-hero-in{top:52%;width:calc(100% - 24px);padding:0}  /* текст по той же линии, что и всё ниже: 8 px рамки + 12 */
+  .b-hero-c .b-h1-big{white-space:normal;font-size:clamp(38px,11vw,52px)}
+  .b-hero-c .b-hero-foot{left:20px;right:20px;transform:none;justify-content:center}
+}
