@@ -288,3 +288,6 @@ html,body{overflow-x:clip}
 }
 @media(max-width:1200px) and (min-width:901px){.b-top-cta,.a-top-cta{padding:10px 14px;font-size:13.5px}.mm-top{padding-left:7px;padding-right:7px}}
 .b-video{background:transparent}  /* под роликом заставка-картинка, пока он грузится */
+/* заставка под видео первого экрана (не слайд: слайд-шоу её не трогает, видео идёт непрерывно) */
+.b-poster{position:absolute;inset:0}
+.b-poster img{width:100%;height:100%;object-fit:cover;display:block}
