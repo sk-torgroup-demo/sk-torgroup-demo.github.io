@@ -21,7 +21,7 @@
 <link rel="apple-touch-icon" href="/c1/apple-touch-icon.png">
 <link rel="preload" as="font" type="font/woff2" href="/c1/fonts/tilda-sans_extra-bold.woff2" crossorigin><link rel="preload" as="font" type="font/woff2" href="/c1/fonts/tilda-sans_light.woff2" crossorigin>
 <link rel="stylesheet" href="/c1/css/main.css?v=ab7c3528">
-<link rel="stylesheet" href="/c1/css/menu.css?v=4267bb1d"><link rel="stylesheet" href="/c1/css/theme-b.css?v=d80df4fa"><link rel="stylesheet" href="/c1/css/theme-c.css?v=622aceb6">
+<link rel="stylesheet" href="/c1/css/menu.css?v=4267bb1d"><link rel="stylesheet" href="/c1/css/theme-b.css?v=272b7802"><link rel="stylesheet" href="/c1/css/theme-c.css?v=622aceb6">
 
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "GeneralContractor", "@id": "https://sk-torgroup.ru#org", "name": "СК ТОР ГРУПП", "legalName": "ООО «ТОР ГРУПП»", "taxID": "5032399235", "url": "https://sk-torgroup.ru", "telephone": "+7 (495) 256-21-11", "email": "zakaz@sk-torgroup.ru", "address": {"@type": "PostalAddress", "streetAddress": "ул. Ельнинская, д. 15, корп. 2", "addressLocality": "Москва", "addressCountry": "RU"}, "areaServed": "Москва и Московская область", "openingHours": "Mo-Su 09:00-21:00"}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "СК ТОР ГРУПП", "url": "https://sk-torgroup.ru"}</script>
@@ -183,10 +183,7 @@
 <section class="b-hero">
   <div class="b-hero-box">
     <div class="b-slides" aria-hidden="true">
-      <img class="b-slide on" src="/c1/img/obekty/dom-stolovaya.webp" alt="" fetchpriority="high" style="object-position:50% 40%">
-      <img class="b-slide" src="/c1/img/obekty/dom-bassejn.webp" alt="" loading="lazy" style="object-position:50% 62%">
-      <img class="b-slide" src="/c1/img/obekty/dom-vanna.webp" alt="" loading="lazy" style="object-position:50% 55%">
-      <img class="b-slide" src="/c1/img/obekty/dom-detskaya.webp" alt="" loading="lazy" style="object-position:50% 60%">
+      <video class="b-slide b-video on" muted loop playsinline preload="none" poster="/c1/img/video/bassejn-wide.webp" data-wide="/c1/img/video/bassejn-wide.mp4" data-tall="/c1/img/video/bassejn-tall.mp4" data-poster-tall="/c1/img/video/bassejn-tall.webp"></video>
     </div>
     <div class="b-hero-in">
       <div class="b-pill"><i class="b-rec"></i>Ремонт квартир и домов · Москва и область</div>
@@ -197,11 +194,14 @@
       </div>
     </div>
     <div class="b-hero-foot">
-      <div class="b-dots" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
-      <span>Наши объекты</span>
+      <span>Наш объект: бассейн в загородном доме</span>
     </div>
   </div>
 </section>
+<script>/* видео первого экрана: узкий экран берёт вертикальный ролик; при «уменьшить движение» остаётся кадр */
+(function(){var tall=matchMedia('(max-width:760px)').matches,calm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+document.querySelectorAll('video[data-wide]').forEach(function(v){if(tall)v.poster=v.dataset.posterTall;if(calm)return;
+v.src=tall?v.dataset.tall:v.dataset.wide;v.preload='auto';var p=v.play();if(p&&p.catch)p.catch(function(){})})})();</script>
 
 <!-- 2. КОРОТКО: обещание и три факта -->
 <section class="b-intro">
@@ -264,7 +264,7 @@
           <div class="b-app-chip">Сегодня, 18:40 · прораб прислал 6 фото</div>
           <div class="b-app-photos">
             <img src="/c1/img/obekty/dom-zal-plitka.webp" alt="" loading="lazy"><img src="/c1/img/obekty/kv-chernovaya.webp" alt="" loading="lazy"><img src="/c1/img/obekty/dom-bassejn-process.webp" alt="" loading="lazy">
-            <img src="/c1/img/obekty/dom-parket.webp" alt="" loading="lazy"><img src="/c1/img/obekty/dom-zal-lesa2.webp" alt="" loading="lazy"><img src="/c1/img/obekty/kv-dver.webp" alt="" loading="lazy">
+            <img src="/c1/img/obekty/dom-parket.webp" alt="" loading="lazy"><img src="/c1/img/obekty/dom-zal-lesa2.webp" alt="" loading="lazy"><img src="/c1/img/obekty/dom-bassejn-process2.webp" alt="" loading="lazy">
           </div>
           <p class="b-app-cap">Плитка в зале, чаша бассейна, паркет, откосы</p>
         </div>
@@ -346,23 +346,23 @@
         <span class="b-pf-wait">Смета и срок по договору и по факту: добавлю по вашим данным</span>
       </a>
       <a class="b-card" href="/c1/nashi-raboty/" data-rv="1">
-        <span class="b-card-img"><img src="/c1/img/obekty/dom-bassejn.webp" alt="Загородный дом, бассейн" loading="lazy"></span>
+        <span class="b-card-img"><img src="/c1/img/obekty/dom-bassejn-os.webp" alt="Загородный дом, бассейн" loading="lazy"></span>
         <span class="b-card-t"><b>Загородный дом</b><span>бассейн</span></span>
         <span class="b-pf-wait">Смета и срок по договору и по факту: добавлю по вашим данным</span>
       </a>
       <a class="b-card" href="/c1/nashi-raboty/" data-rv="2">
+        <span class="b-card-img"><img src="/c1/img/obekty/dom-holl.webp" alt="Загородный дом, холл" loading="lazy"></span>
+        <span class="b-card-t"><b>Загородный дом</b><span>холл</span></span>
+        <span class="b-pf-wait">Смета и срок по договору и по факту: добавлю по вашим данным</span>
+      </a>
+      <a class="b-card" href="/c1/nashi-raboty/" data-rv="0">
         <span class="b-card-img"><img src="/c1/img/obekty/dom-vanna.webp" alt="Загородный дом, ванная" loading="lazy"></span>
         <span class="b-card-t"><b>Загородный дом</b><span>ванная</span></span>
         <span class="b-pf-wait">Смета и срок по договору и по факту: добавлю по вашим данным</span>
       </a>
-      <a class="b-card" href="/c1/nashi-raboty/" data-rv="0">
-        <span class="b-card-img"><img src="/c1/img/obekty/kv-kuhnya.webp" alt="Квартира, кухня" loading="lazy"></span>
-        <span class="b-card-t"><b>Квартира</b><span>кухня</span></span>
-        <span class="b-pf-wait">Смета и срок по договору и по факту: добавлю по вашим данным</span>
-      </a>
       <a class="b-card" href="/c1/nashi-raboty/" data-rv="1">
-        <span class="b-card-img"><img src="/c1/img/obekty/dom-detskaya.webp" alt="Загородный дом, детская" loading="lazy"></span>
-        <span class="b-card-t"><b>Загородный дом</b><span>детская</span></span>
+        <span class="b-card-img"><img src="/c1/img/obekty/kv-koridor.webp" alt="Квартира, коридор" loading="lazy"></span>
+        <span class="b-card-t"><b>Квартира</b><span>коридор</span></span>
         <span class="b-pf-wait">Смета и срок по договору и по факту: добавлю по вашим данным</span>
       </a>
       <a class="b-card" href="/c1/nashi-raboty/" data-rv="2">
@@ -387,7 +387,7 @@
     </div>
     <div class="b-svc b-svc4">
       <a class="b-scard" href="/c1/remont-pod-klyuch/" data-rv="0">
-        <span class="b-scard-img"><img src="/c1/img/obekty/kv-kuhnya.webp" alt="Ремонт квартиры под ключ" loading="lazy"></span>
+        <span class="b-scard-img"><img src="/c1/img/obekty/kv-koridor.webp" alt="Ремонт квартиры под ключ" loading="lazy"></span>
         <span class="b-scard-b"><b>Ремонт под ключ</b><span>Капитальный и комплексный ремонт квартир — с материалами и без.</span><em>18 000–32 000 ₽/м²</em><i>Подробнее →</i></span>
       </a>
       <a class="b-scard" href="/c1/otdelka-novostroek/" data-rv="1">
@@ -395,11 +395,11 @@
         <span class="b-scard-b"><b>Отделка новостроек</b><span>С нуля, черновая, white box. Пакеты «Комфорт» и «Бизнес» за 45–60 дней.</span><em>14 000–26 000 ₽/м²</em><i>Подробнее →</i></span>
       </a>
       <a class="b-scard" href="/c1/nashi-raboty/" data-rv="2">
-        <span class="b-scard-img"><img src="/c1/img/obekty/dom-arka.webp" alt="Загородный дом после ремонта" loading="lazy"></span>
+        <span class="b-scard-img"><img src="/c1/img/obekty/dom-bassejn-os.webp" alt="Загородный дом после ремонта" loading="lazy"></span>
         <span class="b-scard-b"><b>Загородные дома</b><span>Ремонт и отделка домов и коттеджей: от черновых работ до бассейна.</span><em>по смете после замера</em><i>Смотреть работы →</i></span>
       </a>
       <a class="b-scard" href="/c1/dizajn-proekt/" data-rv="2">
-        <span class="b-scard-img"><img src="/c1/img/obekty/dom-detskaya.webp" alt="Интерьер по дизайн-проекту" loading="lazy"></span>
+        <span class="b-scard-img"><img src="/c1/img/obekty/dom-holl.webp" alt="Интерьер по дизайн-проекту" loading="lazy"></span>
         <span class="b-scard-b"><b>Дизайн и дизайн-проект</b><span>Проект с рабочей документацией — и реализация теми же руками.</span><em>от 2 500 ₽/м² за проект</em><i>Подробнее →</i></span>
       </a>
     </div>

@@ -21,7 +21,7 @@
 <link rel="apple-touch-icon" href="/a1/apple-touch-icon.png">
 <link rel="preload" as="font" type="font/woff2" href="/a1/fonts/tilda-sans_extra-bold.woff2" crossorigin><link rel="preload" as="font" type="font/woff2" href="/a1/fonts/tilda-sans_light.woff2" crossorigin>
 <link rel="stylesheet" href="/a1/css/main.css?v=ab7c3528">
-<link rel="stylesheet" href="/a1/css/menu.css?v=4267bb1d"><link rel="stylesheet" href="/a1/css/theme-a.css?v=88624515">
+<link rel="stylesheet" href="/a1/css/menu.css?v=4267bb1d"><link rel="stylesheet" href="/a1/css/theme-a.css?v=5786e59b">
 
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "GeneralContractor", "@id": "https://sk-torgroup.ru#org", "name": "СК ТОР ГРУПП", "legalName": "ООО «ТОР ГРУПП»", "taxID": "5032399235", "url": "https://sk-torgroup.ru", "telephone": "+7 (495) 256-21-11", "email": "zakaz@sk-torgroup.ru", "address": {"@type": "PostalAddress", "streetAddress": "ул. Ельнинская, д. 15, корп. 2", "addressLocality": "Москва", "addressCountry": "RU"}, "areaServed": "Москва и Московская область", "openingHours": "Mo-Su 09:00-21:00"}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "СК ТОР ГРУПП", "url": "https://sk-torgroup.ru"}</script>
@@ -178,13 +178,18 @@
 </header>
 
 <main class="a-home">
+<script>/* видео первого экрана: узкий экран берёт вертикальный ролик; при «уменьшить движение» остаётся кадр */
+(function(){var tall=matchMedia('(max-width:760px)').matches,calm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+document.querySelectorAll('video[data-wide]').forEach(function(v){if(tall)v.poster=v.dataset.posterTall;if(calm)return;
+v.src=tall?v.dataset.tall:v.dataset.wide;v.preload='auto';var p=v.play();if(p&&p.catch)p.catch(function(){})})})();</script>
 
 <!-- 1. ПЕРВЫЙ ЭКРАН: одно слово, сквозь буквы видно готовую квартиру; при прокрутке камера «влетает» в слово -->
 <section class="x-hero" id="top">
   <div class="x-hero-stick">
     <picture class="x-hero-photo">
       <source media="(max-width:760px)" srcset="/a1/img/obekty/dom-stolovaya.webp">
-      <img src="/a1/img/obekty/dom-stolovaya.webp" alt="Столовая в загородном доме после ремонта" width="1350" height="1800" fetchpriority="high" style="object-position:50% 42%">
+      <img src="/a1/img/obekty/dom-stolovaya.webp" alt="Столовая в загородном доме после ремонта" width="1144" height="1800" fetchpriority="high" style="object-position:50% 42%">
+      <video class="x-hero-video" muted loop playsinline preload="none" poster="/a1/img/video/bassejn-wide.webp" data-wide="/a1/img/video/bassejn-wide.mp4" data-tall="/a1/img/video/bassejn-tall.mp4" data-poster-tall="/a1/img/video/bassejn-tall.webp"></video>
     </picture>
     <h1 class="x-h1">
       <span class="x-mask"><span class="x-word" data-letters>Ремонт</span></span>
@@ -285,8 +290,13 @@
         <span class="a-pf-wait">Смета и срок по договору и по факту: добавлю по вашим данным</span>
       </a>
       <a class="x-wcard" href="/a1/nashi-raboty/" data-cursor="Смотреть">
-        <span class="x-wimg"><img src="/a1/img/obekty/dom-bassejn.webp" alt="Загородный дом, бассейн" loading="lazy"></span>
+        <span class="x-wimg"><img src="/a1/img/obekty/dom-bassejn-os.webp" alt="Загородный дом, бассейн" loading="lazy"></span>
         <span class="x-wmeta"><span class="x-wtag">Загородный дом</span><b>Бассейн</b><span>площадь и срок добавлю</span></span>
+        <span class="a-pf-wait">Смета и срок по договору и по факту: добавлю по вашим данным</span>
+      </a>
+      <a class="x-wcard" href="/a1/nashi-raboty/" data-cursor="Смотреть">
+        <span class="x-wimg"><img src="/a1/img/obekty/dom-holl.webp" alt="Загородный дом, холл" loading="lazy"></span>
+        <span class="x-wmeta"><span class="x-wtag">Загородный дом</span><b>Холл</b><span>площадь и срок добавлю</span></span>
         <span class="a-pf-wait">Смета и срок по договору и по факту: добавлю по вашим данным</span>
       </a>
       <a class="x-wcard" href="/a1/nashi-raboty/" data-cursor="Смотреть">
@@ -295,13 +305,8 @@
         <span class="a-pf-wait">Смета и срок по договору и по факту: добавлю по вашим данным</span>
       </a>
       <a class="x-wcard" href="/a1/nashi-raboty/" data-cursor="Смотреть">
-        <span class="x-wimg"><img src="/a1/img/obekty/kv-kuhnya.webp" alt="Квартира, кухня" loading="lazy"></span>
-        <span class="x-wmeta"><span class="x-wtag">Квартира</span><b>Кухня</b><span>площадь и срок добавлю</span></span>
-        <span class="a-pf-wait">Смета и срок по договору и по факту: добавлю по вашим данным</span>
-      </a>
-      <a class="x-wcard" href="/a1/nashi-raboty/" data-cursor="Смотреть">
-        <span class="x-wimg"><img src="/a1/img/obekty/dom-detskaya.webp" alt="Загородный дом, детская" loading="lazy"></span>
-        <span class="x-wmeta"><span class="x-wtag">Загородный дом</span><b>Детская</b><span>площадь и срок добавлю</span></span>
+        <span class="x-wimg"><img src="/a1/img/obekty/kv-koridor.webp" alt="Квартира, коридор" loading="lazy"></span>
+        <span class="x-wmeta"><span class="x-wtag">Квартира</span><b>Коридор</b><span>площадь и срок добавлю</span></span>
         <span class="a-pf-wait">Смета и срок по договору и по факту: добавлю по вашим данным</span>
       </a>
       <a class="x-wcard" href="/a1/nashi-raboty/" data-cursor="Смотреть">
@@ -325,13 +330,13 @@
       <p class="a-sub">Точная смета появится после бесплатного замера — и будет зафиксирована в договоре.</p>
     </div>
     <div class="x-svc">
-      <a class="x-srow" href="/a1/remont-pod-klyuch/" data-img="/a1/img/obekty/kv-kuhnya.webp">
+      <a class="x-srow" href="/a1/remont-pod-klyuch/" data-img="/a1/img/obekty/kv-koridor.webp">
         <span class="x-sn">01</span><b>Ремонт под ключ</b><span class="x-sdesc">Капитальный и комплексный ремонт квартир — с материалами и без.</span><em>18 000–32 000 ₽/м²</em><i>Подробнее →</i>
       </a>
       <a class="x-srow" href="/a1/otdelka-novostroek/" data-img="/a1/img/obekty/kv-chernovaya.webp">
         <span class="x-sn">02</span><b>Отделка новостроек</b><span class="x-sdesc">С нуля, черновая, white box. Пакеты «Комфорт» и «Бизнес» за 45–60 дней.</span><em>14 000–26 000 ₽/м²</em><i>Подробнее →</i>
       </a>
-      <a class="x-srow" href="/a1/dizajn-proekt/" data-img="/a1/img/obekty/dom-detskaya.webp">
+      <a class="x-srow" href="/a1/dizajn-proekt/" data-img="/a1/img/obekty/dom-holl.webp">
         <span class="x-sn">03</span><b>Дизайн и дизайн-проект</b><span class="x-sdesc">Проект с рабочей документацией — и реализация теми же руками.</span><em>от 2 500 ₽/м² за проект</em><i>Подробнее →</i>
       </a>
     </div>
@@ -501,7 +506,7 @@
 
 <!-- 11. ЗАЯВКА И КОНТАКТЫ -->
 <section class="a-final-sec">
-  <img class="a-final-bg" src="/a1/img/obekty/dom-bassejn.webp" alt="" loading="lazy">
+  <img class="a-final-bg" src="/a1/img/obekty/dom-bassejn-os.webp" alt="" loading="lazy">
   <div class="a-w">
     <div class="final a-final">
       <div class="a-final-txt">
