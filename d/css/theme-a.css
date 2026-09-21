@@ -604,3 +604,21 @@ body.x-on-hero .a-top:not(:has(.a-mnav.open)):not(.mm-active) .a-callico{border-
 /* а1: видео объекта сквозь буквы вместо фото */
 .x-hero-photo video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .x-anim .x-hero-photo video{transform:scale(calc(1.16 - min(1, var(--hp,0) * 1.6) * .16))}
+
+/* ---------- без жёлтого (Илья 21.09.2026: «в А и А1 убери жёлтый, сделай белым») ----------
+   Акцент белый. На тёмном (первый экран, лента работ, «сдано раньше», итог калькулятора) кнопки и выделения белые,
+   на светлом (шапка внутренних страниц, формы, метки) белое не видно, там почти чёрный. */
+:root{--a-amber:#FFFFFF;--a-amber-h:#E6E8EB;--amber:#15171A;--amber-h:#000;--amber-d:#6B7079}
+.a-btn-amber{background:var(--a-ink);color:#fff}.a-btn-amber:hover{background:#000;color:#fff}
+.btn-amber{color:#fff}.btn-amber:hover{color:#fff}
+.x-hero .a-btn-amber,body.x-on-hero .a-top:not(:has(.a-mnav.open)):not(.mm-active) .a-top-cta,.result .btn-amber{background:#fff;color:var(--a-ink)}
+.x-hero .a-btn-amber:hover,body.x-on-hero .a-top:not(:has(.a-mnav.open)):not(.mm-active) .a-top-cta:hover,.result .btn-amber:hover{background:#E6E8EB;color:var(--a-ink)}
+.a-btn-white:hover{background:#E6E8EB}
+.x-sub em{color:#fff}
+.x-act-final{background:#fff;border-color:#fff;color:var(--a-ink)}
+.x-cursor span{background:#fff;color:var(--a-ink)}
+.x-mq-track .a-chip-more{background:var(--a-ink);border-color:var(--a-ink);color:#fff}
+.a-doc{border-left-color:var(--a-ink)}
+.a-seg input:focus-visible+span{outline-color:var(--a-ink)}
+.a-top{--mm-accent:currentColor}
+.hero h1 em,.cam-note a,.result .rt,.result .send,.formband .cbx a{color:#fff}
