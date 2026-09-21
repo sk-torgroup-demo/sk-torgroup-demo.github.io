@@ -255,3 +255,8 @@ body{font-family:var(--v1-sans)}
 /* тонкие абзацы (были Tilda 300) делаю 400: Manrope 300 на 15–18 px читается хуже */
 .b-sub,.b-scard-b span,.b-pillars p,.b-steps p,.b-calc-txt p,.b-vcard>span:not(.b-vic),.b-team>div:last-child>span:not(.b-tmp),.b-geo-note,.b-faq p,.b-final-txt>p,
 .a-sub,.a-calc-txt p,.a-lk-list span,.a-vcard>span:not(.a-vbig),.a-team-txt p,.a-geo-note,.a-faq p,.a-final-txt p,.x-story-sub,.x-steps p,.x-sdesc,.x-pillars p{font-weight:400}
+/* мелкие подписи, где раньше стоял заголовочный шрифт: оставляю Manrope */
+#ckb b,#ckp b{font-family:var(--v1-sans);font-weight:700;letter-spacing:0}
+/* внутренние страницы: засечки только в h1 и h2; мелкие заголовки карточек и подписи Manrope */
+h3,.room b,.axe b,.gar b,.tcard b,.s3 b{font-family:var(--v1-sans);letter-spacing:-.01em}
+h1,h2{font-weight:600}
