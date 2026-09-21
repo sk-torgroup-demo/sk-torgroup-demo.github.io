@@ -243,7 +243,12 @@ body{font-family:var(--v1-sans)}
 .b-home .b-bignum b,.b-home .b-nums .num b,.a-home .num b,.x-day b,.a-vbig{font-weight:600}
 .b-facts b,.x-facts b,.b-res-v,.a-res-v{font-weight:700}
 .x-srow b,.x-statement,.x-mq-track a,.x-wordmark,.x-story-h,.x-wmeta b{font-weight:600}
-.b-logo b,.a-logo b{font-weight:700;letter-spacing:.06em;font-size:21px}
+.b-logo b,.a-logo b{font-weight:700;letter-spacing:.04em;font-size:20px}
+@media(max-width:1439px){.b-logo b,.a-logo b{font-size:18px;letter-spacing:.03em}}
+@media(max-width:1200px){.b-logo b,.a-logo b{font-size:17px;letter-spacing:.02em}}
+@media(max-width:900px){.b-logo b,.a-logo b{font-size:18px;letter-spacing:.04em}}
+@media(max-width:400px){.b-logo b,.a-logo b{font-size:16px;letter-spacing:.02em}}
+@media(max-width:360px){.b-logo b,.a-logo b{font-size:14.5px;letter-spacing:.01em}}
 .mm-intro b{font-weight:600;font-size:30px}
 .b-mnav summary,.b-solo,.a-mnav summary,.a-solo{font-weight:600;font-size:24px}
 .wrap h1,.hero h1{font-weight:600}
@@ -260,3 +265,26 @@ body{font-family:var(--v1-sans)}
 /* внутренние страницы: засечки только в h1 и h2; мелкие заголовки карточек и подписи Manrope */
 h3,.room b,.axe b,.gar b,.tcard b,.s3 b{font-family:var(--v1-sans);letter-spacing:-.01em}
 h1,h2{font-weight:600}
+
+/* телефон: страница не сдвигается вбок (блоки, которые въезжают при прокрутке, раньше давали лишние 2–10 px) */
+html,body{overflow-x:clip}
+/* галочки согласия в формах крупнее, чтобы попадать пальцем */
+@media(max-width:900px){input[type=checkbox],input[type=radio]{width:20px;height:20px;flex:none}}
+
+/* шапка после смены шрифтов (Manrope и засечки шире прежних): подпись под названием только от 1600 px,
+   иконки и кнопка компактнее, на планшете номер превращается в трубку */
+@media(max-width:1599px) and (min-width:901px){
+  .b-logo small,.a-logo small{display:none}
+  .b-logo b,.a-logo b{grid-row:1 / 3;align-self:center}
+  .b-msgs:not(.b-msgs-m),.a-msgs:not(.a-msgs-m){gap:4px}
+  .b-msgs:not(.b-msgs-m) a,.a-msgs:not(.a-msgs-m) a,.b-search,.a-search{width:34px;height:34px}
+  .b-search,.a-search{margin-right:6px}
+  .b-top-cta,.a-top-cta{padding:11px 18px;font-size:14px}
+}
+@media(max-width:1439px) and (min-width:901px){.mm-top{padding-left:8px;padding-right:8px}.b-msgs:not(.b-msgs-m) a,.a-msgs:not(.a-msgs-m) a,.b-search,.a-search{width:32px;height:32px}}
+@media(max-width:900px) and (min-width:761px){
+  .b-phone,.a-phone{display:none}
+  .b-callico,.a-callico{display:grid;place-items:center}
+}
+@media(max-width:1200px) and (min-width:901px){.b-top-cta,.a-top-cta{padding:10px 14px;font-size:13.5px}.mm-top{padding-left:7px;padding-right:7px}}
+.b-video{background:transparent}  /* под роликом заставка-картинка, пока он грузится */

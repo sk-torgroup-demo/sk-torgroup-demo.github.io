@@ -21,7 +21,7 @@
 <link rel="apple-touch-icon" href="/a1/apple-touch-icon.png">
 <link rel="preload" as="font" type="font/woff2" href="/a1/fonts/tilda-sans_extra-bold.woff2" crossorigin><link rel="preload" as="font" type="font/woff2" href="/a1/fonts/tilda-sans_light.woff2" crossorigin>
 <link rel="stylesheet" href="/a1/css/main.css?v=ab7c3528">
-<link rel="stylesheet" href="/a1/css/menu.css?v=4267bb1d"><link rel="stylesheet" href="/a1/css/theme-a.css?v=43aef1a7"><link rel="stylesheet" href="/a1/css/v1.css?v=fe014ad8">
+<link rel="stylesheet" href="/a1/css/menu.css?v=4267bb1d"><link rel="stylesheet" href="/a1/css/theme-a.css?v=43aef1a7"><link rel="stylesheet" href="/a1/css/v1.css?v=32479b59">
 
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "GeneralContractor", "@id": "https://sk-torgroup.ru#org", "name": "СК ТОР ГРУПП", "legalName": "ООО «ТОР ГРУПП»", "taxID": "5032399235", "url": "https://sk-torgroup.ru", "telephone": "+7 (495) 256-21-11", "email": "zakaz@sk-torgroup.ru", "address": {"@type": "PostalAddress", "streetAddress": "ул. Ельнинская, д. 15, корп. 2", "addressLocality": "Москва", "addressCountry": "RU"}, "areaServed": "Москва и Московская область", "openingHours": "Mo-Su 09:00-21:00"}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "СК ТОР ГРУПП", "url": "https://sk-torgroup.ru"}</script>
@@ -184,13 +184,15 @@
 <script>/* видео первого экрана: узкий экран берёт вертикальный ролик; при «уменьшить движение» остаётся кадр */
 (function(){var tall=matchMedia('(max-width:760px)').matches,calm=matchMedia('(prefers-reduced-motion: reduce)').matches;
 document.querySelectorAll('video[data-wide]').forEach(function(v){if(tall)v.poster=v.dataset.posterTall;if(calm)return;
-v.src=tall?v.dataset.tall:v.dataset.wide;v.preload='auto';var p=v.play();if(p&&p.catch)p.catch(function(){})})})();</script>
+var go=function(){v.src=tall?v.dataset.tall:v.dataset.wide;v.preload='auto';var p=v.play();if(p&&p.catch)p.catch(function(){})};
+/* ролик грузится после страницы, чтобы не тормозить первый экран */
+if(document.readyState==='complete')setTimeout(go,300);else addEventListener('load',function(){setTimeout(go,300)})})})();</script>
 
 <!-- 1. ПЕРВЫЙ ЭКРАН: одно слово, сквозь буквы видно готовую квартиру; при прокрутке камера «влетает» в слово -->
 <section class="x-hero" id="top">
   <div class="x-hero-stick">
     <picture class="x-hero-photo">
-      <source media="(max-width:760px)" srcset="/a1/img/obekty/dom-stolovaya.webp">
+      <source media="(max-width:760px)" srcset="/a1/img/obekty/dom-stolovaya-m.webp">
       <img src="/a1/img/obekty/dom-stolovaya.webp" alt="Столовая в загородном доме после ремонта" width="1144" height="1800" fetchpriority="high" style="object-position:50% 42%">
       <video class="x-hero-video" muted loop playsinline preload="none" poster="/a1/img/video/bassejn-wide.webp" data-wide="/a1/img/video/bassejn-wide.mp4" data-tall="/a1/img/video/bassejn-tall.mp4" data-poster-tall="/a1/img/video/bassejn-tall.webp"></video>
     </picture>
@@ -221,8 +223,8 @@ v.src=tall?v.dataset.tall:v.dataset.wide;v.preload='auto';var p=v.play();if(p&&p
 <section class="x-story" id="etapy">
   <div class="x-story-stick">
     <div class="x-frame">
-      <img class="x-img x-img-do" src="/a1/img/obekty/dom-zal-bylo-l.webp" alt="Зал до отделки" width="1600" height="1200" loading="lazy">
-      <img class="x-img x-img-posle" src="/a1/img/obekty/dom-zal-stalo-l.webp" alt="Тот же зал после отделки" width="1600" height="1200" loading="lazy">
+      <img class="x-img x-img-do" src="/a1/img/obekty/dom-zal-bylo-l.webp" srcset="/a1/img/obekty/dom-zal-bylo-l-m.webp 1000w, /a1/img/obekty/dom-zal-bylo-l.webp 1600w" sizes="100vw" alt="Зал до отделки" width="1600" height="1200" loading="lazy">
+      <img class="x-img x-img-posle" src="/a1/img/obekty/dom-zal-stalo-l.webp" srcset="/a1/img/obekty/dom-zal-stalo-l-m.webp 1000w, /a1/img/obekty/dom-zal-stalo-l.webp 1600w" sizes="100vw" alt="Тот же зал после отделки" width="1600" height="1200" loading="lazy">
       <svg class="x-measure" viewBox="0 0 1400 1090" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
         <g class="x-m1"><path pathLength="1" d="M300 960 L1100 960"/><path pathLength="1" d="M300 940 L300 980 M1100 940 L1100 980"/><text x="700" y="935">ширина зала</text></g>
         <g class="x-m2"><path pathLength="1" d="M1110 120 L1110 900"/><path pathLength="1" d="M1090 120 L1130 120 M1090 900 L1130 900"/><text x="1095" y="510" transform="rotate(-90 1095 510)">высота</text></g>
@@ -239,10 +241,10 @@ v.src=tall?v.dataset.tall:v.dataset.wide;v.preload='auto';var p=v.play();if(p&&p
         <div class="x-cam-top"><span><i class="a-rec"></i>LIVE · Объект №14</span><span>Загородный дом</span></div>
         <div class="x-cam-osd">CAM-02 · штукатурные работы · сегодня 14:32 · <b data-clock>14:32:00</b></div>
         <div class="x-cam-strip">
-          <figure><img src="/a1/img/obekty/dom-zal-lesa2.webp" alt="" loading="lazy"><figcaption>10.07</figcaption></figure>
-          <figure><img src="/a1/img/obekty/dom-zal-lesa.webp" alt="" loading="lazy"><figcaption>11.07</figcaption></figure>
-          <figure><img src="/a1/img/obekty/dom-parket.webp" alt="" loading="lazy"><figcaption>12.07</figcaption></figure>
-          <figure><img src="/a1/img/obekty/dom-zal-plitka.webp" alt="" loading="lazy"><figcaption>13.07</figcaption></figure>
+          <figure><img src="/a1/img/obekty/dom-zal-lesa2-s.webp" alt="" loading="lazy"><figcaption>10.07</figcaption></figure>
+          <figure><img src="/a1/img/obekty/dom-zal-lesa-s.webp" alt="" loading="lazy"><figcaption>11.07</figcaption></figure>
+          <figure><img src="/a1/img/obekty/dom-parket-s.webp" alt="" loading="lazy"><figcaption>12.07</figcaption></figure>
+          <figure><img src="/a1/img/obekty/dom-zal-plitka-s.webp" alt="" loading="lazy"><figcaption>13.07</figcaption></figure>
         </div>
       </div>
       <span class="x-wipe" aria-hidden="true"></span>
@@ -288,32 +290,32 @@ v.src=tall?v.dataset.tall:v.dataset.wide;v.preload='auto';var p=v.play();if(p&&p
         <span class="a-tmp">Фото с ваших объектов. Площади, сроки и сметы добавлю, когда пришлёте описания.</span>
       </div>
       <a class="x-wcard" href="/a1/nashi-raboty/" data-cursor="Смотреть">
-        <span class="x-wimg"><img src="/a1/img/obekty/dom-stolovaya.webp" alt="Загородный дом, столовая" loading="lazy"></span>
+        <span class="x-wimg"><img src="/a1/img/obekty/dom-stolovaya.webp" srcset="/a1/img/obekty/dom-stolovaya-m.webp 1000w, /a1/img/obekty/dom-stolovaya.webp 1800w" sizes="(max-width:760px) 92vw, 34vw" alt="Загородный дом, столовая" loading="lazy"></span>
         <span class="x-wmeta"><span class="x-wtag">Загородный дом</span><b>Столовая</b><span>площадь и срок добавлю</span></span>
         <span class="a-pf-wait">Смета и срок по договору и по факту: добавлю по вашим данным</span>
       </a>
       <a class="x-wcard" href="/a1/nashi-raboty/" data-cursor="Смотреть">
-        <span class="x-wimg"><img src="/a1/img/obekty/dom-bassejn-os.webp" alt="Загородный дом, бассейн" loading="lazy"></span>
+        <span class="x-wimg"><img src="/a1/img/obekty/dom-bassejn-os.webp" srcset="/a1/img/obekty/dom-bassejn-os-m.webp 1000w, /a1/img/obekty/dom-bassejn-os.webp 1800w" sizes="(max-width:760px) 92vw, 34vw" alt="Загородный дом, бассейн" loading="lazy"></span>
         <span class="x-wmeta"><span class="x-wtag">Загородный дом</span><b>Бассейн</b><span>площадь и срок добавлю</span></span>
         <span class="a-pf-wait">Смета и срок по договору и по факту: добавлю по вашим данным</span>
       </a>
       <a class="x-wcard" href="/a1/nashi-raboty/" data-cursor="Смотреть">
-        <span class="x-wimg"><img src="/a1/img/obekty/dom-holl.webp" alt="Загородный дом, холл" loading="lazy"></span>
+        <span class="x-wimg"><img src="/a1/img/obekty/dom-holl.webp" srcset="/a1/img/obekty/dom-holl-m.webp 1000w, /a1/img/obekty/dom-holl.webp 1800w" sizes="(max-width:760px) 92vw, 34vw" alt="Загородный дом, холл" loading="lazy"></span>
         <span class="x-wmeta"><span class="x-wtag">Загородный дом</span><b>Холл</b><span>площадь и срок добавлю</span></span>
         <span class="a-pf-wait">Смета и срок по договору и по факту: добавлю по вашим данным</span>
       </a>
       <a class="x-wcard" href="/a1/nashi-raboty/" data-cursor="Смотреть">
-        <span class="x-wimg"><img src="/a1/img/obekty/dom-vanna.webp" alt="Загородный дом, ванная" loading="lazy"></span>
+        <span class="x-wimg"><img src="/a1/img/obekty/dom-vanna.webp" srcset="/a1/img/obekty/dom-vanna-m.webp 1000w, /a1/img/obekty/dom-vanna.webp 1800w" sizes="(max-width:760px) 92vw, 34vw" alt="Загородный дом, ванная" loading="lazy"></span>
         <span class="x-wmeta"><span class="x-wtag">Загородный дом</span><b>Ванная</b><span>площадь и срок добавлю</span></span>
         <span class="a-pf-wait">Смета и срок по договору и по факту: добавлю по вашим данным</span>
       </a>
       <a class="x-wcard" href="/a1/nashi-raboty/" data-cursor="Смотреть">
-        <span class="x-wimg"><img src="/a1/img/obekty/kv-koridor.webp" alt="Квартира, коридор" loading="lazy"></span>
+        <span class="x-wimg"><img src="/a1/img/obekty/kv-koridor.webp" srcset="/a1/img/obekty/kv-koridor-m.webp 1000w, /a1/img/obekty/kv-koridor.webp 1800w" sizes="(max-width:760px) 92vw, 34vw" alt="Квартира, коридор" loading="lazy"></span>
         <span class="x-wmeta"><span class="x-wtag">Квартира</span><b>Коридор</b><span>площадь и срок добавлю</span></span>
         <span class="a-pf-wait">Смета и срок по договору и по факту: добавлю по вашим данным</span>
       </a>
       <a class="x-wcard" href="/a1/nashi-raboty/" data-cursor="Смотреть">
-        <span class="x-wimg"><img src="/a1/img/obekty/dom-lestnica.webp" alt="Загородный дом, лестница" loading="lazy"></span>
+        <span class="x-wimg"><img src="/a1/img/obekty/dom-lestnica.webp" srcset="/a1/img/obekty/dom-lestnica-m.webp 1000w, /a1/img/obekty/dom-lestnica.webp 1800w" sizes="(max-width:760px) 92vw, 34vw" alt="Загородный дом, лестница" loading="lazy"></span>
         <span class="x-wmeta"><span class="x-wtag">Загородный дом</span><b>Лестница</b><span>площадь и срок добавлю</span></span>
         <span class="a-pf-wait">Смета и срок по договору и по факту: добавлю по вашим данным</span>
       </a>
@@ -454,9 +456,9 @@ v.src=tall?v.dataset.tall:v.dataset.wide;v.preload='auto';var p=v.play();if(p&&p
     </div>
     <div class="a-team" data-rv="0">
       <div class="a-team-ph a-team-photos">
-        <figure><img src="/a1/img/obekty/team-1.webp" alt="Прораб СК ТОР ГРУПП на объекте" loading="lazy"><figcaption><b>Прораб</b><span>имя и опыт пришлёте</span></figcaption></figure>
-        <figure><img src="/a1/img/obekty/team-2.webp" alt="Мастер СК ТОР ГРУПП на объекте" loading="lazy"><figcaption><b>Мастер</b><span>имя и опыт пришлёте</span></figcaption></figure>
-        <figure><img src="/a1/img/obekty/team-3.webp" alt="Менеджер СК ТОР ГРУПП в офисе" loading="lazy"><figcaption><b>Офис</b><span>имя и должность пришлёте</span></figcaption></figure>
+        <figure><img src="/a1/img/obekty/team-1.webp" srcset="/a1/img/obekty/team-1-m.webp 1000w, /a1/img/obekty/team-1.webp 1800w" sizes="(max-width:760px) 33vw, 12vw" alt="Прораб СК ТОР ГРУПП на объекте" loading="lazy"><figcaption><b>Прораб</b><span>имя и опыт пришлёте</span></figcaption></figure>
+        <figure><img src="/a1/img/obekty/team-2.webp" srcset="/a1/img/obekty/team-2-m.webp 1000w, /a1/img/obekty/team-2.webp 1800w" sizes="(max-width:760px) 33vw, 12vw" alt="Мастер СК ТОР ГРУПП на объекте" loading="lazy"><figcaption><b>Мастер</b><span>имя и опыт пришлёте</span></figcaption></figure>
+        <figure><img src="/a1/img/obekty/team-3.webp" srcset="/a1/img/obekty/team-3-m.webp 1000w, /a1/img/obekty/team-3.webp 1800w" sizes="(max-width:760px) 33vw, 12vw" alt="Менеджер СК ТОР ГРУПП в офисе" loading="lazy"><figcaption><b>Офис</b><span>имя и должность пришлёте</span></figcaption></figure>
       </div>
       <div class="a-team-txt">
         <div class="a-ey">Кто будет на объекте</div>
@@ -512,7 +514,7 @@ v.src=tall?v.dataset.tall:v.dataset.wide;v.preload='auto';var p=v.play();if(p&&p
 
 <!-- 11. ЗАЯВКА И КОНТАКТЫ -->
 <section class="a-final-sec">
-  <img class="a-final-bg" src="/a1/img/obekty/dom-bassejn-os.webp" alt="" loading="lazy">
+  <img class="a-final-bg" src="/a1/img/obekty/dom-bassejn-os.webp" srcset="/a1/img/obekty/dom-bassejn-os-m.webp 1000w, /a1/img/obekty/dom-bassejn-os.webp 1800w" sizes="100vw" alt="" loading="lazy">
   <div class="a-w">
     <div class="final a-final">
       <div class="a-final-txt">

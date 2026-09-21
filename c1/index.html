@@ -21,7 +21,7 @@
 <link rel="apple-touch-icon" href="/c1/apple-touch-icon.png">
 <link rel="preload" as="font" type="font/woff2" href="/c1/fonts/tilda-sans_extra-bold.woff2" crossorigin><link rel="preload" as="font" type="font/woff2" href="/c1/fonts/tilda-sans_light.woff2" crossorigin>
 <link rel="stylesheet" href="/c1/css/main.css?v=ab7c3528">
-<link rel="stylesheet" href="/c1/css/menu.css?v=4267bb1d"><link rel="stylesheet" href="/c1/css/theme-b.css?v=2878d9a4"><link rel="stylesheet" href="/c1/css/theme-c.css?v=622aceb6"><link rel="stylesheet" href="/c1/css/v1.css?v=fe014ad8">
+<link rel="stylesheet" href="/c1/css/menu.css?v=4267bb1d"><link rel="stylesheet" href="/c1/css/theme-b.css?v=2878d9a4"><link rel="stylesheet" href="/c1/css/theme-c.css?v=622aceb6"><link rel="stylesheet" href="/c1/css/v1.css?v=32479b59">
 
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "GeneralContractor", "@id": "https://sk-torgroup.ru#org", "name": "СК ТОР ГРУПП", "legalName": "ООО «ТОР ГРУПП»", "taxID": "5032399235", "url": "https://sk-torgroup.ru", "telephone": "+7 (495) 256-21-11", "email": "zakaz@sk-torgroup.ru", "address": {"@type": "PostalAddress", "streetAddress": "ул. Ельнинская, д. 15, корп. 2", "addressLocality": "Москва", "addressCountry": "RU"}, "areaServed": "Москва и Московская область", "openingHours": "Mo-Su 09:00-21:00"}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "СК ТОР ГРУПП", "url": "https://sk-torgroup.ru"}</script>
@@ -186,7 +186,8 @@
 <section class="b-hero">
   <div class="b-hero-box b-hero-c">
     <div class="b-slides" aria-hidden="true">
-      <video class="b-slide b-video on" muted loop playsinline preload="none" poster="/c1/img/video/bassejn-wide.webp" data-wide="/c1/img/video/bassejn-wide.mp4" data-tall="/c1/img/video/bassejn-tall.mp4" data-poster-tall="/c1/img/video/bassejn-tall.webp"></video>
+      <picture class="b-slide on"><source media="(max-width:760px)" srcset="/c1/img/video/bassejn-tall.webp"><img src="/c1/img/video/bassejn-wide.webp" alt="" fetchpriority="high" style="width:100%;height:100%;object-fit:cover"></picture>
+      <video class="b-slide b-video on" muted loop playsinline preload="none" data-wide="/c1/img/video/bassejn-wide.mp4" data-tall="/c1/img/video/bassejn-tall.mp4"></video>
     </div>
     <div class="b-hero-in">
       <div class="b-vf">
@@ -206,8 +207,10 @@
 </section>
 <script>/* видео первого экрана: узкий экран берёт вертикальный ролик; при «уменьшить движение» остаётся кадр */
 (function(){var tall=matchMedia('(max-width:760px)').matches,calm=matchMedia('(prefers-reduced-motion: reduce)').matches;
-document.querySelectorAll('video[data-wide]').forEach(function(v){if(tall)v.poster=v.dataset.posterTall;if(calm)return;
-v.src=tall?v.dataset.tall:v.dataset.wide;v.preload='auto';var p=v.play();if(p&&p.catch)p.catch(function(){})})})();</script>
+document.querySelectorAll('video[data-wide]').forEach(function(v){if(calm)return;
+var go=function(){v.src=tall?v.dataset.tall:v.dataset.wide;v.preload='auto';var p=v.play();if(p&&p.catch)p.catch(function(){})};
+/* ролик грузится после страницы, чтобы не тормозить первый экран */
+if(document.readyState==='complete')setTimeout(go,300);else addEventListener('load',function(){setTimeout(go,300)})})})();</script>
 
 <!-- 2. КОРОТКО: обещание и три факта -->
 <section class="b-intro">
@@ -269,8 +272,8 @@ v.src=tall?v.dataset.tall:v.dataset.wide;v.preload='auto';var p=v.play();if(p&&p
         <div class="b-scr" data-scr="2">
           <div class="b-app-chip">Сегодня, 18:40 · прораб прислал 6 фото</div>
           <div class="b-app-photos">
-            <img src="/c1/img/obekty/dom-zal-plitka.webp" alt="" loading="lazy"><img src="/c1/img/obekty/kv-chernovaya.webp" alt="" loading="lazy"><img src="/c1/img/obekty/dom-bassejn-process.webp" alt="" loading="lazy">
-            <img src="/c1/img/obekty/dom-parket.webp" alt="" loading="lazy"><img src="/c1/img/obekty/dom-zal-lesa2.webp" alt="" loading="lazy"><img src="/c1/img/obekty/dom-bassejn-process2.webp" alt="" loading="lazy">
+            <img src="/c1/img/obekty/dom-zal-plitka-s.webp" alt="" loading="lazy"><img src="/c1/img/obekty/kv-chernovaya-s.webp" alt="" loading="lazy"><img src="/c1/img/obekty/dom-bassejn-process-s.webp" alt="" loading="lazy">
+            <img src="/c1/img/obekty/dom-parket-s.webp" alt="" loading="lazy"><img src="/c1/img/obekty/dom-zal-lesa2-s.webp" alt="" loading="lazy"><img src="/c1/img/obekty/dom-bassejn-process2-s.webp" alt="" loading="lazy">
           </div>
           <p class="b-app-cap">Плитка в зале, чаша бассейна, паркет, откосы</p>
         </div>
@@ -279,7 +282,7 @@ v.src=tall?v.dataset.tall:v.dataset.wide;v.preload='auto';var p=v.play();if(p&&p
           <div class="b-app-chip">Нужно ваше решение</div>
           <div class="b-app-card">
             <b>Плитка в санузел</b>
-            <div class="b-app-opts"><figure><img src="/c1/img/stock/bath-1.webp" alt="" loading="lazy"><figcaption>Вариант 1</figcaption></figure><figure class="sel"><img src="/c1/img/stock/detail-1.webp" alt="" loading="lazy"><figcaption>Вариант 2</figcaption></figure></div>
+            <div class="b-app-opts"><figure><img src="/c1/img/stock/bath-1-s.webp" alt="" loading="lazy"><figcaption>Вариант 1</figcaption></figure><figure class="sel"><img src="/c1/img/stock/detail-1-s.webp" alt="" loading="lazy"><figcaption>Вариант 2</figcaption></figure></div>
             <span>Вариант 2 · 1 840 ₽/м² · в пределах сметы</span>
             <div class="b-app-btns"><em class="y">Согласовать</em><em>Обсудить</em></div>
           </div>
@@ -298,7 +301,7 @@ v.src=tall?v.dataset.tall:v.dataset.wide;v.preload='auto';var p=v.play();if(p&&p
         </div>
 
         <div class="b-scr b-scr-cam" data-scr="5">
-          <img src="/c1/img/obekty/dom-zal-lesa.webp" alt="" loading="lazy">
+          <img src="/c1/img/obekty/dom-zal-lesa-s.webp" alt="" loading="lazy">
           <div class="b-cam-top"><span><i class="b-rec"></i>LIVE · Объект №14</span><b data-clock>14:32:00</b></div>
           <div class="b-cam-bot"><b>ЖК Люблинский парк, к. 3</b><span>CAM-02 · штукатурные работы · сегодня 14:32</span></div>
         </div>
@@ -321,8 +324,8 @@ v.src=tall?v.dataset.tall:v.dataset.wide;v.preload='auto';var p=v.play();if(p&&p
     </div>
     <figure class="b-ba" data-rv>
       <div class="ba" style="--pos:50%">
-        <img src="/c1/img/obekty/dom-zal-stalo-l.webp" alt="Зал с арочным окном в загородном доме после отделки" width="1600" height="1200" loading="lazy">
-        <img class="ba-before" src="/c1/img/obekty/dom-zal-bylo-l.webp" alt="Тот же зал до отделки: бетон и черновые работы" width="1600" height="1200" loading="lazy">
+        <img src="/c1/img/obekty/dom-zal-stalo-l.webp" srcset="/c1/img/obekty/dom-zal-stalo-l-m.webp 1000w, /c1/img/obekty/dom-zal-stalo-l.webp 1600w" sizes="100vw" alt="Зал с арочным окном в загородном доме после отделки" width="1600" height="1200" loading="lazy">
+        <img class="ba-before" src="/c1/img/obekty/dom-zal-bylo-l.webp" srcset="/c1/img/obekty/dom-zal-bylo-l-m.webp 1000w, /c1/img/obekty/dom-zal-bylo-l.webp 1600w" sizes="100vw" alt="Тот же зал до отделки: бетон и черновые работы" width="1600" height="1200" loading="lazy">
         <span class="ba-tag ba-tag-l">Было</span><span class="ba-tag ba-tag-r">Стало</span>
         <span class="ba-line" aria-hidden="true"><i></i></span>
         <input type="range" min="0" max="100" value="50" aria-label="Сдвиньте, чтобы сравнить было и стало">
@@ -347,32 +350,32 @@ v.src=tall?v.dataset.tall:v.dataset.wide;v.preload='auto';var p=v.play();if(p&&p
     </div>
     <div class="b-grid">
       <a class="b-card" href="/c1/nashi-raboty/" data-rv="0">
-        <span class="b-card-img"><img src="/c1/img/obekty/dom-stolovaya.webp" alt="Загородный дом, столовая" loading="lazy"></span>
+        <span class="b-card-img"><img src="/c1/img/obekty/dom-stolovaya.webp" srcset="/c1/img/obekty/dom-stolovaya-m.webp 1000w, /c1/img/obekty/dom-stolovaya.webp 1800w" sizes="(max-width:760px) 92vw, 34vw" alt="Загородный дом, столовая" loading="lazy"></span>
         <span class="b-card-t"><b>Загородный дом</b><span>столовая</span></span>
         <span class="b-pf-wait">Смета и срок по договору и по факту: добавлю по вашим данным</span>
       </a>
       <a class="b-card" href="/c1/nashi-raboty/" data-rv="1">
-        <span class="b-card-img"><img src="/c1/img/obekty/dom-bassejn-os.webp" alt="Загородный дом, бассейн" loading="lazy"></span>
+        <span class="b-card-img"><img src="/c1/img/obekty/dom-bassejn-os.webp" srcset="/c1/img/obekty/dom-bassejn-os-m.webp 1000w, /c1/img/obekty/dom-bassejn-os.webp 1800w" sizes="(max-width:760px) 92vw, 34vw" alt="Загородный дом, бассейн" loading="lazy"></span>
         <span class="b-card-t"><b>Загородный дом</b><span>бассейн</span></span>
         <span class="b-pf-wait">Смета и срок по договору и по факту: добавлю по вашим данным</span>
       </a>
       <a class="b-card" href="/c1/nashi-raboty/" data-rv="2">
-        <span class="b-card-img"><img src="/c1/img/obekty/dom-holl.webp" alt="Загородный дом, холл" loading="lazy"></span>
+        <span class="b-card-img"><img src="/c1/img/obekty/dom-holl.webp" srcset="/c1/img/obekty/dom-holl-m.webp 1000w, /c1/img/obekty/dom-holl.webp 1800w" sizes="(max-width:760px) 92vw, 34vw" alt="Загородный дом, холл" loading="lazy"></span>
         <span class="b-card-t"><b>Загородный дом</b><span>холл</span></span>
         <span class="b-pf-wait">Смета и срок по договору и по факту: добавлю по вашим данным</span>
       </a>
       <a class="b-card" href="/c1/nashi-raboty/" data-rv="0">
-        <span class="b-card-img"><img src="/c1/img/obekty/dom-vanna.webp" alt="Загородный дом, ванная" loading="lazy"></span>
+        <span class="b-card-img"><img src="/c1/img/obekty/dom-vanna.webp" srcset="/c1/img/obekty/dom-vanna-m.webp 1000w, /c1/img/obekty/dom-vanna.webp 1800w" sizes="(max-width:760px) 92vw, 34vw" alt="Загородный дом, ванная" loading="lazy"></span>
         <span class="b-card-t"><b>Загородный дом</b><span>ванная</span></span>
         <span class="b-pf-wait">Смета и срок по договору и по факту: добавлю по вашим данным</span>
       </a>
       <a class="b-card" href="/c1/nashi-raboty/" data-rv="1">
-        <span class="b-card-img"><img src="/c1/img/obekty/kv-koridor.webp" alt="Квартира, коридор" loading="lazy"></span>
+        <span class="b-card-img"><img src="/c1/img/obekty/kv-koridor.webp" srcset="/c1/img/obekty/kv-koridor-m.webp 1000w, /c1/img/obekty/kv-koridor.webp 1800w" sizes="(max-width:760px) 92vw, 34vw" alt="Квартира, коридор" loading="lazy"></span>
         <span class="b-card-t"><b>Квартира</b><span>коридор</span></span>
         <span class="b-pf-wait">Смета и срок по договору и по факту: добавлю по вашим данным</span>
       </a>
       <a class="b-card" href="/c1/nashi-raboty/" data-rv="2">
-        <span class="b-card-img"><img src="/c1/img/obekty/dom-lestnica.webp" alt="Загородный дом, лестница" loading="lazy"></span>
+        <span class="b-card-img"><img src="/c1/img/obekty/dom-lestnica.webp" srcset="/c1/img/obekty/dom-lestnica-m.webp 1000w, /c1/img/obekty/dom-lestnica.webp 1800w" sizes="(max-width:760px) 92vw, 34vw" alt="Загородный дом, лестница" loading="lazy"></span>
         <span class="b-card-t"><b>Загородный дом</b><span>лестница</span></span>
         <span class="b-pf-wait">Смета и срок по договору и по факту: добавлю по вашим данным</span>
       </a>
@@ -393,19 +396,19 @@ v.src=tall?v.dataset.tall:v.dataset.wide;v.preload='auto';var p=v.play();if(p&&p
     </div>
     <div class="b-svc b-svc4">
       <a class="b-scard" href="/c1/remont-pod-klyuch/" data-rv="0">
-        <span class="b-scard-img"><img src="/c1/img/obekty/kv-koridor.webp" alt="Ремонт квартиры под ключ" loading="lazy"></span>
+        <span class="b-scard-img"><img src="/c1/img/obekty/kv-koridor.webp" srcset="/c1/img/obekty/kv-koridor-m.webp 1000w, /c1/img/obekty/kv-koridor.webp 1800w" sizes="(max-width:760px) 92vw, 34vw" alt="Ремонт квартиры под ключ" loading="lazy"></span>
         <span class="b-scard-b"><b>Ремонт под ключ</b><span>Капитальный и комплексный ремонт квартир — с материалами и без.</span><em>18 000–32 000 ₽/м²</em><i>Подробнее →</i></span>
       </a>
       <a class="b-scard" href="/c1/otdelka-novostroek/" data-rv="1">
-        <span class="b-scard-img"><img src="/c1/img/obekty/kv-chernovaya.webp" alt="Квартира в новостройке без отделки" loading="lazy"></span>
+        <span class="b-scard-img"><img src="/c1/img/obekty/kv-chernovaya.webp" srcset="/c1/img/obekty/kv-chernovaya-m.webp 1000w, /c1/img/obekty/kv-chernovaya.webp 1800w" sizes="(max-width:760px) 92vw, 34vw" alt="Квартира в новостройке без отделки" loading="lazy"></span>
         <span class="b-scard-b"><b>Отделка новостроек</b><span>С нуля, черновая, white box. Пакеты «Комфорт» и «Бизнес» за 45–60 дней.</span><em>14 000–26 000 ₽/м²</em><i>Подробнее →</i></span>
       </a>
       <a class="b-scard" href="/c1/nashi-raboty/" data-rv="2">
-        <span class="b-scard-img"><img src="/c1/img/obekty/dom-bassejn-os.webp" alt="Загородный дом после ремонта" loading="lazy"></span>
+        <span class="b-scard-img"><img src="/c1/img/obekty/dom-bassejn-os.webp" srcset="/c1/img/obekty/dom-bassejn-os-m.webp 1000w, /c1/img/obekty/dom-bassejn-os.webp 1800w" sizes="(max-width:760px) 92vw, 34vw" alt="Загородный дом после ремонта" loading="lazy"></span>
         <span class="b-scard-b"><b>Загородные дома</b><span>Ремонт и отделка домов и коттеджей: от черновых работ до бассейна.</span><em>по смете после замера</em><i>Смотреть работы →</i></span>
       </a>
       <a class="b-scard" href="/c1/dizajn-proekt/" data-rv="2">
-        <span class="b-scard-img"><img src="/c1/img/obekty/dom-holl.webp" alt="Интерьер по дизайн-проекту" loading="lazy"></span>
+        <span class="b-scard-img"><img src="/c1/img/obekty/dom-holl.webp" srcset="/c1/img/obekty/dom-holl-m.webp 1000w, /c1/img/obekty/dom-holl.webp 1800w" sizes="(max-width:760px) 92vw, 34vw" alt="Интерьер по дизайн-проекту" loading="lazy"></span>
         <span class="b-scard-b"><b>Дизайн и дизайн-проект</b><span>Проект с рабочей документацией — и реализация теми же руками.</span><em>от 2 500 ₽/м² за проект</em><i>Подробнее →</i></span>
       </a>
     </div>
@@ -518,9 +521,9 @@ v.src=tall?v.dataset.tall:v.dataset.wide;v.preload='auto';var p=v.play();if(p&&p
       <a class="b-vcard" href="/c1/proverka-podryadchika/" data-rv="2"><span class="b-vic">10✓</span><b>Чек-лист проверки</b><span>10 пунктов, по которым стоит проверить любую ремонтную компанию.</span><i>Открыть чек-лист →</i></a>
       <div class="b-vcard b-team b-team3" data-rv="3">
         <div class="b-team-row">
-          <figure><img src="/c1/img/obekty/team-1.webp" alt="Прораб СК ТОР ГРУПП на объекте" loading="lazy"><figcaption><b>Прораб</b><span>имя и опыт пришлёте</span></figcaption></figure>
-          <figure><img src="/c1/img/obekty/team-2.webp" alt="Мастер СК ТОР ГРУПП на объекте" loading="lazy"><figcaption><b>Мастер</b><span>имя и опыт пришлёте</span></figcaption></figure>
-          <figure><img src="/c1/img/obekty/team-3.webp" alt="Менеджер СК ТОР ГРУПП в офисе" loading="lazy"><figcaption><b>Офис</b><span>имя и должность пришлёте</span></figcaption></figure>
+          <figure><img src="/c1/img/obekty/team-1.webp" srcset="/c1/img/obekty/team-1-m.webp 1000w, /c1/img/obekty/team-1.webp 1800w" sizes="(max-width:760px) 33vw, 12vw" alt="Прораб СК ТОР ГРУПП на объекте" loading="lazy"><figcaption><b>Прораб</b><span>имя и опыт пришлёте</span></figcaption></figure>
+          <figure><img src="/c1/img/obekty/team-2.webp" srcset="/c1/img/obekty/team-2-m.webp 1000w, /c1/img/obekty/team-2.webp 1800w" sizes="(max-width:760px) 33vw, 12vw" alt="Мастер СК ТОР ГРУПП на объекте" loading="lazy"><figcaption><b>Мастер</b><span>имя и опыт пришлёте</span></figcaption></figure>
+          <figure><img src="/c1/img/obekty/team-3.webp" srcset="/c1/img/obekty/team-3-m.webp 1000w, /c1/img/obekty/team-3.webp 1800w" sizes="(max-width:760px) 33vw, 12vw" alt="Менеджер СК ТОР ГРУПП в офисе" loading="lazy"><figcaption><b>Офис</b><span>имя и должность пришлёте</span></figcaption></figure>
         </div>
         <div><b>Прораб закреплён за вашим объектом</b><span>Штатные бригады и прораб, закреплённый за вашим объектом. Мы не раздаём объекты случайным бригадам.</span></div>
       </div>
