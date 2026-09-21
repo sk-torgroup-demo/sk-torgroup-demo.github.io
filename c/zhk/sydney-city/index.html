@@ -21,7 +21,7 @@
 <link rel="apple-touch-icon" href="/c/apple-touch-icon.png">
 <link rel="preload" as="font" type="font/woff2" href="/c/fonts/tilda-sans_extra-bold.woff2" crossorigin><link rel="preload" as="font" type="font/woff2" href="/c/fonts/tilda-sans_light.woff2" crossorigin>
 <link rel="stylesheet" href="/c/css/main.css?v=ab7c3528">
-<link rel="stylesheet" href="/c/css/menu.css?v=4267bb1d"><link rel="stylesheet" href="/c/css/theme-b.css?v=e9678c05"><link rel="stylesheet" href="/c/css/theme-c.css?v=622aceb6">
+<link rel="stylesheet" href="/c/css/menu.css?v=4267bb1d"><link rel="stylesheet" href="/c/css/theme-b.css?v=d80df4fa"><link rel="stylesheet" href="/c/css/theme-c.css?v=622aceb6">
 
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://sk-torgroup.ru/"}, {"@type": "ListItem", "position": 2, "name": "Отделка новостроек", "item": "https://sk-torgroup.ru/otdelka-novostroek/"}, {"@type": "ListItem", "position": 3, "name": "ЖК Sydney City"}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Есть ли особенности ремонта в высотных корпусах Sydney City?", "acceptedAnswer": {"@type": "Answer", "text": "Да, две: логистика (подъём материалов по графику грузовых лифтов — бронируем у УК заранее, это в нашей смете) и фасадные регламенты для наружных блоков кондиционеров — согласования берём на себя."}}]}</script>
@@ -221,16 +221,16 @@
   <a class="gold" href="/c/kalkulyator-remonta/">Рассчитать стоимость</a>
 </div>
 
-<div class="vsw" id="vsw" data-cur="c"><span>Дизайн</span><a data-v="a">А</a><a data-v="b">Б</a><a data-v="c">В</a><a data-v="d">Г</a><a data-v="do">Сейчас на сайте</a></div>
-<style>.vsw{position:fixed;left:14px;bottom:14px;z-index:9500;display:flex;align-items:center;gap:4px;background:rgba(20,21,23,.92);color:#fff;border-radius:999px;padding:5px 5px 5px 14px;font:500 12.5px/1 'GolosUI',Arial,sans-serif;box-shadow:0 8px 24px rgba(0,0,0,.25)}
-.vsw span{margin-right:6px;opacity:.7}.vsw a{color:#fff;text-decoration:none;padding:7px 10px;border-radius:999px;cursor:pointer}.vsw a:hover{background:rgba(255,255,255,.12)}.vsw a.on{background:#fff;color:#141517}
+<div class="vsw" id="vsw" data-cur="c"><span>Дизайн</span><a data-v="a">А</a><a data-v="a1">А1</a><a data-v="b">Б</a><a data-v="b1">Б1</a><a data-v="c">В</a><a data-v="c1">В1</a><a data-v="d">Г</a><a data-v="d1">Г1</a><a data-v="do">Сейчас<i> на сайте</i></a></div>
+<style>.vsw{position:fixed;left:14px;bottom:14px;z-index:9500;display:flex;align-items:center;gap:2px;background:rgba(20,21,23,.92);color:#fff;border-radius:999px;padding:5px 5px 5px 14px;font:500 12.5px/1 'GolosUI',Arial,sans-serif;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.vsw span{margin-right:6px;opacity:.7}.vsw i{font-style:normal}.vsw a{color:#fff;text-decoration:none;padding:7px 8px;border-radius:999px;cursor:pointer}.vsw a:hover{background:rgba(255,255,255,.12)}.vsw a.on{background:#fff;color:#141517}
 body:has(#mnav.open) .vsw{display:none}
-@media(max-width:760px){.vsw{bottom:auto;top:auto;left:8px;bottom:64px;padding-left:10px}.vsw span{display:none}.vsw a{padding:7px 9px}}</style>
+@media(max-width:760px){.vsw{left:6px;right:6px;bottom:64px;padding:4px;justify-content:space-between}.vsw span,.vsw i{display:none}.vsw a{padding:7px 6px}}</style>
 <script>(function(){var box=document.getElementById('vsw');if(/[?&]shot=/.test(location.search)){box.remove();return}
-var cur=box.dataset.cur,ports={a:8082,b:8083,c:8084,d:8085,do:8080};
+var cur=box.dataset.cur,ports={a:8082,b:8083,c:8084,d:8085,a1:8086,b1:8087,c1:8088,d1:8089,do:8080},re=/^\/(a1|b1|c1|d1|a|b|c|d|do|posle)\//;
 box.querySelectorAll('a').forEach(function(a){var v=a.dataset.v;if(v===cur)a.className='on';
-if(!/^\/(a|b|c|d|do|posle)\//.test(location.pathname)){a.href=location.protocol+'//'+location.hostname+':'+ports[v]+location.pathname}
-else{a.href='/'+v+'/'+location.pathname.replace(/^\/(a|b|c|d|do|posle)\//,'')}});})();</script>
+if(!re.test(location.pathname)){a.href=location.protocol+'//'+location.hostname+':'+ports[v]+location.pathname}
+else{a.href='/'+v+'/'+location.pathname.replace(re,'')}});})();</script>
 
 <script src="/c/js/main.js?v=8ef2296e" defer></script><script src="/c/js/forms.js?v=0a1b8bd3" defer></script><script src="/c/js/menu.js?v=1a2eb581" defer></script>
 </body>

@@ -598,3 +598,6 @@ body.x-on-hero .a-top:not(:has(.a-mnav.open)):not(.mm-active) .a-callico{border-
 .a-mnav details[open]>a{animation:a-mi .45s var(--a-ease) both}
 .a-mnav details[open]>a:nth-of-type(2){animation-delay:.03s}.a-mnav details[open]>a:nth-of-type(3){animation-delay:.06s}.a-mnav details[open]>a:nth-of-type(4){animation-delay:.09s}.a-mnav details[open]>a:nth-of-type(n+5){animation-delay:.12s}
 @keyframes a-mi{from{opacity:0;transform:translateX(-10px)}}
+
+/* версия а1 с фото заказчика: вместо цифр план/факт пометка «добавлю по вашим данным» */
+.a-pf-wait{position:absolute;left:20px;right:20px;bottom:20px;padding-top:14px;border-top:1px solid rgba(255,255,255,.28);font:400 13.5px/1.4 var(--a-ui);color:rgba(255,255,255,.8)}
