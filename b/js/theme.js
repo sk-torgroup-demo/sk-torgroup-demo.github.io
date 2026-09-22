@@ -73,19 +73,72 @@ var steps=story?[].slice.call(story.querySelectorAll('.x-steps li')):[];
 var dayEl=story&&story.querySelector('[data-day]'),barEl=story&&story.querySelector('[data-bar]');
 // границы этапов по прогрессу и по дням: замер, договор, черновые, чистовые, сдача
 var STG=[0,.16,.32,.58,.84,1],DAYS=[1,2,3,36,68,71];
-function storyTick(){
-  if(!story||!anim)return;
-  var p=progress(story,64);
-  var st=0;for(var i=0;i<5;i++)if(p>=STG[i])st=i;
-  var local=seg(p,STG[st],STG[st+1]);
+function stageSet(st,local,m,wipe){
   story.dataset.stage=st;
   steps.forEach(function(li,i){li.classList.toggle('on',i===st);li.classList.toggle('past',i<st)});
   var day=Math.round(lerp(DAYS[st],DAYS[st+1],local));
   if(dayEl)dayEl.textContent=day;
   if(barEl)barEl.style.transform='scaleX('+(day/75).toFixed(3)+')';
-  story.style.setProperty('--m',seg(p,0,.12).toFixed(3));        // размеры рисуются
-  story.style.setProperty('--wipe',ease(seg(p,.6,.82)).toFixed(3)); // было → стало
+  story.style.setProperty('--m',m.toFixed(3));        // размеры рисуются
+  story.style.setProperty('--wipe',wipe.toFixed(3));  // было → стало
   story.style.setProperty('--sp',local.toFixed(3));
+}
+function storyTick(){
+  if(!story||!anim||autoMode())return;
+  var p=progress(story,64);
+  var st=0;for(var i=0;i<5;i++)if(p>=STG[i])st=i;
+  stageSet(st,seg(p,STG[st],STG[st+1]),seg(p,0,.12),ease(seg(p,.6,.82)));
+}
+
+/* ---------- 2а. телефон (версии «1»): этапы листаются сами, как истории; блок обычной высоты, страница не застревает ---------- */
+var narrow=matchMedia('(max-width:900px)');
+var sbar=story?[].slice.call(story.querySelectorAll('.x-sbar button')):[];
+var DUR=[3400,3400,4200,4400,5200],A={st:0,t0:0,vis:false,raf:0,seen:false};
+function autoMode(){return !!story&&story.hasAttribute('data-auto')&&anim&&narrow.matches}
+function autoGo(st){A.st=(st+5)%5;A.t0=performance.now();autoDraw(0);autoRun()}
+function autoDraw(t){
+  var st=A.st;
+  stageSet(st,t,st>0?1:clamp(t/.75,0,1),st<3?0:st>3?1:ease(seg(t,.08,.92)));
+  sbar.forEach(function(b,i){b.style.setProperty('--f',i<st?1:i>st?0:t.toFixed(3))});
+}
+function autoFrame(now){
+  A.raf=0;
+  if(!autoMode()||!A.vis||document.hidden)return;
+  var t=clamp((now-A.t0)/DUR[A.st],0,1);
+  autoDraw(t);
+  if(t>=1){autoGo(A.st+1);return}
+  A.raf=requestAnimationFrame(autoFrame);
+}
+function autoRun(){if(!A.raf&&A.vis&&!document.hidden&&autoMode())A.raf=requestAnimationFrame(autoFrame)}
+function autoSetup(){
+  if(!story)return;
+  var on=autoMode();
+  story.classList.toggle('x-auto',on);
+  if(on){autoGo(A.st)}else{if(A.raf)cancelAnimationFrame(A.raf);A.raf=0;storyTick()}
+}
+if(story&&story.hasAttribute('data-auto')){
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){es.forEach(function(e){
+      A.vis=e.isIntersecting;
+      if(A.vis){if(!A.seen){A.seen=true;autoGo(0)}else{A.t0=performance.now()-DUR[A.st]*(+story.style.getPropertyValue('--sp')||0);autoRun()}}
+    })},{threshold:.35}).observe(story);
+  }else{A.vis=true}
+  document.addEventListener('visibilitychange',function(){if(!document.hidden){A.t0=performance.now();autoRun()}});
+  sbar.forEach(function(b,i){b.addEventListener('click',function(e){e.stopPropagation();autoGo(i)})});
+  var frame=story.querySelector('.x-frame'),sx=0,sy=0,swiped=false;
+  frame.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;sy=e.touches[0].clientY;swiped=false},{passive:true});
+  frame.addEventListener('touchend',function(e){
+    var dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;
+    if(autoMode()&&Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy)*1.3){swiped=true;autoGo(A.st+(dx<0?1:-1))}
+  },{passive:true});
+  // нажатие: левая треть кадра назад, остальное вперёд
+  frame.addEventListener('click',function(e){
+    if(!autoMode())return;
+    if(swiped){swiped=false;return}
+    var r=frame.getBoundingClientRect();autoGo(A.st+(e.clientX-r.left<r.width/3?-1:1));
+  });
+  narrow.addEventListener&&narrow.addEventListener('change',autoSetup);
+  autoSetup();
 }
 
 /* ---------- 3. работы: лента вбок ---------- */
