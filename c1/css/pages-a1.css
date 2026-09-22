@@ -408,3 +408,70 @@
 .pg-in .case:hover .ph img,.pg-in .bcard:hover .bph img{transform:scale(1.03)}
 .pg-in .case .ph:has(img),.pg-in .bph:has(img),.pg-in .pp2>div:has(img),.pg-in .tph:has(img){background-image:none}
 .pg-in .tcard .tph:has(img){font-size:0}
+
+/* ---------- акции, регламент ЖК, схема городов, квиз (третий проход) ---------- */
+/* действующие акции: строка с названием и условием, справа срок меткой */
+.pg-in .offer{display:flex;justify-content:space-between;align-items:baseline;gap:24px;padding:26px 0;border-top:1px solid var(--pi-line)}
+.pg-in .offer:first-of-type{border-top-color:var(--pi-ink)}
+.pg-in .offer:last-of-type{border-bottom:1px solid var(--pi-line)}
+.pg-in .offer b{display:block;font:600 clamp(22px,2vw,28px)/1.2 var(--pi-serif)}
+.pg-in .offer p{margin-top:8px;font:400 16px/1.6 var(--pi-sans);color:var(--pi-muted)}
+.pg-in .till{flex:none;font:500 11.5px/1 var(--pi-sans);letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--pi-line);border-radius:999px;padding:9px 14px;white-space:nowrap}
+@media(max-width:600px){.pg-in .offer{flex-direction:column;gap:12px}}
+/* регламент управляющей компании: список с тонкими линиями */
+.pg-in .regl ul{list-style:none;margin:0;padding:0;max-width:920px;border-top:1px solid var(--pi-ink)}
+.pg-in .regl li{position:relative;padding:14px 0 14px 28px;border-bottom:1px solid var(--pi-line);font:400 16px/1.55 var(--pi-sans)}
+.pg-in .regl li::before{content:"";position:absolute;left:2px;top:26px;width:12px;height:1px;background:var(--pi-ink)}
+/* схема бесплатного выезда: графит вместо синего и жёлтого (цвета заданы в самой картинке, перекрываю стилями) */
+.pg-in .zonemap{border-radius:0;border-color:var(--pi-line);background:var(--pi-stone)}
+.pg-in .zonemap [fill="#EEF3FA"]{fill:var(--pi-stone)}
+.pg-in .zonemap [fill="#FFC300"]{fill:var(--pi-ink);opacity:.06}
+.pg-in .zonemap [stroke="#FFC300"]{stroke:var(--pi-ink)}
+.pg-in .zonemap [stroke="#B9C7D9"]{stroke:#B8BDC4}
+.pg-in .zonemap [fill="#DCE6F2"]{fill:#fff}
+.pg-in .zonemap [stroke="#8FA6C0"]{stroke:var(--pi-ink)}
+.pg-in .zonemap [fill="#001D3D"],.pg-in .zonemap [fill="#003566"],.pg-in .zonemap [fill="#8F7300"]{fill:var(--pi-ink)}
+.pg-in .zonemap [fill="#8FA6C0"]{fill:#9AA0A8}
+.pg-in .zonemap [fill="#54657B"]{fill:var(--pi-muted)}
+.pg-in .zonemap text{font-family:var(--pi-sans)}
+.pg-in .zonelegend .dot{background:#9AA0A8;flex:none}
+.pg-in .zonelegend .dot.free{background:var(--pi-ink)}
+/* квиз: полоса прогресса и отметки в цвет сайта */
+.pg-in .kviz-box [style*="#FFC300"]{background:var(--pi-ink)!important}
+.pg-in .kviz-box input{accent-color:var(--pi-ink)}
+
+/* ---------- было/стало, чек-лист, списки, комплектации ванной (четвёртый проход) ---------- */
+.pg-in .ba{display:grid;grid-template-columns:1fr 1fr;gap:8px;aspect-ratio:auto;border-radius:0;background:none;max-width:none}
+.pg-in .ba>.b1,.pg-in .ba>.b2{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--pi-stone)}
+.pg-in .ba img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pg-in .ba em{position:absolute;left:14px;bottom:14px;font:500 11px/1 var(--pi-sans);font-style:normal;letter-spacing:.1em;text-transform:uppercase;color:var(--pi-ink);background:rgba(255,255,255,.92);border-radius:999px;padding:8px 12px}
+.pg-in .ba .hnd{display:none}
+@media(max-width:600px){.pg-in .ba{grid-template-columns:1fr}}
+/* списки «сложности», «красные флаги» и т.п.: без рамки, строки с тонкими линиями */
+.pg-in .workcol{border:0;border-radius:0;padding:0}
+.pg-in .workcol ul{list-style:none;margin:0;padding:0;border-top:1px solid var(--pi-ink)}
+.pg-in .twocol .workcol ul{border-top:0}
+.pg-in .workcol li{position:relative;padding:14px 0 14px 28px;border:0;border-bottom:1px solid var(--pi-line);font:400 16px/1.55 var(--pi-sans);color:var(--pi-ink)}
+.pg-in .workcol li:first-child{border-top:0}
+.pg-in .workcol li::before{content:"";position:absolute;left:2px;top:26px;width:12px;height:1px;background:var(--pi-ink)}
+.pg-in .workcol h3 em{color:var(--pi-muted)}
+/* чек-лист проверки подрядчика: строки с галочкой, раскрываются как вопросы */
+.pg-in .cprog{display:inline-block;margin-bottom:22px;font:500 11.5px/1 var(--pi-sans);letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--pi-line);border-radius:999px;padding:10px 16px}
+.pg-in .clist{max-width:920px}
+.pg-in .clist details{border-top:1px solid #D9DCE1}
+.pg-in .clist details:last-child{border-bottom:1px solid #D9DCE1}
+.pg-in .clist summary{list-style:none;cursor:pointer;position:relative;display:flex;align-items:center;gap:14px;padding:20px 56px 20px 0;font:700 18px/1.35 var(--pi-sans)}
+.pg-in .clist summary::-webkit-details-marker{display:none}
+.pg-in .clist summary::after{content:"+";position:absolute;right:6px;top:14px;font:300 30px/1 var(--pi-sans);transition:transform .25s var(--pi-ease)}
+.pg-in .clist details[open] summary::after{transform:rotate(45deg)}
+.pg-in .clist summary input{flex:none;width:20px;height:20px;margin:0;accent-color:var(--pi-ink)}
+.pg-in .clist .in{padding:0 56px 22px 34px;font:400 16px/1.65 var(--pi-sans);color:var(--pi-muted)}
+@media(max-width:600px){.pg-in .clist summary{font-size:16px;padding-right:44px}.pg-in .clist .in{padding-right:0}}
+/* комплектации ванной в первом экране: три плитки */
+.pg-in .heroB-tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin:0 0 32px;border-top:1px solid var(--pi-ink);max-width:560px}
+.pg-in .hbt{padding:14px 16px 0 0}
+.pg-in .hbt+.hbt{padding-left:16px;border-left:1px solid var(--pi-line)}
+.pg-in .hbt b{display:block;font:500 11.5px/1.2 var(--pi-sans);letter-spacing:.12em;text-transform:uppercase;color:var(--pi-muted);margin-bottom:8px}
+.pg-in .hbt .p{font:600 clamp(20px,1.8vw,26px)/1.15 var(--pi-serif);font-feature-settings:"lnum" 1;white-space:nowrap}
+.pg-in .hbt.hot b{color:var(--pi-ink)}
+@media(max-width:420px){.pg-in .hbt{padding-right:8px}.pg-in .hbt+.hbt{padding-left:10px}.pg-in .hbt .p{font-size:17px;letter-spacing:-.01em}}
