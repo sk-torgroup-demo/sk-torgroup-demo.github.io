@@ -434,6 +434,7 @@
 .pg-in .zonemap [fill="#8FA6C0"]{fill:#9AA0A8}
 .pg-in .zonemap [fill="#54657B"]{fill:var(--pi-muted)}
 .pg-in .zonemap text{font-family:var(--pi-sans)}
+.pg-in .zonemap svg{width:100%;height:auto}  /* высота задаётся стилями: height="auto" в самой картинке Safari считает ошибкой */
 .pg-in .zonelegend .dot{background:#9AA0A8;flex:none}
 .pg-in .zonelegend .dot.free{background:var(--pi-ink)}
 /* квиз: полоса прогресса и отметки в цвет сайта */

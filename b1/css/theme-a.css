@@ -321,7 +321,7 @@ body.x-on-hero .a-top:not(:has(.a-mnav.open)):not(.mm-active) .a-callico{border-
 .x-anim .x-hero-stick::before{z-index:1;background:linear-gradient(0deg,rgba(8,9,10,.9),rgba(8,9,10,.4) 42%,rgba(8,9,10,0) 68%),linear-gradient(180deg,rgba(8,9,10,.6),rgba(8,9,10,0) 20%);opacity:calc((var(--hp,0) - .5) * 4)}
 .x-anim .x-hero-photo img{transform:scale(calc(1.16 - min(1, var(--hp,0) * 1.6) * .16))}
 .x-anim .x-h1{position:absolute;inset:0}
-.x-anim .x-mask{position:absolute;inset:0;display:grid;place-items:center;background:#0B0C0D;mix-blend-mode:multiply}
+.x-anim .x-mask{position:absolute;inset:0;display:grid;place-items:center;background:#0B0C0D;mix-blend-mode:multiply;z-index:1}  /* явный слой: в Safari без него затемнение ложилось и на кнопки первого экрана */
 .x-anim .x-word{transform:translateY(-5vh)}
 .x-anim .x-sub{position:absolute;left:0;right:0;top:calc(50% + 10.5vw - 3vh);margin:0 auto;padding:0 20px;opacity:calc(1 - var(--hp,0) * 7);z-index:2}
 .x-anim .x-hero-top{z-index:2;opacity:calc(1 - var(--hp,0) * 6)}
