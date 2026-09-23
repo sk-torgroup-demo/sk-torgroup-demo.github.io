@@ -12,7 +12,7 @@ function calc(){
   const mat=document.getElementById('mat').checked;
   const a=Math.min(150,Math.max(20,+areaN.value||54));
   area.value=a;areaN.value=a;
-  let k=STK[st]*(wc==='2'?1.08:1)*(mat?1.7:1);
+  let k=(STK[st]||1)*(wc==='2'?1.08:1)*(mat?1.7:1);
   const [r1,r2]=RATE[ct];
   const lo=Math.round(a*r1*1000*k/10000)*10000, hi=Math.round(a*r2*1000*k/10000)*10000;
   document.getElementById('out').textContent=fmt(lo)+' – '+fmt(hi)+' ₽';

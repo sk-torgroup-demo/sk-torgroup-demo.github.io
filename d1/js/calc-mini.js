@@ -7,7 +7,7 @@ function calc(){
   const st=document.querySelector('input[name=st]:checked').value;
   const a=+document.getElementById('area').value;
   document.getElementById('areaV').textContent=a;
-  const k=STK[st],[r1,r2]=RATE[ct];
+  const k=STK[st]||1,[r1,r2]=RATE[ct];
   const lo=Math.round(a*r1*1000*k/10000)*10000, hi=Math.round(a*r2*1000*k/10000)*10000;
   document.getElementById('calcOut').textContent=fmt(lo)+' – '+fmt(hi)+' ₽';
   const [t1,t2]=TERM[ct];

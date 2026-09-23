@@ -60,7 +60,9 @@ function send(tel, box, note){
 /* ---------- обычные формы ---------- */
 document.querySelectorAll('form.formbox').forEach(function(f){
   var tel=f.querySelector('input[type=tel]');
-  f.addEventListener('submit',function(e){e.preventDefault(); if(tel)send(tel,f);});
+  f.addEventListener('submit',function(e){e.preventDefault();
+    var nm=f.querySelector('input[name=name]');            // форма заказа звонка: имя уходит в заявку
+    if(tel)send(tel,f,nm&&nm.value.trim()?'имя: '+nm.value.trim():'');});
 });
 
 /* ---------- калькулятор: детальная смета ---------- */

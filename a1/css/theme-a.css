@@ -327,7 +327,7 @@ body.x-on-hero .a-top:not(:has(.a-mnav.open)):not(.mm-active) .a-callico{border-
 .x-anim .x-hero-top{z-index:2;opacity:calc(1 - var(--hp,0) * 6)}
 .x-anim .x-hero-bottom{position:absolute;left:0;right:0;bottom:36px;margin:0;z-index:2;opacity:calc(1 - var(--hp,0) * 6)}
 .x-anim .x-zoom .x-hero-bottom,.x-anim .x-zoom .x-hero-top{pointer-events:none}
-.x-anim .x-after{position:absolute;left:0;right:0;bottom:48px;margin:0;z-index:2;opacity:calc((var(--hp,0) - .6) * 5);transform:translateY(calc(max(0, 1 - (var(--hp,0) - .6) * 5) * 40px))}
+.x-anim .x-after{pointer-events:none;position:absolute;left:0;right:0;bottom:48px;margin:0;z-index:2;opacity:calc((var(--hp,0) - .6) * 5);transform:translateY(calc(max(0, 1 - (var(--hp,0) - .6) * 5) * 40px))}
 .x-anim .x-l{transform:translateY(30%);opacity:0;transition:transform 1.2s var(--a-ease) calc(var(--i) * 70ms + 150ms),opacity .9s ease calc(var(--i) * 70ms + 150ms)}
 .x-anim.x-ready .x-l{transform:none;opacity:1}
 .x-anim .x-sub,.x-anim .x-hero-bottom,.x-anim .x-hero-top{animation:x-fade 1s var(--a-ease) .75s both}
