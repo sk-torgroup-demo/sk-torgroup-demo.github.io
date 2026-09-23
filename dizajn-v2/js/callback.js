@@ -4,7 +4,11 @@ var btn=document.getElementById('cbBtn'), box=document.getElementById('cbBox');
 if(!btn||!box)return;
 function open(v){
   box.hidden=!v; btn.setAttribute('aria-expanded', v?'true':'false');
-  if(v){var f=box.querySelector('input[name=name]')||box.querySelector('input'); if(f)setTimeout(function(){f.focus()},30)}
+  if(v){
+    var frm=box.querySelector('form');                      // пересчитать кнопку: пока форма скрыта, проверки не работают
+    if(frm)frm.dispatchEvent(new Event('input',{bubbles:true}));
+    var f=box.querySelector('input[name=name]')||box.querySelector('input'); if(f)setTimeout(function(){f.focus()},30);
+  }
 }
 btn.addEventListener('click',function(e){e.stopPropagation(); open(box.hidden)});
 var m=document.getElementById('cbBtnM');  // та же форма из мобильного меню
