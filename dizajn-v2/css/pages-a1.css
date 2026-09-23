@@ -482,3 +482,9 @@
 .pg-in .tcard-role .tb{padding:0}
 .pg-in .tcard-role b{display:block;font:700 19px/1.3 var(--pi-sans);margin-bottom:10px}
 .pg-in .tcard-role span{font:400 15.5px/1.6 var(--pi-sans);color:var(--pi-muted)}
+
+/* очень узкие экраны: в таблице цен разрешаем перенос между числом и сроком (неразрывные пробелы внутри чисел остаются) */
+@media(max-width:420px){
+  .pg-in .pricetbl td.m,.pg-in .pricetbl tr:has(td:nth-child(4)) td:nth-child(3){white-space:normal}
+  .pg-in .pricetbl td,.pg-in .pricetbl th{padding-right:8px}
+}
