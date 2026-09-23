@@ -7,7 +7,7 @@ var res=box.querySelector('.a-res')||document.querySelector('.result .rv, .resul
 function upd(){
   var v=(document.querySelector('input[name=st]:checked')||{}).value, dom=(v==='dom');
   if(note)note.hidden=!dom;
-  if(res)res.style.visibility=dom?'hidden':'';
+  if(res)res.style.display=dom?'none':'';   // не оставляем пустое место от спрятанных цифр
 }
 sts.forEach(function(r){r.addEventListener('change',upd)});
 var q=new URLSearchParams(location.search).get('obj');

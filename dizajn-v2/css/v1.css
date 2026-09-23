@@ -415,3 +415,5 @@ body.x-on-hero .a-cb-box{color:var(--a-ink)}
 .a-obj-note{margin:-6px 0 18px;font:400 13.5px/1.5 var(--v1-sans);color:rgba(255,255,255,.72)}
 .a-calcbox .a-obj-note{color:var(--a-muted)}
 .a-obj-note[hidden]{display:none}
+/* Подпись «Работаем с 2017 года» показывается не только на широких экранах (замечание Елизаветы: её не видно) */
+@media(min-width:1080px){.a-logo small{display:block!important}}

@@ -18,7 +18,7 @@
 
 /* хлебные крошки */
 .pg-in .crumbs{padding-top:28px;font:500 11.5px/1.5 var(--pi-sans);letter-spacing:.12em;text-transform:uppercase;color:var(--pi-muted)}
-.pg-in .crumbs a{color:var(--pi-muted);text-decoration:none;transition:color .2s}
+.pg-in .crumbs a{color:var(--pi-muted);text-decoration:none;transition:color .2s;display:inline-block;padding:7px 3px;margin:-7px -3px}  /* область нажатия на телефоне, геометрия строки не меняется */
 .pg-in .crumbs a:hover{color:var(--pi-ink)}
 
 /* надзаголовок: тонкая линия и разреженные буквы, как на главной */
@@ -180,7 +180,7 @@
 .pg-in .zfacts{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--pi-ink)}
 .pg-in .zf{padding:22px 24px 0 24px;border-left:1px solid var(--pi-line)}
 .pg-in .zf:first-child{border-left:0;padding-left:0}
-.pg-in .zf b{display:block;font:600 clamp(26px,2.4vw,34px)/1.1 var(--pi-serif);font-feature-settings:"lnum" 1;margin-bottom:8px}
+.pg-in .zf b{display:block;font:600 clamp(26px,2.4vw,34px)/1.1 var(--pi-serif);font-feature-settings:"lnum" 1;margin-bottom:8px;overflow-wrap:anywhere}
 .pg-in .zf span{display:block;font:500 12px/1.4 var(--pi-sans);letter-spacing:.08em;text-transform:uppercase;color:var(--pi-muted)}
 @media(max-width:760px){.pg-in .zfacts{grid-template-columns:1fr 1fr;gap:26px 0}.pg-in .zf:nth-child(odd){border-left:0;padding-left:0}}
 
@@ -493,3 +493,21 @@
 .pg-in .result .cbx{color:rgba(255,255,255,.72);margin-top:10px}
 .pg-in .result .cbx a{color:#fff}
 .pg-in .result .cbx input{accent-color:#fff}
+
+/* варианты ответов в квизе (их рисует скрипт, поэтому стили нужны отдельно) */
+.pg-in .kviz-box .opt,.pg-in .quiz .opt{display:flex;align-items:center;gap:12px;padding:15px 20px;margin-bottom:10px;border:1px solid var(--pi-line);border-radius:999px;font:400 15.5px/1.35 var(--pi-sans);cursor:pointer;transition:border-color .2s,background .2s}
+.pg-in .kviz-box .opt input,.pg-in .quiz .opt input{flex:none;width:18px;height:18px;margin:0;accent-color:var(--pi-ink)}
+.pg-in .kviz-box .opt:has(input:checked),.pg-in .quiz .opt:has(input:checked){border-color:var(--pi-ink);background:var(--pi-stone)}
+.pg-in .kviz-box .cbx{margin-top:10px}
+/* телефон: выбор объекта в калькуляторе в два столбца, чтобы «Загородный дом» не висел один */
+/* ряд «Объект»: четыре варианта подстраиваются под ширину колонки, все кнопки одной высоты */
+.a-calcbox .a-seg:has(input[value="dom"]){grid-template-columns:1fr 1fr!important}
+.a-seg label,.pg-in .seg2 label{display:flex}
+.a-seg label>span,.pg-in .seg2 label>span{width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+/* компьютер: четыре варианта объекта в один ряд, подсказка не липнет к кнопкам */
+
+.a-calcbox .a-obj-note,.pg-in .a-obj-note{margin-top:12px}
+@media(min-width:601px){.pg-in .seg2:has(input[value="dom"]){grid-template-columns:1fr 1fr!important}}
+.pg-in .a-obj-note{color:var(--pi-muted)}
+@media(max-width:420px){.pg-in .zf b{font-size:clamp(17px,4.7vw,22px);hyphens:auto;-webkit-hyphens:auto}
+  .pg-in .zf{padding-right:0}.pg-in .zf:nth-child(even){padding-left:14px}}  /* длинные названия («Филимонковское») не вылезали за экран и не рвались посреди слова */
