@@ -21,7 +21,7 @@
 <link rel="apple-touch-icon" href="/dizajn-v2/apple-touch-icon.png">
 <link rel="preload" as="font" type="font/woff2" href="/dizajn-v2/fonts/v1/Manrope-cyrillic.woff2" crossorigin><link rel="preload" as="font" type="font/woff2" href="/dizajn-v2/fonts/v1/CormorantGaramond-cyrillic.woff2" crossorigin>
 <link rel="stylesheet" href="/dizajn-v2/css/main.css?v=ab7c3528">
-<link rel="stylesheet" href="/dizajn-v2/css/menu.css?v=4267bb1d"><link rel="stylesheet" href="/dizajn-v2/css/theme-a.css?v=d308798c"><link rel="stylesheet" href="/dizajn-v2/css/v1.css?v=38ea07ed"><link rel="stylesheet" href="/dizajn-v2/css/pages-a1.css?v=01c0fed9">
+<link rel="stylesheet" href="/dizajn-v2/css/menu.css?v=4267bb1d"><link rel="stylesheet" href="/dizajn-v2/css/theme-a.css?v=d308798c"><link rel="stylesheet" href="/dizajn-v2/css/v1.css?v=38ea07ed"><link rel="stylesheet" href="/dizajn-v2/css/pages-a1.css?v=b04e4128">
 
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://sk-torgroup.ru/"}, {"@type": "ListItem", "position": 2, "name": "Калькулятор ремонта"}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Насколько точен калькулятор ремонта?", "acceptedAnswer": {"@type": "Answer", "text": "Точность вилки — ±12%: она строится на фактических сметах сданных объектов. Точную цифру даёт только замер — состояние стен, геометрия и коммуникации видны на месте. После замера смета фиксируется в договоре."}}, {"@type": "Question", "name": "Почему вилка, а не точная цена?", "acceptedAnswer": {"@type": "Answer", "text": "Точная цена без осмотра квартиры — маркетинговая приманка: потом она «уточняется» в большую сторону. Мы показываем честный диапазон, а точную цифру фиксируем документом."}}, {"@type": "Question", "name": "Что уточнит замерщик?", "acceptedAnswer": {"@type": "Answer", "text": "Реальную геометрию и площадь, состояние стен и пола, разводку электрики и сантехники, задачи по перепланировке. Это 40–60 минут — и на следующий день у вас смета."}}, {"@type": "Question", "name": "Можно ли посчитать только санузел или комнату?", "acceptedAnswer": {"@type": "Answer", "text": "Да: для ванной и санузла у нас фикс-цены за объект — смотрите страницу «Ремонт ванной под ключ», для отдельной комнаты — «Ремонт комнаты»."}}]}</script>
@@ -239,6 +239,8 @@
         <div class="fix">Смета после замера фиксируется в договоре и не растёт. Точность вилки ±12%.</div>
         <div class="telstep" id="telStep">
           <input type="tel" placeholder="+7 ___ ___-__-__" aria-label="Телефон">
+          <label class="cbx"><input type="checkbox" class="c-pd" required> <span>Я даю <a href="/dizajn-v2/soglasie/" target="_blank" rel="noopener">согласие на обработку персональных данных</a> и ознакомлен с <a href="/dizajn-v2/politika/" target="_blank" rel="noopener">политикой обработки данных</a></span></label>
+          <label class="cbx"><input type="checkbox" class="c-ads"> <span>Согласен получать информационные и рекламные сообщения (<a href="/dizajn-v2/soglasie-reklama/" target="_blank" rel="noopener">условия</a>)</span></label>
           <div class="sla">Перезвоним за 15 минут в рабочее время</div>
         </div>
         <button class="btn btn-amber" id="smetaBtn" type="button">Получить детальную смету</button>
@@ -352,6 +354,6 @@
 body:has(#mnav.open) .vsw{display:none}
 @media(max-width:760px){.vsw{left:6px;right:6px;bottom:64px;padding:4px;justify-content:space-between}.vsw span,.vsw i{display:none}.vsw a{padding:7px 6px}}</style>
 
-<script src="/dizajn-v2/js/main.js?v=8ef2296e" defer></script><script src="/dizajn-v2/js/forms.js?v=fe689755" defer></script><script src="/dizajn-v2/js/calc.js?v=6f89606a" defer></script><script src="/dizajn-v2/js/menu.js?v=1a2eb581" defer></script><script src="/dizajn-v2/js/search.js?v=19b299a7" defer></script><script src="/dizajn-v2/js/callback.js?v=b85a19e7" defer></script><script src="/dizajn-v2/js/objtype.js?v=f9093456" defer></script>
+<script src="/dizajn-v2/js/main.js?v=8ef2296e" defer></script><script src="/dizajn-v2/js/forms.js?v=3b4bac73" defer></script><script src="/dizajn-v2/js/calc.js?v=6f89606a" defer></script><script src="/dizajn-v2/js/menu.js?v=1a2eb581" defer></script><script src="/dizajn-v2/js/search.js?v=19b299a7" defer></script><script src="/dizajn-v2/js/callback.js?v=b85a19e7" defer></script><script src="/dizajn-v2/js/objtype.js?v=f9093456" defer></script>
 </body>
 </html>

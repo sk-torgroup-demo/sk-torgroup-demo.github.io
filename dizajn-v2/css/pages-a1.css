@@ -438,7 +438,7 @@
 .pg-in .zonelegend .dot{background:#9AA0A8;flex:none}
 .pg-in .zonelegend .dot.free{background:var(--pi-ink)}
 /* квиз: полоса прогресса и отметки в цвет сайта */
-.pg-in .kviz-box [style*="#FFC300"]{background:var(--pi-ink)!important}
+.pg-in .kviz-box .qprog,.pg-in .kviz-box [style*="#FFC300"]{background:var(--pi-ink)!important}
 .pg-in .kviz-box input{accent-color:var(--pi-ink)}
 
 /* ---------- было/стало, чек-лист, списки, комплектации ванной (четвёртый проход) ---------- */
@@ -488,3 +488,8 @@
   .pg-in .pricetbl td.m,.pg-in .pricetbl tr:has(td:nth-child(4)) td:nth-child(3){white-space:normal}
   .pg-in .pricetbl td,.pg-in .pricetbl th{padding-right:8px}
 }
+
+/* согласия в тёмной карточке расчёта */
+.pg-in .result .cbx{color:rgba(255,255,255,.72);margin-top:10px}
+.pg-in .result .cbx a{color:#fff}
+.pg-in .result .cbx input{accent-color:#fff}

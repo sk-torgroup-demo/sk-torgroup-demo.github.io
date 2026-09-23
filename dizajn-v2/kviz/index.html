@@ -21,7 +21,7 @@
 <link rel="apple-touch-icon" href="/dizajn-v2/apple-touch-icon.png">
 <link rel="preload" as="font" type="font/woff2" href="/dizajn-v2/fonts/v1/Manrope-cyrillic.woff2" crossorigin><link rel="preload" as="font" type="font/woff2" href="/dizajn-v2/fonts/v1/CormorantGaramond-cyrillic.woff2" crossorigin>
 <link rel="stylesheet" href="/dizajn-v2/css/main.css?v=ab7c3528">
-<link rel="stylesheet" href="/dizajn-v2/css/menu.css?v=4267bb1d"><link rel="stylesheet" href="/dizajn-v2/css/theme-a.css?v=d308798c"><link rel="stylesheet" href="/dizajn-v2/css/v1.css?v=38ea07ed"><link rel="stylesheet" href="/dizajn-v2/css/pages-a1.css?v=01c0fed9">
+<link rel="stylesheet" href="/dizajn-v2/css/menu.css?v=4267bb1d"><link rel="stylesheet" href="/dizajn-v2/css/theme-a.css?v=d308798c"><link rel="stylesheet" href="/dizajn-v2/css/v1.css?v=38ea07ed"><link rel="stylesheet" href="/dizajn-v2/css/pages-a1.css?v=b04e4128">
 
 
 </head>
@@ -31,23 +31,19 @@
 <a class="logo" href="/dizajn-v2/">СК <span>ТОР ГРУПП</span></a>
 <a class="phone" href="tel:+74952562111">+7 (495) 256-21-11</a>
 </div>
-<div class="eyebrow">Расчёт стоимости · вопрос 1 из 6</div>
-<h1 style="font-size:clamp(24px,4vw,34px);margin:10px 0 26px">Какая у вас квартира?</h1>
-<div style="height:6px;background:var(--mist);border-radius:99px;margin-bottom:30px"><div style="width:16%;height:100%;background:#FFC300;border-radius:99px"></div></div>
-<div class="faq" style="max-width:none">
-<label class="opt" style="display:flex;gap:12px;align-items:center;font-size:15.5px;padding:16px;border:1.5px solid var(--line);border-radius:10px;margin-bottom:10px;cursor:pointer"><input type="radio" name="q1" checked> Новостройка без отделки / white box</label>
-<label class="opt" style="display:flex;gap:12px;align-items:center;font-size:15.5px;padding:16px;border:1.5px solid var(--line);border-radius:10px;margin-bottom:10px;cursor:pointer"><input type="radio" name="q1"> Вторичка — нужен капитальный ремонт</label>
-<label class="opt" style="display:flex;gap:12px;align-items:center;font-size:15.5px;padding:16px;border:1.5px solid var(--line);border-radius:10px;margin-bottom:10px;cursor:pointer"><input type="radio" name="q1"> Освежить: косметический ремонт</label>
-<label class="opt" style="display:flex;gap:12px;align-items:center;font-size:15.5px;padding:16px;border:1.5px solid var(--line);border-radius:10px;margin-bottom:10px;cursor:pointer"><input type="radio" name="q1"> Только санузел или комната</label>
-</div>
-<button class="btn btn-amber" style="width:100%;margin-top:10px">Дальше →</button>
-<p style="font-size:12px;color:var(--muted);text-align:center;margin-top:14px">Результат — вилка цены на экране. Телефон понадобится только для детальной сметы.</p>
+<div class="eyebrow">Расчёт стоимости</div>
+<h1 class="q" style="font-size:clamp(24px,4vw,34px);margin:10px 0 26px">Какая у вас квартира?</h1>
+<div style="height:6px;background:var(--mist);border-radius:99px;margin-bottom:30px"><div class="qprog" data-qprog style="width:16%;height:100%;background:#FFC300;border-radius:99px;transition:width .3s ease"></div></div>
+<div class="faq" style="max-width:none"></div> <button class="btn btn-amber" style="width:100%;margin-top:10px">Дальше →</button>
+<label class="cbx"><input type="checkbox" class="c-pd" required> <span>Я даю <a href="/dizajn-v2/soglasie/" target="_blank" rel="noopener">согласие на обработку персональных данных</a> и ознакомлен с <a href="/dizajn-v2/politika/" target="_blank" rel="noopener">политикой обработки данных</a></span></label>
+<label class="cbx"><input type="checkbox" class="c-ads"> <span>Согласен получать информационные и рекламные сообщения (<a href="/dizajn-v2/soglasie-reklama/" target="_blank" rel="noopener">условия</a>)</span></label>
+<p class="hint" style="font-size:12px;color:var(--muted);text-align:center;margin-top:14px">Результат — вилка цены на экране. Телефон понадобится только для детальной сметы.</p>
 </div>
 <div class="vsw" id="vsw"><span>Дизайн</span><a href="/dizajn/a/kviz/">Версия 1</a><a href="/dizajn-v2/kviz/" class="on">Версия 2</a><a href="/do/kviz/">Сейчас<i> на сайте</i></a></div><style>.vsw{position:fixed;left:14px;bottom:14px;z-index:9500;display:flex;align-items:center;gap:2px;background:rgba(20,21,23,.92);color:#fff;border-radius:999px;padding:5px 5px 5px 14px;font:500 12.5px/1 var(--v1-sans,'GolosUI',Arial,sans-serif);box-shadow:0 8px 24px rgba(0,0,0,.25)}
 .vsw span{margin-right:6px;opacity:.7}.vsw i{font-style:normal}.vsw a{color:#fff;text-decoration:none;padding:7px 8px;border-radius:999px;cursor:pointer}.vsw a:hover{background:rgba(255,255,255,.12)}.vsw a.on{background:#fff;color:#141517}
 body:has(#mnav.open) .vsw{display:none}
 @media(max-width:760px){.vsw{left:6px;right:6px;bottom:64px;padding:4px;justify-content:space-between}.vsw span,.vsw i{display:none}.vsw a{padding:7px 6px}}</style>
 
-<script src="/dizajn-v2/js/main.js?v=8ef2296e" defer></script><script src="/dizajn-v2/js/forms.js?v=fe689755" defer></script><script src="/dizajn-v2/js/menu.js?v=1a2eb581" defer></script><script src="/dizajn-v2/js/search.js?v=19b299a7" defer></script><script src="/dizajn-v2/js/callback.js?v=b85a19e7" defer></script><script src="/dizajn-v2/js/objtype.js?v=f9093456" defer></script>
+<script src="/dizajn-v2/js/main.js?v=8ef2296e" defer></script><script src="/dizajn-v2/js/forms.js?v=3b4bac73" defer></script><script src="/dizajn-v2/js/menu.js?v=1a2eb581" defer></script><script src="/dizajn-v2/js/search.js?v=19b299a7" defer></script><script src="/dizajn-v2/js/callback.js?v=b85a19e7" defer></script><script src="/dizajn-v2/js/objtype.js?v=f9093456" defer></script>
 </body>
 </html>

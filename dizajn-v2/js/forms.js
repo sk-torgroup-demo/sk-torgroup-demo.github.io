@@ -4,11 +4,17 @@
 const URL='/send.php';
 
 /* ---------- маска телефона ---------- */
-function fmt(v){
-  var d=v.replace(/\D/g,'');
+/* номер приводим к одному виду: 8..., +7..., 7..., 9... и вставка с пробелами и скобками */
+function norm(v){
+  var d=(v||'').replace(/\D/g,'');
+  if(!d)return '';
   if(d[0]==='8')d='7'+d.slice(1);
-  if(d[0]!=='7')d='7'+d;
-  d=d.slice(0,11);
+  else if(d[0]!=='7')d='7'+d;
+  return d.slice(0,11);
+}
+function fmt(v){
+  var d=norm(v);
+  if(!d)return '';
   var r='+7';
   if(d.length>1)r+=' ('+d.slice(1,4);
   if(d.length>=4)r+=') '+d.slice(4,7);
@@ -16,7 +22,7 @@ function fmt(v){
   if(d.length>=9)r+='-'+d.slice(9,11);
   return r;
 }
-function valid(v){return v.replace(/\D/g,'').length===11}
+function valid(v){return norm(v).length===11}
 document.addEventListener('input',function(e){
   if(e.target && e.target.matches && e.target.matches('input[type=tel]')){
     e.target.value=fmt(e.target.value); e.target.style.borderColor='';
@@ -26,13 +32,26 @@ function goal(n,p){try{if(typeof ym==='function'&&window.__ym_id)ym(window.__ym_
 
 /* ---------- согласия: кнопка активна только при отметке ---------- */
 function scopeOf(el){return el.closest('form, .quiz, .kviz-box, .result, .formband, .final')||document}
+/* кнопка включается, только когда заполнено всё: имя (если поле есть), телефон и галочка согласия */
+function fieldsOk(sc){
+  var tel=sc.querySelector('input[type=tel]');
+  if(tel && !valid(tel.value))return false;
+  var nm=sc.querySelector('input[name=name]');
+  if(nm && nm.offsetParent!==null && nm.value.trim().length<2)return false;
+  return true;
+}
+/* в калькуляторе первая кнопка открывает поле телефона: до этого её не блокируем */
+function stepPending(sc){var t=sc.querySelector('#telStep'); return !!(t && !t.classList.contains('on'));}
 function wireConsent(root){
   (root||document).querySelectorAll('.c-pd').forEach(function(cb){
     if(cb.dataset.wired)return; cb.dataset.wired='1';
     var sc=scopeOf(cb);
     var btn=sc.querySelector('button.btn-amber, button[type=submit], #smetaBtn');
-    function upd(){ if(!btn)return; if(cb.checked)btn.removeAttribute('disabled'); else btn.setAttribute('disabled','disabled'); }
-    cb.addEventListener('change',upd); upd();
+    function upd(){ if(!btn)return; var hidden=(cb.offsetParent===null);  // согласие ещё не показано (шаги квиза, закрытая форма)
+      if(hidden || stepPending(sc) || (cb.checked && fieldsOk(sc)))btn.removeAttribute('disabled'); else btn.setAttribute('disabled','disabled'); }
+    cb.addEventListener('change',upd);
+    sc.addEventListener('input',upd); sc.addEventListener('change',upd);
+    upd();
   });
 }
 wireConsent(document);
@@ -62,7 +81,9 @@ document.querySelectorAll('form.formbox').forEach(function(f){
   var tel=f.querySelector('input[type=tel]');
   f.addEventListener('submit',function(e){e.preventDefault();
     var nm=f.querySelector('input[name=name]');            // форма заказа звонка: имя уходит в заявку
+    if(nm && nm.offsetParent!==null && nm.value.trim().length<2){nm.focus();nm.style.borderColor='#B6452C';return;}
     if(tel)send(tel,f,nm&&nm.value.trim()?'имя: '+nm.value.trim():'');});
+  f.addEventListener('input',function(e){ if(e.target&&e.target.name==='name')e.target.style.borderColor=''; });
 });
 
 /* ---------- калькулятор: детальная смета ---------- */
@@ -71,7 +92,9 @@ if(smeta){
   var box=smeta.closest('.result')||smeta.parentElement;
   smeta.addEventListener('click',function(){
     var step=document.getElementById('telStep');
-    if(step && !step.classList.contains('on')){step.classList.add('on');var i=step.querySelector('input');if(i)i.focus();return;}
+    if(step && !step.classList.contains('on')){step.classList.add('on');var i=step.querySelector('input');if(i)i.focus();
+      box.dispatchEvent(new Event('input',{bubbles:true}));  // теперь кнопка ждёт телефон и галочку
+      return;}
     var tel=step?step.querySelector('input'):null, out=document.getElementById('out');
     if(tel)send(tel,box,'расчёт: '+(out?out.textContent.trim():''));
   });
@@ -92,7 +115,10 @@ document.querySelectorAll('.final .quiz, .kviz-box').forEach(function(q){
   var btn=q.querySelector('button.btn-amber, .btn-amber');
   if(!qEl||!btn)return;
   var consentBlocks=q.querySelectorAll('.cbx');
+  var prog=q.querySelector('[data-qprog]');
   var hint=q.querySelector('.hint');
+  consentBlocks.forEach(function(c){c.style.display='none'});   // согласия показываем на последнем шаге, вместе с телефоном
+  if(consentBlocks.length)q.dispatchEvent(new Event('input',{bubbles:true}));  // пересчитать кнопку: галочки теперь скрыты
   function optsHTML(i){
     return STEPS[i].o.map(function(t,k){
       return '<label class="opt"><input type="radio" name="qz'+i+'"'+(k===0?' checked':'')+'> '+t+'</label>';
@@ -103,6 +129,7 @@ document.querySelectorAll('.final .quiz, .kviz-box').forEach(function(q){
     var old=q.querySelectorAll('.opt'); old.forEach(function(o){o.remove()});
     btn.insertAdjacentHTML('beforebegin', optsHTML(step));
     btn.textContent = (step===STEPS.length-1) ? 'Показать расчёт →' : 'Дальше →';
+    if(prog)prog.style.width=Math.round((step+1)/(STEPS.length+1)*100)+'%';
   }
   function showPhone(){
     q.querySelectorAll('.opt').forEach(function(o){o.remove()});
@@ -115,8 +142,12 @@ document.querySelectorAll('.final .quiz, .kviz-box').forEach(function(q){
       inp.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();btn.click();}});
       inp.focus();
     }
+    consentBlocks.forEach(function(c){c.style.display=''});
+    if(prog)prog.style.width='100%';
     btn.textContent='Получить расчёт';
     btn.dataset.final='1';
+    wireConsent(q);
+    q.dispatchEvent(new Event('input',{bubbles:true}));
   }
   btn.addEventListener('click',function(e){
     e.preventDefault();
