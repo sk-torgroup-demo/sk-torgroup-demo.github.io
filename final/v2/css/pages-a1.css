@@ -558,3 +558,16 @@ a.stc,a.stc:hover{color:inherit;text-decoration:none}
 .kviz-box .phone{font-size:14px!important}
 .kviz-box .phone::before{content:none!important}
 @media(max-width:420px){.kviz-box .phone{font-size:13px!important}}
+
+/* Пары «до и после» на странице объекта (просьба Елизаветы 28.09.2026):
+   один ракурс двумя кадрами рядом, с явными метками. На телефоне кадры друг под другом. */
+.pg-in .ba2-grid{display:grid;grid-template-columns:1fr 1fr;gap:34px 28px;margin-top:24px}
+.pg-in .ba2{display:grid;grid-template-columns:1fr 1fr;gap:4px}
+.pg-in .ba2-i{position:relative;margin:0;overflow:hidden;background:var(--pi-stone)}
+.pg-in .ba2-i img{display:block;width:100%;height:100%;object-fit:cover;aspect-ratio:3/4}
+.pg-in .ba2-l{position:absolute;left:0;top:0;z-index:1;padding:7px 14px;background:rgba(21,23,26,.82);color:#fff;
+  font:600 11px/1 var(--pi-sans);letter-spacing:.14em;text-transform:uppercase}
+.pg-in .ba2-l-p{background:#fff;color:var(--pi-ink)}
+.pg-in .ba2-c{grid-column:1 / -1;margin-top:10px;font:500 15px/1.45 var(--pi-sans);color:var(--pi-ink)}
+@media(max-width:900px){.pg-in .ba2-grid{grid-template-columns:1fr;gap:28px}}
+@media(max-width:480px){.pg-in .ba2-i img{aspect-ratio:4/5}}
