@@ -205,7 +205,10 @@ if(document.readyState==='complete')setTimeout(go,300);else addEventListener('lo
 <!-- 1. ПЕРВЫЙ ЭКРАН: одно слово, сквозь буквы видно готовую квартиру; при прокрутке камера «влетает» в слово -->
 <section class="x-hero" id="top">
   <div class="x-hero-stick">
-    <picture class="x-hero-photo"><source media="(max-width:760px)" srcset="/hero/img/sanuzel-tall-m.webp 600w, /hero/img/sanuzel-tall.webp 860w" sizes="100vw"><img src="/hero/img/sanuzel.webp" srcset="/hero/img/sanuzel-m.webp 1000w, /hero/img/sanuzel.webp 1440w" sizes="100vw" alt="Объект компании" width="1440" height="997" fetchpriority="high"></picture>
+    <picture class="x-hero-photo">
+        <source media="(max-width:760px)" srcset="https://sk-torgroup-demo.github.io/dizajn-v4/img/obekty/dom-stolovaya-hero-tall-m.webp 900w, /dizajn-v4/img/obekty/dom-stolovaya-hero-tall.webp 1120w" sizes="100vw">
+        <img src="https://sk-torgroup-demo.github.io/dizajn-v4/img/obekty/dom-stolovaya-hero-l.webp" srcset="https://sk-torgroup-demo.github.io/dizajn-v4/img/obekty/dom-stolovaya-hero-m.webp 1000w, /dizajn-v4/img/obekty/dom-stolovaya-hero-l.webp 1600w, /dizajn-v4/img/obekty/dom-stolovaya-hero.webp 2200w" sizes="100vw" alt="Столовая в загородном доме после ремонта" width="2200" height="1335" fetchpriority="high">
+      </picture>
     <h1 class="x-h1">
       <span class="x-mask"><span class="x-word" data-letters>Ремонт</span></span>
       <span class="x-sub"><em>под вашим контролем</em>. Квартиры и дома: камеры, акты, фотоотчёт каждый день</span>
@@ -611,7 +614,8 @@ if(document.readyState==='complete')setTimeout(go,300);else addEventListener('lo
   <a class="v1-mb-cta a-btn a-btn-amber" href="https://sk-torgroup-demo.github.io/dizajn-v4/kalkulyator-remonta/">Рассчитать</a>
 </div>
 
-<div class="vsw" id="vsw"><span>Дизайн</span><a href="/dizajn-v3/">Версия 3</a><a href="https://sk-torgroup-demo.github.io/dizajn-v4/" class="on">Версия 4</a><a href="/do/">Сейчас<i> на сайте</i></a></div><style>.vsw{position:fixed;left:14px;bottom:14px;z-index:9500;display:flex;align-items:center;gap:2px;background:rgba(20,21,23,.92);color:#fff;border-radius:999px;padding:5px 5px 5px 14px;font:500 12.5px/1 var(--v1-sans,'GolosUI',Arial,sans-serif);box-shadow:0 8px 24px rgba(0,0,0,.25)}
+<div class="vsw" id="vsw"><span>Заглавное фото</span>
+<a href="/glavnaya/" class="on">Столовая</a><a href="/glavnaya/sanuzel/">Санузел</a></div><style>.vsw{position:fixed;left:14px;bottom:14px;z-index:9500;display:flex;align-items:center;gap:2px;background:rgba(20,21,23,.92);color:#fff;border-radius:999px;padding:5px 5px 5px 14px;font:500 12.5px/1 var(--v1-sans,'GolosUI',Arial,sans-serif);box-shadow:0 8px 24px rgba(0,0,0,.25)}
 .vsw span{margin-right:6px;opacity:.7}.vsw i{font-style:normal}.vsw a{color:#fff;text-decoration:none;padding:7px 8px;border-radius:999px;cursor:pointer}.vsw a:hover{background:rgba(255,255,255,.12)}.vsw a.on{background:#fff;color:#141517}
 body:has(#mnav.open) .vsw{display:none}
 @media(max-width:760px){.vsw{left:6px;right:6px;bottom:64px;padding:4px;justify-content:space-between}.vsw span,.vsw i{display:none}.vsw a{padding:7px 6px}}</style>
