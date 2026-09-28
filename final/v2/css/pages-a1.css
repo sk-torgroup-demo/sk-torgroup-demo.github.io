@@ -27,7 +27,8 @@
 
 /* ---------- первый экран страницы ---------- */
 .pg-in .phero{padding:40px 0 80px;border-bottom:1px solid var(--pi-line)}
-.pg-in .phero h1{font:600 clamp(40px,5.4vw,84px)/1.02 var(--pi-serif);letter-spacing:-.012em;max-width:1080px;margin:6px 0 28px;text-wrap:balance}
+.pg-in .phero h1{font:600 clamp(40px,5.4vw,84px)/1.02 var(--pi-serif);letter-spacing:-.012em;max-width:1080px;margin:6px 0 28px;text-wrap:balance;
+  font-feature-settings:"lnum" 1,"pnum" 1}  /* ровные цифры: иначе «Объект 1» выглядит как «Объект ı» */
 .pg-in .phero .lead{font:400 clamp(17px,1.35vw,20px)/1.6 var(--pi-sans);color:var(--pi-muted);max-width:62ch;margin-bottom:32px}
 .pg-in .badges{gap:8px;margin-bottom:36px}
 .pg-in .badge{font:500 11.5px/1 var(--pi-sans);letter-spacing:.1em;text-transform:uppercase;background:transparent;border:1px solid var(--pi-line);color:var(--pi-ink);border-radius:999px;padding:10px 16px}
@@ -551,3 +552,9 @@ a.stc,a.stc:hover{color:inherit;text-decoration:none}
 .pg-in .case-real .case-txt{font:400 14.5px/1.55 var(--pi-sans);color:var(--pi-muted);margin:10px 0 0}
 .pg-in .case-real .case-more{display:inline-block;margin-top:14px;font:500 14px/1 var(--pi-sans);border-bottom:1px solid var(--pi-ink);padding-bottom:3px}
 .pg-in .case-real:hover .case-more{opacity:.6}
+
+/* Квиз: своя шапка без нашей темы, поэтому срабатывало старое правило main.css —
+   на узком экране номер прятался и вместо него рисовался значок телефона. Показываем номер. */
+.kviz-box .phone{font-size:14px!important}
+.kviz-box .phone::before{content:none!important}
+@media(max-width:420px){.kviz-box .phone{font-size:13px!important}}

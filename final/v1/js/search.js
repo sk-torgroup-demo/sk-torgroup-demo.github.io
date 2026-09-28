@@ -13,7 +13,7 @@
     box=document.createElement('div');box.className='ss';box.hidden=true;box.setAttribute('role','dialog');box.setAttribute('aria-label','Поиск по сайту');
     box.innerHTML='<div class="ss-in"><div class="ss-f"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="m15.5 15.5 5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>'+
       '<input type="search" placeholder="Поиск по сайту: ванная, цены, гарантия…" aria-label="Что найти" autocomplete="off" spellcheck="false"><button type="button" class="ss-x" aria-label="Закрыть поиск">Esc</button></div>'+
-      '<div class="ss-r" role="listbox"></div><div class="ss-h"></div></div>';
+      '<div class="ss-h"></div><div class="ss-r" role="listbox"></div></div>';
     document.body.appendChild(box);
     input=box.querySelector('input');list=box.querySelector('.ss-r');hint=box.querySelector('.ss-h');
     box.addEventListener('click',function(e){if(e.target===box||e.target.closest('.ss-x'))close()});

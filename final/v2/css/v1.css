@@ -141,7 +141,7 @@ html.ss-open{overflow:hidden}
 .ss-pop a:hover,.ss-pop a.on{background:#121417;color:#fff}
 .ss-none{padding:18px 16px;margin:0;font:400 15px/1.5 var(--v1-sans);color:#636A73}
 .ss-none a{color:#121417}
-.ss-h{padding:10px 18px 14px;font:400 12px var(--v1-sans);color:#8A9099;border-top:1px solid #F0F1F3}
+.ss-h{padding:12px 18px 2px;font:400 12px var(--v1-sans);color:#8A9099}  /* подпись стоит над подсказками */
 .ss-h:empty{display:none}
 @media(max-width:760px){.ss-in{margin:12px;border-radius:18px}.ss-f input{font-size:17px}}
 @media(prefers-reduced-motion:reduce){.ss,.ss-in{transition:none}}
