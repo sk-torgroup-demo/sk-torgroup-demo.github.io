@@ -1,0 +1,155 @@
+[
+  {
+    "file": "hero-1.webp",
+    "unsplash_id": "VZ2z8ozzy10",
+    "author": "Prydumano Design",
+    "page_url": "https://unsplash.com/photos/a-living-room-with-a-large-green-couch-VZ2z8ozzy10",
+    "alt_ru": "Гостиная с оливковым угловым диваном, светлая ёлочка на полу, панорамные окна",
+    "width": 2000,
+    "height": 1250
+  },
+  {
+    "file": "hero-2.webp",
+    "unsplash_id": "GVM67xMssS0",
+    "author": "WE DO Interior Design & Fit Out",
+    "page_url": "https://unsplash.com/photos/modern-living-room-and-kitchen-interior-GVM67xMssS0",
+    "alt_ru": "Открытая гостиная-кухня: светлый диван, кухня в дереве, паркет ёлочкой",
+    "width": 2000,
+    "height": 1334
+  },
+  {
+    "file": "work-1.webp",
+    "unsplash_id": "x1fGG5MOUDA",
+    "author": "Lisa Anna",
+    "page_url": "https://unsplash.com/photos/a-living-room-filled-with-furniture-and-a-large-window-x1fGG5MOUDA",
+    "alt_ru": "Светлая гостиная: бежевый диван, чёрный столик, дубовый пол",
+    "width": 1400,
+    "height": 2327
+  },
+  {
+    "file": "work-2.webp",
+    "unsplash_id": "Xx02G9SYjlY",
+    "author": "Prydumano Design",
+    "page_url": "https://unsplash.com/photos/a-kitchen-with-a-wooden-floor-and-white-walls-Xx02G9SYjlY",
+    "alt_ru": "Кухня: фасады цвета шалфея, деревянный шкаф и полка, паркет ёлочкой",
+    "width": 1400,
+    "height": 1750
+  },
+  {
+    "file": "work-3.webp",
+    "unsplash_id": "gooFl1sx3ow",
+    "author": "Aleksandra Dementeva",
+    "page_url": "https://unsplash.com/photos/a-modern-bedroom-with-a-neatly-made-bed-gooFl1sx3ow",
+    "alt_ru": "Спальня: кровать с мягким изголовьем, стеновая панель под дерево, ламинат",
+    "width": 1400,
+    "height": 2100
+  },
+  {
+    "file": "work-4.webp",
+    "unsplash_id": "mLx6oMw32PI",
+    "author": "serjan midili",
+    "page_url": "https://unsplash.com/photos/a-bathroom-with-a-large-mirror-mLx6oMw32PI",
+    "alt_ru": "Санузел в плитке под камень, деревянная тумба, чёрная сантехника, подсветка",
+    "width": 1400,
+    "height": 2104
+  },
+  {
+    "file": "work-5.webp",
+    "unsplash_id": "EOnPMAAqZ8o",
+    "author": "Aleksandra Dementeva",
+    "page_url": "https://unsplash.com/photos/modern-hallway-with-kitchen-and-wooden-floor-EOnPMAAqZ8o",
+    "alt_ru": "Небольшая квартира-студия: кухня вдоль стены, коридор, светлый пол",
+    "width": 1400,
+    "height": 2100
+  },
+  {
+    "file": "work-6.webp",
+    "unsplash_id": "mqlKz6qnafk",
+    "author": "Prydumano Design",
+    "page_url": "https://unsplash.com/photos/a-hallway-with-a-bench-and-a-mirror-mqlKz6qnafk",
+    "alt_ru": "Прихожая: шкаф в дереве, плитка с узором, скамья и зеркало в полный рост",
+    "width": 1400,
+    "height": 1750
+  },
+  {
+    "file": "bath-1.webp",
+    "unsplash_id": "JxfqdB-YCpk",
+    "author": "Alex Tyson",
+    "page_url": "https://unsplash.com/photos/a-bathroom-with-a-toilet-sink-and-shower-JxfqdB-YCpk",
+    "alt_ru": "Современная ванная в серой плитке: душевая за стеклом, чёрная тумба, круглое зеркало",
+    "width": 1400,
+    "height": 934
+  },
+  {
+    "file": "process-1.webp",
+    "unsplash_id": "Re1O5byZ8bY",
+    "author": "Sasun Bughdaryan",
+    "page_url": "https://unsplash.com/photos/hands-applying-plaster-to-a-wall-with-trowels-Re1O5byZ8bY",
+    "alt_ru": "Руки мастера со шпателями: шпаклёвка стен",
+    "width": 1400,
+    "height": 934
+  },
+  {
+    "file": "process-2.webp",
+    "unsplash_id": "LyQi9DS7AEg",
+    "author": "charlesdeluvio",
+    "page_url": "https://unsplash.com/photos/person-holding-white-tile-LyQi9DS7AEg",
+    "alt_ru": "Укладка настенной плитки на клей с крестиками",
+    "width": 1400,
+    "height": 2100
+  },
+  {
+    "file": "process-3.webp",
+    "unsplash_id": "6pwfdFKBREg",
+    "author": "Mark Kats",
+    "page_url": "https://unsplash.com/photos/telephone-cable-close-up-photography-6pwfdFKBREg",
+    "alt_ru": "Электрика: провода с клеммами в подрозетниках на оштукатуренной стене",
+    "width": 1400,
+    "height": 1866
+  },
+  {
+    "file": "process-4.webp",
+    "unsplash_id": "Fxv9QVauyD0",
+    "author": "Steffen Lemmerzahl",
+    "page_url": "https://unsplash.com/photos/a-room-that-has-some-paint-on-the-floor-Fxv9QVauyD0",
+    "alt_ru": "Черновой этап: стяжка пола, гипсокартон, коллектор отопления",
+    "width": 1400,
+    "height": 934
+  },
+  {
+    "file": "shell-1.webp",
+    "unsplash_id": "6HQPY_4J2ho",
+    "author": "Stefan Spassov",
+    "page_url": "https://unsplash.com/photos/brown-building-interior-photography-6HQPY_4J2ho",
+    "alt_ru": "Пустая квартира в новостройке без отделки: бетон и большие окна",
+    "width": 1400,
+    "height": 1050
+  },
+  {
+    "file": "design-1.webp",
+    "unsplash_id": "pdCTX1harH4",
+    "author": "Karolina Grabowska",
+    "page_url": "https://unsplash.com/photos/hand-holding-color-swatches-over-blueprints-and-open-book-pdCTX1harH4",
+    "alt_ru": "Дизайн-проект: веер образцов цвета над чертежом планировки",
+    "width": 1400,
+    "height": 2100
+  },
+  {
+    "file": "detail-1.webp",
+    "unsplash_id": "0hwyq7sAMpA",
+    "author": "Lisa Anna",
+    "page_url": "https://unsplash.com/photos/a-vase-with-flowers-in-it-sitting-on-a-shelf-0hwyq7sAMpA",
+    "alt_ru": "Ниша в плитке с металлическим уголком и подсветкой",
+    "width": 1400,
+    "height": 2100
+  },
+  {
+    "file": "detail-2.webp",
+    "unsplash_id": "eNc60KGLGXI",
+    "author": "Lisa Anna",
+    "page_url": "https://unsplash.com/photos/a-white-door-is-open-on-a-wooden-floor-eNc60KGLGXI",
+    "alt_ru": "Паркет ёлочкой, аккуратный стык у двери и плинтуса",
+    "width": 1400,
+    "height": 2100
+  }
+]
