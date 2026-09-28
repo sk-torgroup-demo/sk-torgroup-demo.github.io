@@ -108,6 +108,10 @@
 .pg-in .stylecards{display:grid;grid-template-columns:repeat(3,1fr)}
 .pg-in .stc,.pg-in .room,.pg-in .axe{border:0;border-right:1px solid var(--pi-line);border-bottom:1px solid var(--pi-line)}
 .pg-in .stc{background:#fff;transition:background .25s}
+/* карточка стиля стала ссылкой: подчёркивание и цвет ссылки тут не нужны */
+a.stc,a.stc:hover{color:inherit;text-decoration:none}
+/* фото стиля у нас нет (наши объекты — не «лофт» и не «арт-деко»), пустую рамку не показываем */
+.pg-in .stc .sph:empty{display:none}
 .pg-in .stc:hover{background:var(--pi-stone)}
 .pg-in .stc .sb{padding:32px 30px 34px}
 .pg-in .stc b{display:block;font:700 19px/1.3 var(--pi-sans);letter-spacing:-.01em;margin-bottom:10px}
