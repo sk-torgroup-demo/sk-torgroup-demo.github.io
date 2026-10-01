@@ -133,7 +133,7 @@ svg.i{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.6;stro
 </div>
 
 <script>
-const V='1.2 от 01.10';
+const V='1.3 от 01.10';
 const I=n=>`a/i/${n}-s.webp`;
 const ic={
  home:'<path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>',
@@ -164,7 +164,7 @@ const chip=p=>p===100?'<span class="chip ok">готово</span>':p>0?`<span cla
 const wait=t=>`<span class="chip wait">${t}</span>`;
 const photos=(a,big)=>`<div class="ph${big?' big':''}">${a.map(n=>`<img src="${I(n)}" alt="" loading="lazy">`).join('')}</div>`;
 const stageList=(go)=>`<div class="card" style="padding:0 14px">${OBJ.stages.map((s,i)=>`<div class="st" ${go?`data-go="stage:${i}"`:''}><div class="n">${i+1}</div><div><b>${s.n}</b><div class="mut">${s.d}</div>${s.p>0&&s.p<100?prog(s.p):''}</div>${chip(s.p)}</div>`).join('')}</div>`;
-const calendar=()=>{const a=[0,5.4,21,28.6,44,50.5],w=[26,26.6,21,17.4,11,25.5];// от 1 окт до 31 дек, сегодня 1 нояreturn `<div class="card"><div class="months"><span></span><span>Октябрь</span><span>Ноябрь</span><span>Декабрь</span></div>
+const calendar=()=>{const a=[0,5.4,21,28.6,44,50.5],w=[26,26.6,21,17.4,11,25.5];return `<div class="card"><div class="months"><span></span><span>Октябрь</span><span>Ноябрь</span><span>Декабрь</span></div>
  <div class="cal">${OBJ.stages.map((s,i)=>`<div>${s.n.split(' ')[0]}</div><div class="tr"><i style="left:${a[i]}%;width:${w[i]}%"></i><i class="f" style="left:${a[i]}%;width:${w[i]*s.p/100}%"></i>${i===0?'<span class="now" style="left:34%"></span>':''}</div>`).join('')}</div>
  <div class="row mut" style="margin-top:12px;gap:14px;font-size:11.5px"><span><b style="display:inline-block;width:12px;height:5px;border-radius:3px;background:var(--ink)"></b> сделано</span><span><b style="display:inline-block;width:12px;height:5px;border-radius:3px;background:#C9CCD1"></b> план</span><span><b style="display:inline-block;width:2px;height:9px;background:#E5484D"></b> сегодня</span></div></div>`};
 const ASKS=[['Светильники в зале бассейна','Загородный дом','со вчера'],['Цвет затирки в санузле','Квартира 64 м²','3 дня']];
