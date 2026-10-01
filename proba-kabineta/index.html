@@ -156,7 +156,7 @@ textarea.inp{min-height:96px;resize:vertical}
 </div>
 
 <script>
-const V='1.4 от 01.10';
+const V='1.5 от 01.10';
 const I=n=>n.startsWith('data:')?n:`a/i/${n}-s.webp`;
 const ic={
  home:'<path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>',
@@ -181,7 +181,7 @@ const USERS=[
  {login:'вадим',role:'office',name:'Вадим'},
  {login:'илья',role:'client',name:'Илья'},
  {login:'иван',role:'foreman',name:'Иван'}];
-const PASS=['400','0000'];
+const PASS=['0000'];
 const phoneDigits=t=>{let d=String(t).replace(/\D/g,'');if(d.length===11&&d[0]==='8')d='7'+d.slice(1);if(d.length===10)d='7'+d;return d};
 
 /* данные: храним в телефоне, чтобы действия одной роли видела другая */
