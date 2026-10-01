@@ -116,6 +116,29 @@ svg.i{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.6;stro
 .cam svg{width:30px;height:30px;margin-bottom:6px}
 .chk{display:flex;gap:8px;align-items:center;font-size:13.5px;margin:6px 0 2px}
 .chk i{width:18px;height:18px;border:1.5px solid var(--line);border-radius:5px}
+input.inp,textarea.inp,select.inp{width:100%;color:var(--ink);font:15px var(--sans);outline:none;-webkit-appearance:none;appearance:none}
+input.inp:focus,textarea.inp:focus,select.inp:focus{border-color:var(--ink)}
+textarea.inp{min-height:96px;resize:vertical}
+.err{background:#FBE9E9;color:#9B2C2C;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:6px 0}
+.chip.bad{background:#FBE9E9;color:#9B2C2C}
+.chip.bad:before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.dot2{position:absolute;top:6px;right:7px;width:7px;height:7px;border-radius:50%;background:#E5484D}
+.paper{border:1px solid var(--line);border-radius:14px;padding:18px 16px;background:#fff;font-size:13.5px;line-height:1.55}
+.paper h4{font:600 18px/1.2 var(--serif);text-align:center;margin:0 0 4px}
+.paper .c{text-align:center;color:var(--mut);font-size:12px;margin-bottom:12px}
+.paper p{margin:0 0 8px}
+.paper table{width:100%;border-collapse:collapse;font-size:12.5px;margin:6px 0}
+.paper td,.paper th{border-bottom:1px solid var(--line);padding:6px 4px;text-align:left;vertical-align:top}
+.paper td.r,.paper th.r{text-align:right;white-space:nowrap}
+.draft{display:inline-block;font:700 10px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--wait);background:var(--waitbg);padding:5px 8px;border-radius:6px;margin-bottom:10px}
+.ev{display:flex;gap:10px;padding:12px 0;border-bottom:1px solid var(--line)}
+.ev.new b{font-weight:700}
+.ev .d{width:8px;height:8px;border-radius:50%;background:#E5484D;margin-top:6px;flex:none}
+.ev .d.o{background:transparent}
+.upl{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin:8px 0}
+.upl img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:8px}
+.lbl2{font:600 12px var(--sans);color:var(--mut);margin:12px 0 2px;display:block}
+.cal .tr{cursor:pointer}
 </style>
 </head>
 <body>
@@ -123,7 +146,7 @@ svg.i{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.6;stro
   <div class="brand"><img src="a/emblem.webp" alt=""><div><b>СК ТОР ГРУПП</b><small>Личный кабинет · прототип</small></div></div>
   <div class="role" id="roles"><button data-r="client" class="on">Клиент</button><button data-r="foreman">Прораб</button><button data-r="office">Офис</button></div>
 </div>
-<div class="note">Прототип для обсуждения: логика и вид экранов. Данные условные, фото с ваших объектов для примера. Всё нажимается. Жёлтые метки «ждём ответ» уточняются по вашим процессам.</div>
+<div class="note">Прототип для обсуждения: логика и вид экранов. Данные условные, фото с ваших объектов для примера. Всё нажимается, действия одной роли видны другой. Жёлтые метки «ждём ответ» уточняются по вашим процессам.</div>
 
 <div class="phone">
   <div class="toast" id="toast"><img src="a/emblem-light.webp" alt=""><span></span></div>
@@ -133,127 +156,238 @@ svg.i{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.6;stro
 </div>
 
 <script>
-const V='1.3 от 01.10';
-const I=n=>`a/i/${n}-s.webp`;
+const V='1.4 от 01.10';
+const I=n=>n.startsWith('data:')?n:`a/i/${n}-s.webp`;
 const ic={
  home:'<path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>',
  stages:'<path d="M4 6h16M4 12h10M4 18h6"/>',
- cal:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>',
  doc:'<path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 13h6M9 17h6"/>',
  ok:'<path d="M20 6L9 17l-5-5"/>',
+ x:'<path d="M6 6l12 12M18 6L6 18"/>',
  list:'<path d="M8 6h13M8 12h13M8 18h13"/><circle cx="4" cy="6" r="1"/><circle cx="4" cy="12" r="1"/><circle cx="4" cy="18" r="1"/>',
  cam:'<path d="M3 8h4l2-3h6l2 3h4v12H3z"/><circle cx="12" cy="13" r="3.5"/>',
  people:'<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c1-3.5 3.6-5 6.5-5s5.5 1.5 6.5 5"/><circle cx="17" cy="9" r="2.5"/><path d="M16 14.5c2.5 0 4.5 1.3 5.5 4"/>',
  wait:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
  exit:'<path d="M15 4h4v16h-4M10 8l-4 4 4 4M6 12h10"/>',
  bell:'<path d="M6 16V11a6 6 0 1 1 12 0v5l2 2H4z"/><path d="M10 21h4"/>',
+ msg:'<path d="M4 5h16v11H8l-4 4z"/>',
  arrow:'<path d="M9 6l6 6-6 6"/>'};
 const svg=(k,c='i')=>`<svg class="${c}" viewBox="0 0 24 24">${ic[k]}</svg>`;
+const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const now=()=>{const d=new Date();return d.toLocaleDateString('ru-RU',{day:'numeric',month:'short'})+', '+d.toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'})};
 
-const OBJ={name:'Загородный дом',area:'210 м²',pct:42,due:'10 декабря',stages:[
- {n:'Черновые работы',p:100,d:'1–24 окт',img:['kv-chernovaya']},
- {n:'Чаша бассейна',p:100,d:'6–30 окт',img:['dom-bassejn-process2']},
- {n:'Потолки и свет',c:'Смонтировали подсветку потолка в зале. Завтра снимаем леса.',p:70,d:'20 окт – 8 ноя',img:['dom-zal-lesa','dom-zal-lesa2','dom-zal-plitka','dom-parket','dom-bassejn-process']},
- {n:'Электрика и слаботочка',p:40,d:'27 окт – 12 ноя',img:[]},
- {n:'Полы',p:0,d:'10–20 ноя',img:[]},
- {n:'Финишные работы',p:0,d:'16 ноя – 10 дек',img:[]}]};
-const OBJS=[['Загородный дом','210 м² · прораб 1','Потолки и свет',42,'dom-holl'],['Квартира','64 м² · прораб 2','Черновые работы',18,'kv-koridor'],['Квартира','88 м² · прораб 1','Полы',60,'dom-parket']];
-const S={};let role='client',stack=[],seg='staff';
+/* тестовые учётные записи (только прототип) */
+const USERS=[
+ {login:'вадим',role:'office',name:'Вадим'},
+ {login:'илья',role:'client',name:'Илья'},
+ {login:'иван',role:'foreman',name:'Иван'}];
+const PASS=['400','0000'];
+const phoneDigits=t=>{let d=String(t).replace(/\D/g,'');if(d.length===11&&d[0]==='8')d='7'+d.slice(1);if(d.length===10)d='7'+d;return d};
+
+/* данные: храним в телефоне, чтобы действия одной роли видела другая */
+const KEY='tor-proto-2';
+const SEED=()=>({
+ stages:[
+  {n:'Черновые работы',p:100,d:'1–24 окт',a:0,w:26},
+  {n:'Чаша бассейна',p:100,d:'6–30 окт',a:5.4,w:26.6},
+  {n:'Потолки и свет',p:70,d:'20 окт – 8 ноя',a:21,w:21},
+  {n:'Электрика и слаботочка',p:40,d:'27 окт – 12 ноя',a:28.6,w:17.4},
+  {n:'Полы',p:0,d:'10–20 ноя',a:44,w:11},
+  {n:'Финишные работы',p:0,d:'16 ноя – 10 дек',a:50.5,w:25.5}],
+ reports:[
+  {st:2,t:'сегодня, 18:40',text:'Смонтировали подсветку потолка в зале. Завтра снимаем леса.',imgs:['dom-zal-lesa2','dom-zal-plitka','dom-parket'],office:false},
+  {st:2,t:'вчера, 17:10',text:'Леса в зале, готовим потолок под подсветку.',imgs:['dom-zal-lesa','dom-bassejn-process'],office:false},
+  {st:1,t:'30 окт, 16:00',text:'Чаша бассейна готова, гидроизоляция проверена.',imgs:['dom-bassejn-process2'],office:false},
+  {st:0,t:'24 окт, 15:30',text:'Черновые работы закончены, стены готовы под отделку.',imgs:['kv-chernovaya'],office:false}],
+ asks:[
+  {id:1,title:'Светильники в зале бассейна',text:'Предлагаем точечные светильники в два ряда по длинной стороне, как на фото, тёплый свет 3000 K.',img:'dom-bassejn-process',st:'wait',date:'вчера, 16:20',hist:[]},
+  {id:2,title:'Цвет затирки для плитки в санузле',text:'Предлагаем затирку светло-серую, под цвет плитки. Белая на полу быстро темнеет.',img:'',st:'wait',date:'сегодня, 10:05',hist:[]},
+  {id:3,title:'Высота подоконников в спальне',text:'Предлагаем подоконники на высоте 85 см от чистового пола.',img:'',st:'bad',remark:'Хотим 90 см, как в гостиной.',date:'28 окт',hist:[]},
+  {id:4,title:'Подсветка потолка в зале',text:'Скрытая светодиодная лента по периметру.',img:'dom-zal-lesa2',st:'ok',date:'18 окт',hist:[]},
+  {id:5,title:'Отделка чаши бассейна',text:'Мозаика светло-голубая.',img:'dom-bassejn-process2',st:'ok',date:'8 окт',hist:[]}],
+ docs:[
+  {id:'dog',e:'PDF',n:'Договор подряда',t:'12 сент'},
+  {id:'sm',e:'XLS',n:'Смета',t:'12 сент'},
+  {id:'ds',e:'PDF',n:'Дополнительное соглашение №1',t:'3 окт'},
+  {id:'akt',e:'PDF',n:'Акт: черновые работы',t:'25 окт'}],
+ events:[
+  {to:'client',text:'Прораб загрузил 3 фото: потолки и свет',t:'сегодня, 18:40',read:false},
+  {to:'client',text:'Новый вопрос на согласование: цвет затирки',t:'сегодня, 10:05',read:false},
+  {to:'office',text:'Клиент написал замечание: высота подоконников',t:'28 окт',read:false}],
+ objs:[
+  {n:'Загородный дом',a:'210 м²',f:'Иван',c:'Илья',im:'dom-holl',main:true},
+  {n:'Квартира',a:'64 м²',f:'Прораб 2',c:'Клиент 2',im:'kv-koridor',p:18,s:'Черновые работы'},
+  {n:'Квартира',a:'88 м²',f:'Иван',c:'Клиент 3',im:'dom-parket',p:60,s:'Полы'}],
+ staff:[{n:'Иван',r:'прораб',ph:'',on:true},{n:'Прораб 2',r:'прораб',ph:'',on:true},{n:'Вадим',r:'руководитель',ph:'',on:true}],
+ clients:[{n:'Илья',o:'Загородный дом',on:true},{n:'Клиент 2',o:'Квартира 64 м²',on:true},{n:'Клиент 3',o:'Квартира 88 м²',on:true}]
+});
+let DB;try{DB=JSON.parse(localStorage.getItem(KEY))}catch(_){}
+if(!DB||!DB.stages)DB=SEED();
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(DB))}catch(_){toast('Память телефона заполнена, старые фото не сохранятся')}};
+const pct=()=>Math.round(DB.stages.reduce((s,x)=>s+x.p,0)/DB.stages.length);
+const cur=()=>DB.stages.find(x=>x.p>0&&x.p<100)||DB.stages.find(x=>x.p<100)||DB.stages[DB.stages.length-1];
+const notify=(to,text)=>{DB.events.unshift({to,text,t:now(),read:false});save()};
+
+let role=null,user=null,stack=[],seg='staff',sel=0,draftImgs=[],form={};
 const prog=p=>`<div class="prog"><i style="width:${p}%"></i></div>`;
 const chip=p=>p===100?'<span class="chip ok">готово</span>':p>0?`<span class="chip">${p}%</span>`:'<span class="chip" style="background:none;color:var(--mut)">впереди</span>';
 const wait=t=>`<span class="chip wait">${t}</span>`;
-const photos=(a,big)=>`<div class="ph${big?' big':''}">${a.map(n=>`<img src="${I(n)}" alt="" loading="lazy">`).join('')}</div>`;
-const stageList=(go)=>`<div class="card" style="padding:0 14px">${OBJ.stages.map((s,i)=>`<div class="st" ${go?`data-go="stage:${i}"`:''}><div class="n">${i+1}</div><div><b>${s.n}</b><div class="mut">${s.d}</div>${s.p>0&&s.p<100?prog(s.p):''}</div>${chip(s.p)}</div>`).join('')}</div>`;
-const calendar=()=>{const a=[0,5.4,21,28.6,44,50.5],w=[26,26.6,21,17.4,11,25.5];return `<div class="card"><div class="months"><span></span><span>Октябрь</span><span>Ноябрь</span><span>Декабрь</span></div>
- <div class="cal">${OBJ.stages.map((s,i)=>`<div>${s.n.split(' ')[0]}</div><div class="tr"><i style="left:${a[i]}%;width:${w[i]}%"></i><i class="f" style="left:${a[i]}%;width:${w[i]*s.p/100}%"></i>${i===0?'<span class="now" style="left:34%"></span>':''}</div>`).join('')}</div>
- <div class="row mut" style="margin-top:12px;gap:14px;font-size:11.5px"><span><b style="display:inline-block;width:12px;height:5px;border-radius:3px;background:var(--ink)"></b> сделано</span><span><b style="display:inline-block;width:12px;height:5px;border-radius:3px;background:#C9CCD1"></b> план</span><span><b style="display:inline-block;width:2px;height:9px;background:#E5484D"></b> сегодня</span></div></div>`};
-const ASKS=[['Светильники в зале бассейна','Загородный дом','со вчера'],['Цвет затирки в санузле','Квартира 64 м²','3 дня']];
+const stChip=a=>a.st==='ok'?'<span class="chip ok">согласовано</span>':a.st==='bad'?'<span class="chip bad">не согласовано</span>':'<span class="chip wait">ждёт решения</span>';
+const photos=(a,big)=>a.length?`<div class="ph${big?' big':''}">${a.slice(0,big?3:6).map(n=>`<img src="${I(n)}" alt="" loading="lazy">`).join('')}</div>`:'';
+const unread=()=>DB.events.filter(e=>e.to===role&&!e.read).length;
+const stageList=go=>`<div class="card" style="padding:0 14px">${DB.stages.map((s,i)=>`<div class="st" ${go?`data-go="stage:${i}"`:''}><div class="n">${i+1}</div><div><b>${s.n}</b><div class="mut">${s.d}</div>${s.p>0&&s.p<100?prog(s.p):''}</div>${chip(s.p)}</div>`).join('')}</div>`;
+const calendar=()=>`<div class="card"><div class="months"><span></span><span>Октябрь</span><span>Ноябрь</span><span>Декабрь</span></div>
+ <div class="cal">${DB.stages.map((s,i)=>`<div>${s.n.split(' ')[0]}</div><div class="tr" data-go="stage:${i}"><i style="left:${s.a}%;width:${s.w}%"></i><i class="f" style="left:${s.a}%;width:${s.w*s.p/100}%"></i>${i===0?'<span class="now" style="left:34%"></span>':''}</div>`).join('')}</div>
+ <div class="row mut" style="margin-top:12px;gap:14px;font-size:11.5px"><span><b style="display:inline-block;width:12px;height:5px;border-radius:3px;background:var(--ink)"></b> сделано</span><span><b style="display:inline-block;width:12px;height:5px;border-radius:3px;background:#C9CCD1"></b> план</span><span><b style="display:inline-block;width:2px;height:9px;background:#E5484D"></b> сегодня</span></div></div>`;
+const askCard=a=>`<div class="card click" data-go="approve:${a.id}"><div class="row" style="justify-content:space-between;align-items:flex-start"><b style="flex:1">${esc(a.title)}</b>${svg('arrow')}</div><div style="margin-top:8px">${stChip(a)} <span class="mut">${a.date}</span></div>${a.st==='bad'&&a.remark?`<div class="quote">${esc(a.remark)}</div>`:''}</div>`;
+const S={};
 
-// вход
+/* вход */
 S.login=()=>({noBar:1,noTabs:1,h:`<div class="login"><div class="hd"><img src="a/emblem-light.webp" alt=""><h1>Ваш ремонт<br>под контролем</h1><div style="opacity:.8;font-size:14px">Этапы, фото с объекта и документы в одном месте</div></div>
- <div class="inp">Почта или телефон</div><div class="inp">Пароль</div>
- <div class="btn" data-login="client">Войти</div><div class="btn sec" data-go="reset">Забыли пароль?</div>
+ <form id="loginForm"><input class="inp" id="lg" placeholder="Имя" autocomplete="username" autocapitalize="words"><input class="inp" id="pw" type="password" placeholder="Пароль" autocomplete="current-password" inputmode="numeric">
+ ${form.err?`<div class="err">${form.err}</div>`:''}<button class="btn" type="submit">Войти</button></form><div class="btn sec" data-go="reset">Забыли пароль?</div>
  <p class="mut" style="text-align:center;margin-top:14px">Доступ выдаёт офис ТОР ГРУПП<br>${wait('способ входа: ждём ответ')}</p>
- <div class="eb" style="text-align:center">Прототип: войти как</div><div class="row" style="gap:6px"><span class="btn sec" data-login="client" style="margin:0;padding:11px 0">Клиент</span><span class="btn sec" data-login="foreman" style="margin:0;padding:11px 0">Прораб</span><span class="btn sec" data-login="office" style="margin:0;padding:11px 0">Офис</span></div>
- <div class="ver">Версия ${V} · <a href="#" data-reload>обновить</a></div></div>`});
-S.reset=()=>({t:'Новый пароль',back:1,noTabs:1,h:`<p>Пришлём на почту ссылку, по ней зададите новый пароль.</p><div class="inp">Почта</div><div class="btn" data-act="Ссылка отправлена на почту">Отправить ссылку</div><p class="mut">Нет почты? Позвоните в офис, пароль сбросит менеджер.</p>`});
+ <div class="ver">Версия ${V} · <a href="#" data-reload>обновить</a> · <a href="#" data-resetdb>сбросить тестовые данные</a></div></div>`});
+S.reset=()=>({t:'Новый пароль',back:1,noTabs:1,h:`<p>Пришлём на почту ссылку, по ней зададите новый пароль.</p><input class="inp" placeholder="Почта"><div class="btn" data-act="Ссылка отправлена на почту">Отправить ссылку</div><p class="mut">Нет почты? Позвоните в офис, пароль сбросит менеджер.</p>`});
+S.events=()=>{const list=DB.events.filter(e=>e.to===role);const h=list.length?list.map(e=>`<div class="ev ${e.read?'':'new'}"><span class="d ${e.read?'o':''}"></span><div><b>${esc(e.text)}</b><div class="mut">${e.t}</div></div></div>`).join(''):'<p class="mut">Пока ничего нового.</p>';list.forEach(e=>e.read=true);save();return {t:'Уведомления',back:1,h}};
 
-// КЛИЕНТ: Главная · Этапы · Документы · Согласования
-S.home=()=>({t:OBJ.name,bell:1,tab:'home',h:`
- <div class="hero"><img src="a/i/dom-zal-lesa-m.webp" alt=""><div class="in"><div class="lbl">Готовность</div><div class="pct">${OBJ.pct}<sup>%</sup></div><div class="bar2"><i style="width:${OBJ.pct}%"></i></div><div class="sub">Сейчас потолки и свет · сдача ${OBJ.due}</div></div></div>
+/* КЛИЕНТ */
+S.home=()=>{const w=DB.asks.filter(a=>a.st==='wait');const r=DB.reports.filter(x=>!x.office)[0];const c=cur();return {t:'Загородный дом',bell:1,tab:'home',h:`
+ <div class="hero"><img src="a/i/dom-zal-lesa-m.webp" alt=""><div class="in"><div class="lbl">Готовность</div><div class="pct">${pct()}<sup>%</sup></div><div class="bar2"><i style="width:${pct()}%"></i></div><div class="sub">Сейчас ${c.n.toLowerCase()} · сдача 10 декабря</div></div></div>
  <div class="eb">Ждёт вашего решения</div>
- <div class="ask" data-go="approve"><div class="dot">${svg('ok')}</div><div style="flex:1"><b>Светильники в зале бассейна</b><small>со вчера</small></div>${svg('arrow')}</div>
- <div class="eb">Последний фотоотчёт · сегодня, 18:40</div>
- <div class="card click" data-go="stage:2" style="padding:6px">${photos(['dom-zal-lesa2','dom-zal-plitka','dom-parket'],1)}<div style="padding:10px 8px 6px"><b>Потолки и свет</b> <span class="mut">· 12 фото</span><div class="quote">${OBJ.stages[2].c}</div><div class="mut">Прораб</div></div></div>
- <div class="btn sec" data-tab="stages">Все этапы и сроки</div>`});
+ ${w.length?w.map(a=>`<div class="ask" data-go="approve:${a.id}"><div class="dot">${svg('ok')}</div><div style="flex:1"><b>${esc(a.title)}</b><small>${a.date}</small></div>${svg('arrow')}</div>`).join(''):'<div class="card mut">Всё согласовано, спасибо.</div>'}
+ ${r?`<div class="eb">Последний фотоотчёт · ${r.t}</div>
+ <div class="card click" data-go="stage:${r.st}" style="padding:6px">${photos(r.imgs,r.imgs.length>=3)}<div style="padding:10px 8px 6px"><b>${DB.stages[r.st].n}</b> <span class="mut">· ${r.imgs.length} фото</span><div class="quote">${esc(r.text)}</div><div class="mut">Иван, прораб</div></div></div>`:''}
+ <div class="btn sec" data-tab="stages">Все этапы и сроки</div>`}};
 S.stages=()=>({t:'Этапы',tab:'stages',h:`${calendar()}<div class="eb">Нажмите на этап, чтобы увидеть фото</div>${stageList(1)}
  <p class="mut">Если срок этапа сдвинется, здесь будет видно, на сколько и почему. ${wait('показывать сдвиги: ждём ответ')}</p>`});
-S.stage=i=>{const s=OBJ.stages[i];return {t:s.n,back:1,h:`
+S.stage=i=>{const s=DB.stages[i];const rs=DB.reports.filter(r=>r.st===i&&(role!=='client'||!r.office));return {t:s.n,back:1,h:`
  <div class="row" style="justify-content:space-between"><div><div class="mut">${s.d}</div><div class="serif" style="font-size:40px;line-height:1">${s.p}%</div></div>${chip(s.p)}</div>${prog(s.p)}
- ${s.img.length?`<div class="eb">Последний отчёт</div>${photos(s.img.slice(0,3))}<div class="quote">${s.c||'Этап закрыт, работы приняты.'}</div><div class="mut">Прораб · 18:40</div>${s.img.length>3?`<div class="eb">Раньше</div>${photos(s.img.slice(3))}`:''}`:'<p class="mut" style="margin-top:20px">Этап ещё не начат. Фото появятся, когда прораб начнёт работы.</p>'}`}};
-S.docs=()=>({t:'Документы',tab:'docs',h:[['PDF','Договор подряда','12 сент'],['XLS','Смета','12 сент'],['PDF','Дополнительное соглашение №1','3 окт'],['PDF','Акт: черновые работы','25 окт']].map(([e,d,t])=>`<div class="li click" data-act="Документ открывается для просмотра и скачивания"><div class="doc">${e}</div><div style="flex:1"><b>${d}</b><div class="mut">${t} · загрузил менеджер</div></div>${svg('arrow')}</div>`).join('')+`<p class="mut" style="margin-top:14px">Внутренние документы офиса клиент не видит. ${wait('нужно ли: ждём ответ')}</p>`});
-S.approve=()=>({t:'Согласование',back:1,h:`
- <span class="chip wait">ждёт вашего решения</span>
- <h2 class="serif" style="font-size:30px;font-weight:500;line-height:1.1;margin:12px 0 8px">Светильники в зале бассейна</h2>
- <p>Предлагаем точечные светильники в два ряда по длинной стороне, как на фото, тёплый свет 3000 K.</p>
- <img src="${I('dom-bassejn-process')}" alt="" style="width:100%;border-radius:16px;aspect-ratio:4/3;object-fit:cover">
- <div class="mut" style="margin:8px 0 6px">Отправил менеджер · вчера, 16:20</div>
- <div class="btn" data-act="Согласовано. Дата и ваше имя сохранены">${svg('ok')}Согласовать</div><div class="btn sec" data-act="Замечание отправлено менеджеру">Написать замечание</div>
- <p class="mut">Рабочее согласование. Акты подписываются на бумаге, как обычно.</p>`});
-S.appr=()=>({t:'Согласования',tab:'appr',h:`<div class="eb" style="margin-top:0">Ждёт решения</div><div class="ask" data-go="approve"><div class="dot">${svg('ok')}</div><div style="flex:1"><b>Светильники в зале бассейна</b><small>со вчера</small></div>${svg('arrow')}</div>
- <div class="eb">История</div>${[['Подсветка потолка в зале','18 окт'],['Отделка чаши бассейна','8 окт'],['Схема тёплого пола','2 окт']].map(([n,d])=>`<div class="li"><div class="ava">${svg('ok')}</div><div style="flex:1"><b>${n}</b><div class="mut">согласовано ${d}</div></div><span class="chip ok">да</span></div>`).join('')}`});
+ ${rs.length?rs.map(r=>`<div class="eb">${r.t}${r.office?' · только для офиса':''}</div>${photos(r.imgs)}${r.text?`<div class="quote">${esc(r.text)}</div>`:''}<div class="mut">Иван, прораб</div>`).join(''):'<p class="mut" style="margin-top:20px">Пока нет фото. Появятся, когда прораб начнёт работы.</p>'}`}};
+S.docs=()=>({t:'Документы',tab:role==='client'?'docs':'office',back:role!=='client',h:DB.docs.map(d=>`<div class="li click" data-go="doc:${DB.docs.indexOf(d)}"><div class="doc">${d.e}</div><div style="flex:1"><b>${esc(d.n)}</b><div class="mut">${d.t} · загрузил ${d.by||'менеджер'}</div></div>${svg('arrow')}</div>`).join('')+`<p class="mut" style="margin-top:14px">Внутренние документы офиса клиент не видит. ${wait('нужно ли: ждём ответ')}</p>`});
+const DOCS={
+ dog:`<h4>Договор подряда № 12/09-26</h4><div class="c">г. Москва · 12 сентября 2026</div><p>ООО «ТОР ГРУПП» (Подрядчик) и Заказчик заключили договор о следующем.</p><p><b>1. Предмет.</b> Подрядчик выполняет ремонт загородного дома площадью 210 м² по смете (приложение 1) и графику (приложение 2).</p><p><b>2. Цена.</b> Цена фиксируется сметой. Изменение только дополнительным соглашением, подписанным обеими сторонами.</p><p><b>3. Сроки.</b> Начало 1 октября 2026, окончание 10 декабря 2026.</p><p><b>4. Приёмка.</b> По каждому этапу подписывается акт.</p><p><b>5. Гарантия.</b> 3 года на выполненные работы.</p><p class="mut">… полный текст в файле PDF</p>`,
+ sm:`<h4>Смета</h4><div class="c">Приложение 1 к договору · загородный дом, 210 м²</div><table><tr><th>Работы</th><th class="r">Сумма, ₽</th></tr><tr><td>Черновые работы</td><td class="r">1 120 000</td></tr><tr><td>Чаша бассейна</td><td class="r">860 000</td></tr><tr><td>Потолки и свет</td><td class="r">640 000</td></tr><tr><td>Электрика и слаботочка</td><td class="r">520 000</td></tr><tr><td>Полы</td><td class="r">710 000</td></tr><tr><td>Финишные работы</td><td class="r">980 000</td></tr><tr><th>Итого</th><th class="r">4 830 000</th></tr></table><p class="mut">Цифры условные, для прототипа. В кабинете будет файл Excel от менеджера.</p>`,
+ ds:`<h4>Дополнительное соглашение № 1</h4><div class="c">к договору № 12/09-26 · 3 октября 2026</div><p>Стороны договорились добавить в работы подсветку потолка в зале (скрытая светодиодная лента по периметру).</p><p>Стоимость дополнительных работ: 85 000 ₽. Срок окончания работ по договору не меняется.</p>`,
+ akt:`<h4>Акт выполненных работ</h4><div class="c">Этап «Черновые работы» · 25 октября 2026</div><table><tr><th>Работа</th><th class="r">Объём</th></tr><tr><td>Штукатурка стен</td><td class="r">540 м²</td></tr><tr><td>Стяжка пола</td><td class="r">210 м²</td></tr><tr><td>Разводка труб</td><td class="r">1 компл.</td></tr></table><p>Работы выполнены в срок, претензий нет.</p><p class="mut">Подписан на бумаге, здесь копия.</p>`};
+S.doc=i=>{const d=DB.docs[i];return {t:d.n,back:1,h:`<span class="draft">черновик для прототипа</span><div class="paper">${DOCS[d.id]||`<h4>${esc(d.n)}</h4><div class="c">загружен ${d.t}</div><p>Файл загружен в прототипе. В настоящем кабинете здесь откроется сам документ.</p>`}</div><div class="btn sec" data-act="В настоящем кабинете файл скачается на телефон">Скачать файл</div>`}};
+S.appr=()=>{const g=st=>DB.asks.filter(a=>a.st===st);return {t:'Согласования',tab:'appr',h:`
+ ${g('wait').length?`<div class="eb" style="margin-top:0">Ждут вашего решения</div>${g('wait').map(askCard).join('')}`:''}
+ ${g('bad').length?`<div class="eb">Не согласовано, ждут нового варианта</div>${g('bad').map(askCard).join('')}`:''}
+ <div class="eb">Согласовано</div>${g('ok').map(askCard).join('')||'<p class="mut">Пока нет.</p>'}`}};
+S.approve=id=>{const a=DB.asks.find(x=>x.id===id);const mine=role==='client';return {t:'Согласование',back:1,h:`
+ ${stChip(a)}
+ <h2 class="serif" style="font-size:30px;font-weight:500;line-height:1.1;margin:12px 0 8px">${esc(a.title)}</h2>
+ <p>${esc(a.text)}</p>${a.img?`<img src="${I(a.img)}" alt="" style="width:100%;border-radius:16px;aspect-ratio:4/3;object-fit:cover">`:''}
+ <div class="mut" style="margin:8px 0 6px">Отправил менеджер · ${a.date}</div>
+ ${a.hist.map(h=>`<div class="quote">${esc(h)}</div>`).join('')}
+ ${a.st==='bad'?`<div class="eb">Замечание клиента</div><div class="quote">${esc(a.remark)}</div>`:''}
+ ${mine&&a.st==='wait'?(form.remark?`<span class="lbl2">Ваше замечание</span><textarea class="inp" id="remark" placeholder="Что не так и как хотите"></textarea><div class="btn" data-do="remark:${a.id}">Отправить замечание</div><div class="btn sec" data-do="cancelremark">Отмена</div>`
+   :`<div class="btn" data-do="approve:${a.id}">${svg('ok')}Согласовать</div><div class="btn sec" data-do="openremark">${svg('msg')}Написать замечание</div>`):''}
+ ${role==='office'&&a.st==='bad'?(form.variant?`<span class="lbl2">Новый вариант для клиента</span><textarea class="inp" id="variant" placeholder="Что меняем"></textarea><div class="btn" data-do="variant:${a.id}">Отправить клиенту</div>`:`<div class="btn" data-do="openvariant">Предложить новый вариант</div>`):''}
+ ${role==='office'&&a.st==='wait'?`<div class="btn sec" data-do="remind:${a.id}">Напомнить клиенту</div>`:''}
+ <p class="mut">Рабочее согласование. Акты подписываются на бумаге, как обычно.</p>`}};
 
-// ПРОРАБ: только объекты, внутри фотоотчёт и этапы
-S.objs=()=>({t:'Мои объекты',bell:1,h:OBJS.filter(o=>o[1].includes('прораб 1')).map(([n,a,s,p,im])=>`<div class="card click row" data-go="fobj"><img class="thumb" src="${I(im)}" alt=""><div style="flex:1;min-width:0"><b>${n}</b><div class="mut">${a.split(' · ')[0]} · сейчас: ${s}</div>${prog(p)}</div>${svg('arrow')}</div>`).join('')+`<div class="card"><span class="chip wait">2 фото ждут связи</span><div class="mut" style="margin-top:8px">Уйдут сами, когда появится интернет</div></div>`});
+/* ПРОРАБ */
+S.objs=()=>({t:'Мои объекты',bell:1,h:DB.objs.filter(o=>o.f===user.name).map((o,k)=>`<div class="card click row" data-go="${o.main?'fobj':'other'}"><img class="thumb" src="${I(o.im)}" alt=""><div style="flex:1;min-width:0"><b>${o.n}</b><div class="mut">${o.a} · сейчас: ${o.main?cur().n:o.s}</div>${prog(o.main?pct():o.p)}</div>${svg('arrow')}</div>`).join('')});
+S.other=()=>({t:'Объект',back:1,h:'<p class="mut">В прототипе подробно заполнен только «Загородный дом». Остальные объекты устроены так же.</p>'});
 S.fobj=()=>({t:'Загородный дом',back:1,h:`<div class="btn" data-go="upload">${svg('cam')}Сделать фотоотчёт</div>
- <div class="eb">Этапы · нажмите «Готово», когда этап закончен</div><div class="card" style="padding:0 14px">${OBJ.stages.map((s,i)=>`<div class="st" style="cursor:default"><div class="n">${i+1}</div><div><b>${s.n}</b>${s.p>0&&s.p<100?prog(s.p):''}</div>${s.p>0&&s.p<100?'<span class="chip" data-act="Этап отмечен готовым. Клиенту ушло уведомление" style="cursor:pointer;background:var(--ink);color:#fff">Готово</span>':chip(s.p)}</div>`).join('')}</div>`});
-S.upload=()=>({t:'Фотоотчёт',back:1,h:`<div class="eb" style="margin-top:0">Этап</div><div class="inp row" style="color:var(--ink)"><span style="flex:1">Потолки и свет</span>▾</div>
- <div class="btn">${svg('cam')}Снять фото</div>${photos(['dom-zal-lesa2','dom-zal-plitka','dom-parket'])}
- <div class="eb">Комментарий</div><div class="inp" style="min-height:76px">Что сделали сегодня…</div>
- <div class="chk"><i></i>Только для офиса, клиент не увидит ${wait('нужно ли')}</div>
- <div class="btn" data-act="Отправлено. Нет связи? Фото подождут и уйдут сами">Отправить клиенту</div>`});
+ <div class="eb">Этапы · «Готово», когда этап закончен</div><div class="card" style="padding:0 14px">${DB.stages.map((s,i)=>`<div class="st" data-go="stage:${i}"><div class="n">${i+1}</div><div><b>${s.n}</b>${s.p>0&&s.p<100?prog(s.p):''}</div>${s.p<100&&(s.p>0||i===DB.stages.findIndex(x=>x.p<100))?`<span class="chip" data-do="done:${i}" style="cursor:pointer;background:var(--ink);color:#fff">Готово</span>`:chip(s.p)}</div>`).join('')}</div>`});
+S.upload=()=>{const c=DB.stages.indexOf(cur());return {t:'Фотоотчёт',back:1,h:`<span class="lbl2" style="margin-top:0">Этап</span>
+ <select class="inp" id="upSt">${DB.stages.map((s,i)=>`<option value="${i}" ${i===(form.st??c)?'selected':''}>${s.n}</option>`).join('')}</select>
+ <label class="btn" style="margin-top:10px">${svg('cam')}Снять или выбрать фото<input type="file" accept="image/*" multiple id="upFiles" hidden></label>
+ ${draftImgs.length?`<div class="upl">${draftImgs.map(d=>`<img src="${d}" alt="">`).join('')}</div><div class="mut">${draftImgs.length} фото готово к отправке</div>`:'<p class="mut">Фото сожмутся в телефоне, чтобы быстро ушли даже при слабой связи.</p>'}
+ <span class="lbl2">Комментарий для клиента</span><textarea class="inp" id="upText" placeholder="Что сделали сегодня">${esc(form.text||'')}</textarea>
+ <label class="chk"><input type="checkbox" id="upOff" ${form.off?'checked':''}> Только для офиса, клиент не увидит ${wait('нужно ли')}</label>
+ <div class="btn" data-do="send">Отправить</div>`}};
 
-// ОФИС: Объекты · Люди · Ждут решения
-S.office=()=>({t:'Объекты',tab:'office',h:`<div class="row" style="gap:8px"><div class="card" style="flex:1;margin:0"><div class="serif" style="font-size:34px;line-height:1">3</div><div class="mut">в работе</div></div><div class="card click" data-tab="owait" style="flex:1;margin:0"><div class="serif" style="font-size:34px;line-height:1">2</div><div class="mut">ждут решения</div></div></div>
- <div class="btn" data-act="Новый объект: адрес, клиент, прораб, этапы по шаблону">+ Новый объект</div>
- ${OBJS.map(([n,a,s,p,im],k)=>`<div class="card click row" data-go="oobj"><img class="thumb" src="${I(im)}" alt=""><div style="flex:1;min-width:0"><b>${n}</b><div class="mut">${a}</div><div class="mut">сейчас: ${s}</div>${prog(p)}</div>${svg('arrow')}</div>`).join('')}
- <div class="li click" data-act="Сданные объекты: доступ клиента сохраняется"><div class="ava">${svg('doc')}</div><div style="flex:1"><b>Архив</b><div class="mut">сданные объекты ${wait('срок хранения: ждём')}</div></div>${svg('arrow')}</div>`});
-S.oobj=()=>({t:'Загородный дом',back:1,h:`<div class="card"><div class="row"><div class="serif" style="font-size:40px;line-height:1">${OBJ.pct}%</div><div class="mut">сдача ${OBJ.due}</div></div>${prog(OBJ.pct)}
- <div class="li"><div class="ava">П1</div><div style="flex:1"><b>Прораб 1</b><div class="mut">отвечает за объект</div></div><span class="chip click" data-act="Выберите другого прораба">Сменить</span></div>
- <div class="li"><div class="ava">К1</div><div style="flex:1"><b>Клиент 1</b><div class="mut">доступ открыт</div></div></div></div>
- <div class="eb">Этапы</div>${stageList(0)}
- <div class="btn sec" data-act="Загрузка сметы, договора или акта">Загрузить документ</div><div class="btn sec" data-act="Вопрос отправлен клиенту на согласование">Отправить на согласование</div>`});
+/* ОФИС */
+S.office=()=>({t:'Объекты',tab:'office',bell:1,h:`<div class="row" style="gap:8px"><div class="card" style="flex:1;margin:0"><div class="serif" style="font-size:34px;line-height:1">${DB.objs.length}</div><div class="mut">в работе</div></div><div class="card click" data-tab="owait" style="flex:1;margin:0"><div class="serif" style="font-size:34px;line-height:1">${DB.asks.filter(a=>a.st!=='ok').length}</div><div class="mut">ждут решения</div></div></div>
+ <div class="btn" data-go="newobj">+ Новый объект</div>
+ ${DB.objs.map((o,k)=>`<div class="card click row" data-go="${o.main?'oobj':'other'}"><img class="thumb" src="${I(o.im)}" alt=""><div style="flex:1;min-width:0"><b>${esc(o.n)}</b><div class="mut">${esc(o.a)} · ${esc(o.f)}</div><div class="mut">сейчас: ${o.main?cur().n:esc(o.s||'подготовка')}</div>${prog(o.main?pct():(o.p||0))}</div>${svg('arrow')}</div>`).join('')}`});
+S.newobj=()=>({t:'Новый объект',back:1,h:`<span class="lbl2">Название</span><input class="inp" id="noN" placeholder="Например, квартира на Ленинском">
+ <span class="lbl2">Площадь</span><input class="inp" id="noA" placeholder="м²" inputmode="numeric">
+ <span class="lbl2">Прораб</span><select class="inp" id="noF">${DB.staff.filter(s=>s.r==='прораб'&&s.on).map(s=>`<option>${esc(s.n)}</option>`).join('')}</select>
+ <span class="lbl2">Клиент</span><input class="inp" id="noC" placeholder="Имя клиента">
+ <p class="mut">Этапы подставятся из шаблона, их можно поправить.</p><div class="btn" data-do="newobj">Создать объект</div>`});
+S.oobj=()=>({t:'Загородный дом',back:1,h:`<div class="card"><div class="row"><div class="serif" style="font-size:40px;line-height:1">${pct()}%</div><div class="mut">сдача 10 декабря</div></div>${prog(pct())}
+ <div class="li"><div class="ava">И</div><div style="flex:1"><b>Иван</b><div class="mut">прораб, отвечает за объект</div></div><span class="chip click" data-act="Здесь выбирается другой прораб">Сменить</span></div>
+ <div class="li"><div class="ava">И</div><div style="flex:1"><b>Илья</b><div class="mut">клиент · доступ открыт</div></div></div></div>
+ <div class="eb">Этапы · нажмите, чтобы увидеть фото</div>${stageList(1)}
+ <div class="btn" data-go="newask">Отправить на согласование</div>
+ <label class="btn sec">Загрузить документ<input type="file" id="docFile" hidden></label>
+ <div class="btn sec" data-go="docs">Документы объекта</div>`});
+S.newask=()=>({t:'Новое согласование',back:1,h:`<span class="lbl2">Что согласовать</span><input class="inp" id="naT" placeholder="Например, цвет плитки в кухне">
+ <span class="lbl2">Описание для клиента</span><textarea class="inp" id="naX" placeholder="Что предлагаем и почему"></textarea>
+ <div class="btn" data-do="newask">Отправить клиенту</div><p class="mut">Клиенту придёт уведомление.</p>`});
 S.people=()=>({t:'Люди',tab:'people',h:`<div class="seg"><span class="${seg==='staff'?'on':''}" data-seg="staff">Сотрудники</span><span class="${seg==='cl'?'on':''}" data-seg="cl">Клиенты</span></div>
- ${seg==='staff'?`<div class="btn" data-act="Приглашение отправлено. Роль: прораб">+ Добавить сотрудника</div>${[['П1','Прораб 1','прораб · 2 объекта'],['П2','Прораб 2','прораб · 1 объект'],['М','Менеджер','все объекты']].map(([a,n,r])=>`<div class="li"><div class="ava">${a}</div><div style="flex:1"><b>${n}</b><div class="mut">${r}</div></div><span class="chip click" data-act="Отключён. Фото остались, объекты передайте другому прорабу">Отключить</span></div>`).join('')}`
- :`<div class="btn" data-act="Клиент заведён, ссылка для входа ушла на почту">+ Добавить клиента</div>${[['К1','Клиент 1','Загородный дом'],['К2','Клиент 2','Квартира 64 м²'],['К3','Клиент 3','Квартира 88 м²']].map(([a,n,o])=>`<div class="li"><div class="ava">${a}</div><div style="flex:1"><b>${n}</b><div class="mut">${o}</div></div><span class="chip click" data-act="Ссылка для нового пароля ушла клиенту">Сбросить пароль</span></div>`).join('')}`}`});
-S.owait=()=>({t:'Ждут решения',tab:'owait',h:`<p class="mut" style="margin-top:0">Согласования, на которые клиенты ещё не ответили.</p>${ASKS.map(([n,o,t])=>`<div class="card"><b>${n}</b><div class="mut">${o} · ждёт ${t}</div><div class="row" style="margin-top:10px;gap:6px"><span class="chip click" data-act="Клиенту ушло напоминание">Напомнить</span><span class="chip click" data-go="oobj">Открыть объект</span></div></div>`).join('')}
- <p class="mut">Напоминание, если клиент молчит. ${wait('нужно ли: ждём ответ')}</p>`});
+ ${seg==='staff'?`${DB.staff.map((p,k)=>`<div class="li"><div class="ava">${esc(p.n[0])}</div><div style="flex:1"><b>${esc(p.n)}</b><div class="mut">${p.r}${p.on?'':' · отключён'}</div></div>${p.r!=='руководитель'?`<span class="chip click" data-do="staff:${k}">${p.on?'Отключить':'Включить'}</span>`:''}</div>`).join('')}
+   <span class="lbl2">Добавить сотрудника</span><input class="inp" id="npN" placeholder="Имя"><input class="inp" id="npP" placeholder="Телефон" inputmode="tel"><select class="inp" id="npR"><option>прораб</option><option>менеджер</option></select><div class="btn" data-do="addstaff">Добавить</div>`
+ :`${DB.clients.map((p,k)=>`<div class="li"><div class="ava">${esc(p.n[0])}</div><div style="flex:1"><b>${esc(p.n)}</b><div class="mut">${esc(p.o)}</div></div><span class="chip click" data-act="Ссылка для нового пароля ушла клиенту">Сбросить пароль</span></div>`).join('')}
+   <span class="lbl2">Добавить клиента</span><input class="inp" id="ncN" placeholder="Имя"><select class="inp" id="ncO">${DB.objs.map(o=>`<option>${esc(o.n+' '+o.a)}</option>`).join('')}</select><div class="btn" data-do="addclient">Добавить и отправить доступ</div>`}`});
+S.owait=()=>{const l=DB.asks.filter(a=>a.st!=='ok');return {t:'Ждут решения',tab:'owait',h:`<p class="mut" style="margin-top:0">Согласования, на которые клиенты ещё не ответили или не согласились.</p>${l.map(askCard).join('')||'<p class="mut">Всё согласовано.</p>'}`}};
 
 const TABS={client:[['home','Главная','home'],['stages','Этапы','stages'],['docs','Документы','doc'],['appr','Согласования','ok']],
  foreman:[],office:[['office','Объекты','list'],['people','Люди','people'],['owait','Ждут решения','wait']]};
 const HOME={client:'home',foreman:'objs',office:'office'};
 function render(key,push=true){
+  if(!role&&key!=='login'&&key!=='reset')key='login';
   const [k,arg]=key.split(':');const go=k==='home'?HOME[role]:k;
-  const v=S[go](arg!==undefined?+arg:undefined);if(push)stack.push(key);
+  const v=S[go](arg!==undefined?(isNaN(+arg)?arg:+arg):undefined);if(push)stack.push(key);
   const canBack=v.back&&stack.length>1;
   const bar=document.getElementById('bar');bar.style.display=v.noBar?'none':'';
-  bar.innerHTML=(canBack?'<button class="back" id="back">‹</button>':'<img class="logo" src="a/emblem.webp" alt="">')+`<div class="t">${v.t||''}</div>`+(v.bell?`<div class="bell click" data-act="Прораб загрузил 12 фото: потолки и свет">${svg('bell','i')}<i></i></div>`:'')+(!canBack&&!v.noBar?`<div class="ex" data-exit title="Выйти">${svg('exit','i')}</div>`:'');
+  bar.innerHTML=(canBack?'<button class="back" id="back">‹</button>':'<img class="logo" src="a/emblem.webp" alt="">')+`<div class="t">${v.t||''}</div>`+(v.bell?`<div class="bell click" data-go="events">${svg('bell','i')}${unread()?'<i></i>':''}</div>`:'')+(!canBack&&!v.noBar?`<div class="ex" data-exit title="Выйти">${svg('exit','i')}</div>`:'');
   const sc=document.getElementById('scr');sc.innerHTML=v.h;sc.scrollTop=0;
-  const tabs=TABS[role];
+  const tabs=role?TABS[role]:[];
   document.getElementById('tabs').innerHTML=v.noTabs||!tabs.length?'':tabs.map(([t,n,i])=>`<button data-tab="${t}" class="${v.tab===t?'on':''}">${svg(i,'')}${n}</button>`).join('');
+  const lf=document.getElementById('loginForm');if(lf)lf.onsubmit=e=>{e.preventDefault();login(document.getElementById('lg').value,document.getElementById('pw').value)};
+  const uf=document.getElementById('upFiles');if(uf)uf.onchange=async e=>{keepUpload();for(const f of e.target.files){try{draftImgs.push(await squeeze(f))}catch(_){toast('Не получилось прочитать фото')}}render(stack[stack.length-1],false)};
+  const df=document.getElementById('docFile');if(df)df.onchange=e=>{const f=e.target.files[0];if(!f)return;DB.docs.push({id:'u'+Date.now(),e:(f.name.split('.').pop()||'').toUpperCase().slice(0,4),n:f.name,t:now(),by:'офис'});notify('client','Новый документ: '+f.name);toast('Документ загружен, клиент получил уведомление')};
 }
+function login(l,p){
+  const raw=String(l).trim().toLowerCase();
+  const u=PASS.includes(String(p).trim())?USERS.find(x=>x.login===raw):null;
+  if(!u){form.err='Неверное имя или пароль';render('login',false);return}
+  form={};user=u;role=u.role;document.querySelectorAll('[data-r]').forEach(b=>b.classList.toggle('on',b.dataset.r===role));stack=[];render('home');
+}
+function quick(r){const u=USERS.find(x=>x.role===r);login(u.login,PASS[0])}
+async function squeeze(file){const url=URL.createObjectURL(file);const img=new Image();img.src=url;await img.decode();const k=Math.min(1,900/Math.max(img.naturalWidth,img.naturalHeight));const c=document.createElement('canvas');c.width=Math.round(img.naturalWidth*k);c.height=Math.round(img.naturalHeight*k);c.getContext('2d').drawImage(img,0,0,c.width,c.height);URL.revokeObjectURL(url);return c.toDataURL('image/jpeg',.7)}
+function keepUpload(){const st=document.getElementById('upSt'),tx=document.getElementById('upText'),of=document.getElementById('upOff');if(st)form.st=+st.value;if(tx)form.text=tx.value;if(of)form.off=of.checked}
 function toast(t){const e=document.getElementById('toast');e.querySelector('span').textContent=t;e.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('on'),2800)}
+const val=id=>(document.getElementById(id)?.value||'').trim();
+function act(cmd){
+  const [c,arg]=cmd.split(':');const a=DB.asks.find(x=>x.id===+arg);const here=()=>render(stack[stack.length-1],false);
+  if(c==='approve'){a.st='ok';a.date=now();notify('office','Клиент согласовал: '+a.title);toast('Согласовано. Офис получил уведомление');form={};here()}
+  else if(c==='openremark'){form.remark=1;here();document.getElementById('remark')?.focus()}
+  else if(c==='cancelremark'){form={};here()}
+  else if(c==='remark'){const t=val('remark');if(!t){toast('Напишите, что не так');return}a.st='bad';a.remark=t;a.date=now();notify('office','Клиент не согласовал: '+a.title);toast('Замечание отправлено менеджеру');form={};here()}
+  else if(c==='openvariant'){form.variant=1;here();document.getElementById('variant')?.focus()}
+  else if(c==='variant'){const t=val('variant');if(!t){toast('Опишите новый вариант');return}a.hist.push('Было замечание: '+a.remark);a.text=t;a.st='wait';a.remark='';a.date=now();notify('client','Новый вариант на согласование: '+a.title);toast('Новый вариант ушёл клиенту');form={};here()}
+  else if(c==='remind'){notify('client','Напоминание: ждём вашего решения по «'+a.title+'»');toast('Клиенту ушло напоминание')}
+  else if(c==='done'){const s=DB.stages[+arg];s.p=100;notify('client','Этап «'+s.n+'» готов');notify('office','Прораб закрыл этап «'+s.n+'»');const nx=DB.stages.find(x=>x.p===0);if(nx)nx.p=5;save();toast('Этап отмечен готовым. Клиент и офис получили уведомление');here()}
+  else if(c==='send'){keepUpload();if(!draftImgs.length&&!form.text){toast('Добавьте фото или комментарий');return}const st=form.st??DB.stages.indexOf(cur());DB.reports.unshift({st,t:now(),text:form.text||'',imgs:draftImgs.slice(),office:!!form.off});
+    if(!form.off)notify('client','Прораб загрузил '+(draftImgs.length?draftImgs.length+' фото: ':'отчёт: ')+DB.stages[st].n.toLowerCase());notify('office','Фотоотчёт по этапу «'+DB.stages[st].n+'»');
+    save();draftImgs=[];form={};toast(navigator.onLine?'Отправлено':'Нет связи: фото подождут и уйдут сами');stack.pop();render('fobj',false)}
+  else if(c==='newobj'){const n=val('noN');if(!n){toast('Введите название');return}DB.objs.push({n,a:(val('noA')||'?')+' м²',f:val('noF'),c:val('noC')||'клиент',im:'kv-koridor',p:0,s:'подготовка'});save();toast('Объект создан, этапы из шаблона');stack.pop();render('office',false)}
+  else if(c==='newask'){const t=val('naT');if(!t){toast('Напишите, что согласовать');return}DB.asks.unshift({id:Date.now(),title:t,text:val('naX')||'',img:'',st:'wait',date:now(),hist:[]});notify('client','Новый вопрос на согласование: '+t);toast('Отправлено клиенту');stack.pop();here()}
+  else if(c==='staff'){const p=DB.staff[+arg];p.on=!p.on;save();toast(p.on?'Сотрудник снова может входить':'Отключён. Фото и объекты остались');here()}
+  else if(c==='addstaff'){const n=val('npN');if(!n){toast('Введите имя');return}DB.staff.push({n,r:val('npR'),ph:val('npP'),on:true});save();toast('Приглашение отправлено на телефон');here()}
+  else if(c==='addclient'){const n=val('ncN');if(!n){toast('Введите имя');return}DB.clients.push({n,o:val('ncO'),on:true});save();toast('Клиент добавлен, доступ ушёл на почту');here()}
+}
 document.addEventListener('click',e=>{
-  if(e.target.closest('#back')){stack.pop();render(stack[stack.length-1]||HOME[role],false);return}
+  if(e.target.closest('#back')){form={};stack.pop();render(stack[stack.length-1]||HOME[role],false);return}
   if(e.target.closest('[data-reload]')){e.preventDefault();location.replace(location.pathname+'?v='+Date.now());return}
-  if(e.target.closest('[data-exit]')){stack=[];render('login');return}
+  if(e.target.closest('[data-resetdb]')){e.preventDefault();DB=SEED();save();toast('Тестовые данные сброшены');return}
+  if(e.target.closest('[data-exit]')){role=null;user=null;form={};stack=[];render('login');return}
   const sg=e.target.closest('[data-seg]');if(sg){seg=sg.dataset.seg;render('people',false);return}
-  const L=e.target.closest('[data-login]');if(L){role=L.dataset.login;document.querySelectorAll('[data-r]').forEach(b=>b.classList.toggle('on',b.dataset.r===role));stack=[];render('home');return}
+  const L=e.target.closest('[data-login]');if(L){quick(L.dataset.login);return}
+  const d=e.target.closest('[data-do]');if(d){e.preventDefault();e.stopPropagation();act(d.dataset.do);return}
   const a=e.target.closest('[data-act]');if(a){toast(a.dataset.act);return}
-  const g=e.target.closest('[data-go]');if(g){render(g.dataset.go);return}
-  const t=e.target.closest('[data-tab]');if(t){stack=[];render(t.dataset.tab);return}
-  const r=e.target.closest('[data-r]');if(r){document.querySelectorAll('[data-r]').forEach(b=>b.classList.toggle('on',b===r));role=r.dataset.r;stack=[];render('login')}
+  const g=e.target.closest('[data-go]');if(g){if(g.dataset.go==='upload')draftImgs=[];render(g.dataset.go);return}
+  const t=e.target.closest('[data-tab]');if(t&&role){stack=[];render(t.dataset.tab);return}
+  const r=e.target.closest('[data-r]');if(r){quick(r.dataset.r)}
 });
+document.addEventListener('change',e=>{if(e.target.id==='upSt'||e.target.id==='upOff')keepUpload()});
 render('login');
 </script>
 </body>
