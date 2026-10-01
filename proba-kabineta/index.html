@@ -4,198 +4,244 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow">
-<title>Кабинет: проба</title>
+<meta name="theme-color" content="#121315">
+<title>ТОР кабинет</title>
 <link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" href="icon.png">
+<link rel="apple-touch-icon" href="a/icon-180.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="ТОР проба">
-<meta name="theme-color" content="#3D3935">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="ТОР кабинет">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="preload" href="a/f/Manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="a/f/CormorantGaramond-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-:root{--ink:#1d1c19;--muted:#6c6961;--line:#e5e2da;--bg:#f6f5f1;--card:#fff;--acc:#3D3935;--ok:#2d6628;--okbg:#e5f0e3;--bad:#8a2a12;--badbg:#f9e3dc;--warnbg:#f9eedf;--warn:#8a5712}
-@media (prefers-color-scheme:dark){:root{--ink:#ecebe6;--muted:#a19d94;--line:#34322d;--bg:#161614;--card:#201f1c;--acc:#ecebe6;--ok:#9fd197;--okbg:#22331f;--bad:#f0a08a;--badbg:#3a201a;--warnbg:#3a2d1b;--warn:#e8b872}}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 -apple-system,system-ui,sans-serif;padding:calc(env(safe-area-inset-top) + 16px) 16px calc(env(safe-area-inset-bottom) + 32px)}
-.w{max-width:560px;margin:0 auto}
-h1{font-size:22px;margin:0 0 4px}
-h2{font-size:17px;margin:0 0 8px}
-p{margin:0 0 10px}
-.sub{color:var(--muted);font-size:14px;margin-bottom:16px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:14px}
-button,.btn{display:block;width:100%;min-height:48px;border:0;border-radius:12px;background:var(--acc);color:var(--bg);font:600 16px/1.2 inherit;padding:12px;margin:8px 0;cursor:pointer}
-button.sec{background:transparent;color:var(--ink);border:1px solid var(--line)}
-button:disabled{opacity:.4}
-.st{border-radius:10px;padding:10px 12px;font-size:14.5px;margin:8px 0}
-.ok{background:var(--okbg);color:var(--ok)}
-.bad{background:var(--badbg);color:var(--bad)}
-.warn{background:var(--warnbg);color:var(--warn)}
-ol{padding-left:20px;margin:6px 0}
-li{margin:4px 0}
-textarea{width:100%;height:96px;font:12px ui-monospace,Menlo,monospace;border:1px solid var(--line);border-radius:10px;padding:8px;background:var(--bg);color:var(--ink)}
-label.file{display:block;text-align:center;min-height:48px;border-radius:12px;background:var(--acc);color:var(--bg);font-weight:600;padding:13px;margin:8px 0}
-label.file input{display:none}
-.ph{display:grid;grid-template-columns:64px 1fr;gap:10px;align-items:center;padding:8px 0;border-top:1px solid var(--line);font-size:14px}
-.ph img{width:64px;height:64px;object-fit:cover;border-radius:8px;background:var(--line)}
-.ph b{font-weight:600}
-.m{color:var(--muted)}
+@font-face{font-family:'Cormorant Garamond';font-weight:300 700;font-display:swap;src:url(a/f/CormorantGaramond-cyrillic.woff2) format('woff2');unicode-range:U+0400-045F,U+2116}
+@font-face{font-family:'Cormorant Garamond';font-weight:300 700;font-display:swap;src:url(a/f/CormorantGaramond-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+2000-206F}
+@font-face{font-family:'Manrope';font-weight:200 800;font-display:swap;src:url(a/f/Manrope-cyrillic.woff2) format('woff2');unicode-range:U+0400-045F,U+2116}
+@font-face{font-family:'Manrope';font-weight:200 800;font-display:swap;src:url(a/f/Manrope-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+2000-206F,U+2212}
+:root{--ink:#15171A;--ink2:#2B2E33;--mut:#62676F;--line:#E2E4E8;--stone:#F1F2F4;--stone2:#F7F8F9;--night:#121315;--ok:#2F6B3A;--okbg:#E8F1EA;--wait:#8A5A12;--waitbg:#FBF1DF;
+  --serif:'Cormorant Garamond',Georgia,serif;--sans:'Manrope',Arial,sans-serif}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--stone);color:var(--ink);font:15px/1.45 var(--sans)}
+body{min-height:100vh}
+/* оболочка показа */
+.top{max-width:980px;margin:0 auto;padding:18px 18px 10px;display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center}
+.brand{display:flex;align-items:center;gap:10px;margin-right:auto}
+.brand img{width:34px;height:34px}
+.brand b{font:600 20px/1 var(--serif);letter-spacing:.01em}
+.brand small{display:block;font:500 11px/1.2 var(--sans);color:var(--mut);letter-spacing:.08em;text-transform:uppercase;margin-top:3px}
+.role{display:flex;background:#fff;border:1px solid var(--line);border-radius:999px;padding:3px}
+.role button{border:0;background:transparent;padding:8px 14px;border-radius:999px;font:600 13px var(--sans);color:var(--mut);cursor:pointer}
+.role button.on{background:var(--ink);color:#fff}
+.note{max-width:980px;margin:0 auto;padding:0 18px 14px;font-size:12.5px;color:var(--mut)}
+.phone{width:390px;max-width:100%;height:800px;max-height:calc(100vh - 120px);min-height:580px;margin:0 auto 28px;background:#fff;border-radius:44px;border:10px solid var(--night);overflow:hidden;display:flex;flex-direction:column;position:relative}
+@media (max-width:480px),(display-mode:standalone){html,body{background:#fff}.top,.note{display:none}.phone{width:100%;border:0;border-radius:0;height:100vh;height:100dvh;max-height:none;min-height:0;margin:0}}
+/* приложение */
+.bar{height:calc(56px + env(safe-area-inset-top));padding-top:env(safe-area-inset-top);display:flex;align-items:center;gap:10px;padding-left:16px;padding-right:16px;border-bottom:1px solid var(--line);flex:none;background:#fff}
+.bar .logo{width:26px;height:26px}
+.bar .t{font:600 20px/1.1 var(--serif);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-feature-settings:"lnum"}
+.back{border:0;background:none;font-size:26px;line-height:1;padding:2px 6px 4px 0;cursor:pointer;color:var(--ink)}
+.bell{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;position:relative}
+.bell svg{width:16px;height:16px}
+.ex{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;cursor:pointer}.ex svg{width:16px;height:16px}
+.ver{text-align:center;font-size:12px;color:var(--mut);margin-top:auto;padding-top:18px}.ver a{color:var(--ink);font-weight:600}
+.bell i{position:absolute;top:6px;right:7px;width:7px;height:7px;border-radius:50%;background:#E5484D}
+.scr{flex:1;overflow-y:auto;padding:16px}
+.tabs{display:flex;border-top:1px solid var(--line);flex:none;background:#fff;padding-bottom:env(safe-area-inset-bottom)}
+.tabs:empty{display:none}
+.tabs button{flex:1;min-width:0;border:0;background:none;padding:9px 0 10px;font:600 10.5px var(--sans);color:var(--mut);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;white-space:nowrap}
+.tabs svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.tabs button.on{color:var(--ink)}
+svg.i{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.eb{font:600 11px/1.3 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--mut);margin:20px 0 10px}
+.serif{font-family:var(--serif);font-feature-settings:"lnum"}
+.card{border:1px solid var(--line);border-radius:18px;padding:14px;margin-bottom:10px;background:#fff}
+.click{cursor:pointer}.click:active{background:var(--stone2)}
+.row{display:flex;align-items:center;gap:12px}
+.mut{color:var(--mut);font-size:13px}
+.hero{position:relative;border-radius:20px;overflow:hidden;color:#fff;margin-bottom:12px;aspect-ratio:4/3.3;background:#333}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,19,21,.15) 0%,rgba(18,19,21,.1) 35%,rgba(18,19,21,.85) 100%)}
+.hero .in{position:absolute;left:16px;right:16px;bottom:14px;z-index:1}
+.hero .pct{font:500 64px/0.9 var(--serif);font-feature-settings:"lnum"}
+.hero .pct sup{font-size:28px;vertical-align:28px;margin-left:2px}
+.hero .lbl{font:600 11px/1.3 var(--sans);letter-spacing:.12em;text-transform:uppercase;opacity:.8;margin-bottom:4px}
+.hero .bar2{height:3px;background:rgba(255,255,255,.25);border-radius:2px;margin:10px 0 8px;overflow:hidden}
+.hero .bar2 i{display:block;height:100%;background:#fff}
+.hero .sub{font-size:13px;opacity:.9}
+.prog{height:3px;background:var(--stone);border-radius:2px;overflow:hidden;margin:8px 0 2px}
+.prog i{display:block;height:100%;background:var(--ink)}
+.chip{display:inline-flex;align-items:center;gap:5px;font:600 11px/1 var(--sans);padding:6px 9px;border-radius:999px;background:var(--stone);color:var(--ink2);white-space:nowrap}
+.chip.ok{background:var(--okbg);color:var(--ok)}.chip.wait{background:var(--waitbg);color:var(--wait)}
+.chip.ok:before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.ask{display:flex;gap:12px;align-items:center;background:var(--night);color:#fff;border-radius:18px;padding:14px;margin-bottom:12px;cursor:pointer}
+.ask .dot{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.12);display:grid;place-items:center;flex:none}
+.ask b{display:block;font-weight:600}
+.ask small{opacity:.7;font-size:12px}
+.ph{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;border-radius:14px;overflow:hidden}
+.ph img{width:100%;aspect-ratio:1;object-fit:cover;display:block;background:var(--stone)}
+.ph.big img:first-child{grid-column:span 2;grid-row:span 2}
+.st{display:grid;grid-template-columns:22px 1fr auto;gap:12px;align-items:center;padding:13px 0;border-bottom:1px solid var(--line);cursor:pointer}
+.st:last-child{border:0}
+.st .n{font:600 18px/1 var(--serif);color:var(--mut);font-feature-settings:"lnum"}
+.st b{font-weight:600;display:block}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;border:0;border-radius:999px;background:var(--ink);color:#fff;font:600 15px var(--sans);padding:15px;margin:8px 0;cursor:pointer}
+.btn.sec{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.inp{border:1px solid var(--line);border-radius:14px;padding:14px;color:var(--mut);margin:8px 0;background:#fff}
+.li{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}
+.li:last-child{border:0}
+.doc{width:40px;height:48px;border-radius:6px;border:1px solid var(--line);display:grid;place-items:end center;padding-bottom:5px;font:700 9px var(--sans);color:var(--mut);flex:none;background:var(--stone2)}
+.ava{width:40px;height:40px;border-radius:50%;background:var(--stone);display:grid;place-items:center;font:600 14px var(--serif);flex:none}
+.thumb{width:56px;height:56px;border-radius:12px;object-fit:cover;flex:none}
+.cal{display:grid;grid-template-columns:96px 1fr;gap:10px;align-items:center;font-size:12.5px}
+.cal .tr{position:relative;height:10px;background:var(--stone);border-radius:5px}
+.cal .tr i{position:absolute;top:0;bottom:0;border-radius:5px;background:#C9CCD1}
+.cal .tr i.f{background:var(--ink)}
+.cal .now{position:absolute;top:-4px;bottom:-4px;width:1.5px;background:#E5484D}
+.months{display:grid;grid-template-columns:96px repeat(3,1fr);font-size:11px;color:var(--mut);margin-bottom:6px}
+.quote{border-left:2px solid var(--ink);padding:2px 0 2px 12px;margin:12px 0 4px}
+.login{display:flex;flex-direction:column;min-height:100%}
+.login .hd{background:var(--night) url(a/i/dom-stolovaya-m.webp) center/cover;margin:-16px -16px 18px;padding:calc(40px + env(safe-area-inset-top)) 22px 26px;color:#fff;position:relative}
+.login .hd:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,19,21,.35),rgba(18,19,21,.85))}
+.login .hd>*{position:relative}
+.login .hd img{width:58px;height:58px}
+.login h1{font:500 34px/1.05 var(--serif);margin:18px 0 6px}
+.toast{position:absolute;left:12px;right:12px;top:calc(12px + env(safe-area-inset-top));z-index:5;background:var(--night);color:#fff;border-radius:18px;padding:12px 14px;font-size:13px;display:flex;gap:10px;align-items:center;transform:translateY(-150%);transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.toast img{width:28px;height:28px}
+.toast.on{transform:none}
+.seg{display:flex;gap:6px;margin-bottom:14px;overflow-x:auto}
+.seg span{padding:8px 14px;border-radius:999px;border:1px solid var(--line);font:600 13px var(--sans);cursor:pointer;white-space:nowrap}
+.seg span.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.cam{border:1.5px dashed var(--line);border-radius:18px;padding:22px;text-align:center;color:var(--mut);margin:8px 0}
+.cam svg{width:30px;height:30px;margin-bottom:6px}
+.chk{display:flex;gap:8px;align-items:center;font-size:13.5px;margin:6px 0 2px}
+.chk i{width:18px;height:18px;border:1.5px solid var(--line);border-radius:5px}
 </style>
 </head>
-<body><div class="w">
-<h1>Кабинет ТОР ГРУПП: проба</h1>
-<p class="sub">Проверка двух вещей на телефоне: уведомления и загрузка фото. На сервер ничего не уходит, это только проверка.</p>
-<a class="btn" href="../prototip-kabineta/" style="text-decoration:none;text-align:center;padding-top:14px">Открыть прототип кабинета</a>
-
-<div class="card" id="install">
-  <h2>1. Ярлык на экран</h2>
-  <div id="installState"></div>
+<body>
+<div class="top">
+  <div class="brand"><img src="a/emblem.webp" alt=""><div><b>СК ТОР ГРУПП</b><small>Личный кабинет · прототип</small></div></div>
+  <div class="role" id="roles"><button data-r="client" class="on">Клиент</button><button data-r="foreman">Прораб</button><button data-r="office">Офис</button></div>
 </div>
+<div class="note">Прототип для обсуждения: логика и вид экранов. Данные условные, фото с ваших объектов для примера. Всё нажимается. Жёлтые метки «ждём ответ» уточняются по вашим процессам.</div>
 
-<div class="card">
-  <h2>2. Уведомления</h2>
-  <div id="pushState"></div>
-  <button id="btnAllow">Разрешить уведомления</button>
-  <button id="btnLocal" class="sec" disabled>Показать пробное уведомление сейчас</button>
-  <div id="subBox" hidden>
-    <p class="m" style="font-size:14px;margin-top:8px">Код для проверки с сервера. Скопируй и пришли Илье, он отправит уведомление на этот телефон:</p>
-    <textarea id="sub" readonly></textarea>
-    <button id="btnCopy" class="sec">Скопировать код</button>
-  </div>
-</div>
-
-<div class="card">
-  <h2>3. Фото с объекта</h2>
-  <p class="m" style="font-size:14px">Сними или выбери 2–3 фото. Покажу, сколько весило и сколько стало после сжатия.</p>
-  <label class="file">Снять или выбрать фото<input id="files" type="file" accept="image/*" multiple></label>
-  <div id="sum"></div>
-  <div id="list"></div>
-</div>
-
-<div class="card">
-  <h2>4. Плохая связь</h2>
-  <p class="m" style="font-size:14px">Включи «Авиарежим» и выбери фото выше: они встанут в очередь. Выключи авиарежим: очередь отправится сама.</p>
-  <div id="qState"></div>
-  <button id="btnClear" class="sec">Очистить очередь</button>
-</div>
-
-<div class="card">
-  <h2>Отчёт для Ильи</h2>
-  <textarea id="rep" readonly></textarea>
-  <button id="btnRep" class="sec">Скопировать отчёт</button>
-</div>
+<div class="phone">
+  <div class="toast" id="toast"><img src="a/emblem-light.webp" alt=""><span></span></div>
+  <div class="bar" id="bar"></div>
+  <div class="scr" id="scr"></div>
+  <div class="tabs" id="tabs"></div>
 </div>
 
 <script>
-const VAPID='BOpw4wtPMG_KetqWzdFTjQsuyeCjJBFYg3fmWnseggYdk4r6DOYs9JdMw-HvdPMli_U3cIojOOPNzVQe5oZp4Is';
-const $=id=>document.getElementById(id);
-const ua=navigator.userAgent;
-const isIOS=/iPhone|iPad|iPod/.test(ua)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
-const iosVer=(ua.match(/OS (\d+)_(\d+)/)||[]).slice(1).join('.');
-const standalone=matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
-const log={};
-const st=(el,cls,html)=>{$(el).innerHTML=`<div class="st ${cls}">${html}</div>`};
-const kb=n=>n>1048576?(n/1048576).toFixed(1)+' МБ':Math.round(n/1024)+' КБ';
+const V='1.1 от 01.10';
+const I=n=>`a/i/${n}-s.webp`;
+const ic={
+ home:'<path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>',
+ cal:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>',
+ doc:'<path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 13h6M9 17h6"/>',
+ ok:'<path d="M20 6L9 17l-5-5"/>',
+ list:'<path d="M8 6h13M8 12h13M8 18h13"/><circle cx="4" cy="6" r="1"/><circle cx="4" cy="12" r="1"/><circle cx="4" cy="18" r="1"/>',
+ cam:'<path d="M3 8h4l2-3h6l2 3h4v12H3z"/><circle cx="12" cy="13" r="3.5"/>',
+ grid:'<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',
+ user:'<circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 5-6 8-6s6.5 2 8 6"/>',
+ exit:'<path d="M15 4h4v16h-4M10 8l-4 4 4 4M6 12h10"/>',
+ bell:'<path d="M6 16V11a6 6 0 1 1 12 0v5l2 2H4z"/><path d="M10 21h4"/>',
+ arrow:'<path d="M9 6l6 6-6 6"/>'};
+const svg=(k,c='i')=>`<svg class="${c}" viewBox="0 0 24 24">${ic[k]}</svg>`;
 
-function report(){
-  $('rep').value=[
-    'Устройство: '+(isIOS?'iPhone/iPad iOS '+iosVer:ua.match(/Android [\d.]+/)?.[0]||'другое'),
-    'Открыто с ярлыка: '+(standalone?'да':'нет'),
-    'Уведомления в браузере: '+('Notification' in window?'есть':'нет')+', push: '+('PushManager' in window?'есть':'нет'),
-    'Разрешение: '+('Notification' in window?Notification.permission:'—'),
-    ...Object.entries(log).map(([k,v])=>k+': '+v),
-    'UA: '+ua
-  ].join('\n');
-}
+const OBJ={name:'Загородный дом',area:'210 м²',pct:42,due:'10 декабря',stages:[
+ {n:'Черновые работы',p:100,d:'1–24 окт',img:['kv-chernovaya']},
+ {n:'Чаша бассейна',p:100,d:'6–30 окт',img:['dom-bassejn-process2']},
+ {n:'Потолки и свет',c:'Смонтировали подсветку потолка в зале. Завтра снимаем леса.',p:70,d:'20 окт – 8 ноя',img:['dom-zal-lesa','dom-zal-lesa2','dom-zal-plitka','dom-parket','dom-bassejn-process']},
+ {n:'Электрика и слаботочка',p:40,d:'27 окт – 12 ноя',img:[]},
+ {n:'Полы',p:0,d:'10–20 ноя',img:[]},
+ {n:'Финишные работы',p:0,d:'16 ноя – 10 дек',img:[]}]};
+const S={};let role='client',stack=[];
+const prog=p=>`<div class="prog"><i style="width:${p}%"></i></div>`;
+const chip=p=>p===100?'<span class="chip ok">готово</span>':p>0?`<span class="chip">${p}%</span>`:'<span class="chip" style="background:none;color:var(--mut)">впереди</span>';
+const wait=t=>`<span class="chip wait">${t}</span>`;
+const photos=(a,big)=>`<div class="ph${big?' big':''}">${a.map(n=>`<img src="${I(n)}" alt="" loading="lazy">`).join('')}</div>`;
 
-// 1. ярлык
-if(standalone) st('installState','ok','Открыто с ярлыка. Хорошо.');
-else if(isIOS) st('installState','warn','Открыто в браузере. На iPhone уведомления работают только с ярлыка:<ol><li>Внизу Safari нажми «Поделиться» (квадрат со стрелкой).</li><li>«На экран „Домой“» → «Добавить».</li><li>Закрой Safari и открой страницу с нового значка «ТОР проба».</li></ol>');
-else st('installState','ok','Android: можно и без ярлыка. Для проверки ярлыка: меню браузера → «Добавить на главный экран».');
+S.login=()=>({noBar:1,noTabs:1,h:`<div class="login"><div class="hd"><img src="a/emblem-light.webp" alt=""><h1>Ваш ремонт<br>под контролем</h1><div style="opacity:.8;font-size:14px">Этапы, фото с объекта и документы в одном месте</div></div>
+ <div class="inp">Почта или телефон</div><div class="inp">Пароль</div>
+ <div class="btn" data-login="client">Войти</div><div class="btn sec" data-go="reset">Забыли пароль?</div>
+ <p class="mut" style="text-align:center;margin-top:14px">Доступ выдаёт офис ТОР ГРУПП<br>${wait('способ входа: ждём ответ')}</p>
+ <div class="eb" style="text-align:center">Прототип: войти как</div><div class="row" style="gap:6px"><span class="btn sec" data-login="client" style="margin:0;padding:11px 0">Клиент</span><span class="btn sec" data-login="foreman" style="margin:0;padding:11px 0">Прораб</span><span class="btn sec" data-login="office" style="margin:0;padding:11px 0">Офис</span></div>
+ <div class="ver">Версия ${V} · <a href="#" data-reload>обновить</a></div></div>`});
+S.reset=()=>({t:'Новый пароль',back:1,noTabs:1,h:`<p>Пришлём на почту ссылку, по ней зададите новый пароль.</p><div class="inp">Почта</div><div class="btn" data-act="Ссылка отправлена на почту">Отправить ссылку</div><p class="mut">Нет почты? Позвоните в офис, пароль сбросит менеджер.</p>`});
 
-// 2. уведомления
-let reg=null;
-const pushOk='serviceWorker' in navigator&&'PushManager' in window&&'Notification' in window;
-if(!pushOk){
-  st('pushState','bad',isIOS&&!standalone?'Сначала открой с ярлыка (шаг 1).':'Этот браузер не умеет уведомления'+(isIOS?' (нужен iOS 16.4 или новее).':'.'));
-  $('btnAllow').disabled=true;
-} else {
-  navigator.serviceWorker.register('sw.js').then(r=>{reg=r;refresh()}).catch(e=>{st('pushState','bad','Ошибка: '+e.message);log['sw']=e.message;report()});
-}
-function refresh(){
-  const p=Notification.permission;
-  if(p==='granted'){st('pushState','ok','Уведомления разрешены.');$('btnLocal').disabled=false;subscribe()}
-  else if(p==='denied'){st('pushState','bad','Уведомления запрещены. Включить: Настройки → Уведомления → ТОР проба.');}
-  else st('pushState','warn','Пока не разрешены. Нажми кнопку ниже.');
-  report();
-}
-function key(b){const p='='.repeat((4-b.length%4)%4);const r=atob((b+p).replace(/-/g,'+').replace(/_/g,'/'));return Uint8Array.from(r,c=>c.charCodeAt(0))}
-async function subscribe(){
-  try{
-    await navigator.serviceWorker.ready;
-    let s=await reg.pushManager.getSubscription();
-    if(!s) s=await reg.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:key(VAPID)});
-    $('sub').value=JSON.stringify(s);$('subBox').hidden=false;log['подписка']='есть ('+new URL(s.endpoint).host+')';
-  }catch(e){log['подписка']='ошибка: '+e.message;st('pushState','bad','Не получилось подписаться: '+e.message)}
-  report();
-}
-$('btnAllow').onclick=async()=>{const p=await Notification.requestPermission();log['запрос разрешения']=p;refresh()};
-$('btnLocal').onclick=async()=>{
-  try{await (await navigator.serviceWorker.ready).showNotification('ТОР ГРУПП',{body:'Прораб загрузил 12 фото: черновые работы, кухня',icon:'icon-192.png'});log['пробное уведомление']='показано'}
-  catch(e){log['пробное уведомление']='ошибка: '+e.message}
-  report();
-};
-const copy=async id=>{const t=$(id);try{await navigator.clipboard.writeText(t.value)}catch(_){t.select();document.execCommand('copy')}};
-$('btnCopy').onclick=()=>copy('sub');
-$('btnRep').onclick=()=>copy('rep');
+// клиент
+S.home=()=>({t:OBJ.name,bell:1,tab:'home',h:`
+ <div class="hero"><img src="a/i/dom-zal-lesa-m.webp" alt=""><div class="in"><div class="lbl">Готовность</div><div class="pct">${OBJ.pct}<sup>%</sup></div><div class="bar2"><i style="width:${OBJ.pct}%"></i></div><div class="sub">Сейчас потолки и свет · сдача ${OBJ.due}</div></div></div>
+ <div class="ask" data-go="approve"><div class="dot">${svg('ok')}</div><div style="flex:1"><b>Согласуйте светильники в бассейне</b><small>Зал бассейна · ждёт с вчера</small></div>${svg('arrow')}</div>
+ <div class="eb">Фотоотчёт · сегодня, 18:40</div>
+ <div class="card click" data-go="stage:2" style="padding:6px">${photos(['dom-zal-lesa2','dom-zal-plitka','dom-parket'],1)}<div style="padding:10px 8px 6px"><b>Потолки и свет</b> <span class="mut">· 12 фото</span><div class="quote">Смонтировали подсветку потолка в зале. Завтра снимаем леса.</div><div class="mut">Прораб</div></div></div>
+ <div class="eb">Этапы</div><div class="card" style="padding:0 14px">${OBJ.stages.map((s,i)=>`<div class="st" data-go="stage:${i}"><div class="n">${i+1}</div><div><b>${s.n}</b><div class="mut">${s.d}</div>${s.p>0&&s.p<100?prog(s.p):''}</div>${chip(s.p)}</div>`).join('')}</div>
+ <div class="eb">Камера на объекте</div><div class="cam">${svg('cam')}<div>Подключается по запросу</div><div style="margin-top:6px">${wait('в первой версии нет')}</div></div>`});
+S.stage=i=>{const s=OBJ.stages[i];return {t:s.n,back:1,h:`
+ <div class="row" style="justify-content:space-between"><div><div class="mut">${s.d}</div><div class="serif" style="font-size:40px;line-height:1">${s.p}%</div></div>${chip(s.p)}</div>${prog(s.p)}
+ ${s.img.length?`<div class="eb">Последний отчёт</div>${photos(s.img.slice(0,3))}<div class="quote">${s.c||'Этап закрыт, все работы приняты.'}</div><div class="mut">Прораб · 18:40</div>${s.img.length>3?`<div class="eb">Раньше</div>${photos(s.img.slice(3))}`:''}`:'<p class="mut" style="margin-top:20px">Этап ещё не начат. Фото появятся, когда прораб начнёт работы.</p>'}`}};
+S.cal=()=>{const a=[0,8,25,32,45,55],w=[8,22,18,14,12,40];return {t:'Календарь',tab:'cal',h:`
+ <div class="months"><span></span><span>Октябрь</span><span>Ноябрь</span><span>Декабрь</span></div>
+ <div class="cal">${OBJ.stages.map((s,i)=>`<div>${s.n}</div><div class="tr"><i style="left:${a[i]}%;width:${w[i]}%"></i><i class="f" style="left:${a[i]}%;width:${w[i]*s.p/100}%"></i>${i===0?'<span class="now" style="left:38%"></span>':''}</div>`).join('')}</div>
+ <div class="row mut" style="margin-top:16px;gap:16px;font-size:12px"><span><b style="display:inline-block;width:14px;height:6px;border-radius:3px;background:var(--ink)"></b> сделано</span><span><b style="display:inline-block;width:14px;height:6px;border-radius:3px;background:#C9CCD1"></b> план</span><span><b style="display:inline-block;width:2px;height:10px;background:#E5484D"></b> сегодня</span></div>
+ <div class="card" style="margin-top:16px"><b>Сдача ${OBJ.due}</b><div class="mut">Если срок этапа сдвинется, здесь будет видно, на сколько и почему.</div><div style="margin-top:8px">${wait('показывать ли сдвиги: ждём ответ')}</div></div>`}};
+S.docs=()=>({t:'Документы',tab:'docs',h:[['PDF','Договор подряда','12 сент'],['XLS','Смета','12 сент'],['PDF','Дополнительное соглашение №1','3 окт'],['PDF','Акт: черновые работы','25 окт']].map(([e,d,t])=>`<div class="li click" data-act="Документ открывается для просмотра и скачивания"><div class="doc">${e}</div><div style="flex:1"><b>${d}</b><div class="mut">${t} · загрузил менеджер</div></div>${svg('arrow')}</div>`).join('')+`<p class="mut" style="margin-top:14px">Внутренние документы офиса клиент не видит. ${wait('нужно ли: ждём ответ')}</p>`});
+S.approve=()=>({t:'Согласование',back:1,h:`
+ <span class="chip wait">ждёт вашего решения</span>
+ <h2 class="serif" style="font-size:30px;font-weight:500;line-height:1.1;margin:12px 0 8px">Светильники в зале бассейна</h2>
+ <p>Предлагаем точечные светильники в два ряда по длинной стороне, как на фото, тёплый свет 3000 K.</p>
+ <img src="${I('dom-bassejn-process')}" alt="" style="width:100%;border-radius:16px;aspect-ratio:4/3;object-fit:cover">
+ <div class="mut" style="margin:8px 0 6px">Отправил менеджер · вчера, 16:20</div>
+ <div class="btn" data-act="Согласовано. Дата и ваше имя сохранены">${svg('ok')}Согласовать</div><div class="btn sec" data-act="Замечание отправлено менеджеру">Написать замечание</div>
+ <p class="mut">Рабочее согласование. Акты подписываются на бумаге, как обычно.</p>`});
+S.appr=()=>({t:'Согласования',tab:'appr',h:`<div class="ask" data-go="approve"><div class="dot">${svg('ok')}</div><div style="flex:1"><b>Светильники в зале бассейна</b><small>ждёт вашего решения</small></div>${svg('arrow')}</div>
+ ${[['Подсветка потолка в зале','18 окт'],['Отделка чаши бассейна','8 окт'],['Схема тёплого пола','2 окт']].map(([n,d])=>`<div class="li"><div class="ava">${svg('ok')}</div><div style="flex:1"><b>${n}</b><div class="mut">согласовано ${d}</div></div><span class="chip ok">да</span></div>`).join('')}`});
 
-// 3. фото
-async function squeeze(file){
-  const t0=performance.now();
-  const url=URL.createObjectURL(file);
-  const img=new Image();img.src=url;await img.decode();
-  const k=Math.min(1,1920/Math.max(img.naturalWidth,img.naturalHeight));
-  const c=document.createElement('canvas');c.width=Math.round(img.naturalWidth*k);c.height=Math.round(img.naturalHeight*k);
-  c.getContext('2d').drawImage(img,0,0,c.width,c.height);URL.revokeObjectURL(url);
-  let q=.8,b;
-  do{b=await new Promise(r=>c.toBlob(r,'image/jpeg',q));q-=.1}while(b.size>500*1024&&q>.4);
-  return {blob:b,w:c.width,h:c.height,ow:img.naturalWidth,oh:img.naturalHeight,ms:Math.round(performance.now()-t0),q:+(q+.1).toFixed(1)};
-}
-let totIn=0,totOut=0;
-$('files').onchange=async e=>{
-  for(const f of e.target.files){
-    const row=document.createElement('div');row.className='ph';row.innerHTML='<img><div>Сжимаю…</div>';$('list').prepend(row);
-    try{
-      const r=await squeeze(f);totIn+=f.size;totOut+=r.blob.size;
-      row.querySelector('img').src=URL.createObjectURL(r.blob);
-      row.lastChild.innerHTML=`<b>${kb(f.size)} → ${kb(r.blob.size)}</b><br><span class="m">${r.ow}×${r.oh} → ${r.w}×${r.h}, ${r.ms} мс</span>`;
-      await enqueue(r.blob,f.name);
-    }catch(err){row.lastChild.textContent='Не получилось: '+err.message;log['сжатие']='ошибка: '+err.message}
-  }
-  st('sum','ok',`Всего: ${kb(totIn)} → ${kb(totOut)}, в ${(totIn/Math.max(totOut,1)).toFixed(0)} раз меньше`);
-  log['сжатие']=`${kb(totIn)} → ${kb(totOut)}`;report();e.target.value='';
-};
+// прораб
+const OBJS=[['Загородный дом · 210 м²','Потолки и свет 70%',42,'dom-holl'],['Квартира · 64 м²','Черновые 30%',18,'kv-koridor'],['Квартира · 88 м²','Полы 10%',60,'dom-parket']];
+S.objs=()=>({t:'Мои объекты',tab:'objs',bell:1,h:OBJS.map(([n,s,p,im])=>`<div class="card click row" data-go="fobj"><img class="thumb" src="${I(im)}" alt=""><div style="flex:1;min-width:0"><b>${n}</b><div class="mut">${s}</div>${prog(p)}</div>${svg('arrow')}</div>`).join('')+`<div class="eb">Сегодня</div><div class="card"><div class="row"><span class="chip wait">2 фото ждут связи</span></div><div class="mut" style="margin-top:8px">Уйдут сами, когда появится интернет</div></div>`});
+S.fobj=()=>({t:'Загородный дом',back:1,h:`<div class="btn" data-go="upload">${svg('cam')}Фотоотчёт</div>${OBJ.stages.map((s,i)=>`<div class="st" style="cursor:default"><div class="n">${i+1}</div><div><b>${s.n}</b>${s.p>0&&s.p<100?prog(s.p):''}</div>${s.p>0&&s.p<100?'<span class="chip" data-act="Этап отмечен готовым. Клиенту ушло уведомление" style="cursor:pointer;background:var(--ink);color:#fff">Готово</span>':chip(s.p)}</div>`).join('')}`});
+S.upload=()=>({t:'Фотоотчёт',back:1,tab:'up',h:`<div class="eb" style="margin-top:0">Этап</div><div class="inp row" style="color:var(--ink)"><span style="flex:1">Потолки и свет</span>▾</div>
+ <div class="btn">${svg('cam')}Снять фото</div>${photos(['dom-zal-lesa2','dom-zal-plitka','dom-parket'])}
+ <div class="eb">Комментарий</div><div class="inp" style="min-height:76px">Что сделали сегодня…</div>
+ <div class="chk"><i></i>Только для офиса, клиент не увидит ${wait('нужно ли')}</div>
+ <div class="btn" data-act="Отправлено. Нет связи? Фото подождут и уйдут сами">Отправить клиенту</div>`});
 
-// 4. очередь (IndexedDB), «отправка» без сервера
-const db=new Promise((ok,no)=>{const r=indexedDB.open('proba',1);r.onupgradeneeded=()=>r.result.createObjectStore('q',{autoIncrement:true});r.onsuccess=()=>ok(r.result);r.onerror=()=>no(r.error)});
-const tx=async m=>(await db).transaction('q',m).objectStore('q');
-const req=r=>new Promise((ok,no)=>{r.onsuccess=()=>ok(r.result);r.onerror=()=>no(r.error)});
-let sent=0;
-async function enqueue(blob,name){await req((await tx('readwrite')).add({blob,name,t:Date.now()}));flush()}
-async function count(){return req((await tx('readonly')).count())}
-async function flush(){
-  if(!navigator.onLine){showQ();return}
-  const s=await tx('readwrite');const keys=await req(s.getAllKeys());
-  for(const k of keys){await new Promise(r=>setTimeout(r,300));await req((await tx('readwrite')).delete(k));sent++}
-  if(keys.length) log['очередь']=`отправлено ${sent}`;
-  showQ();
+// офис
+S.office=()=>({t:'Панель офиса',tab:'office',h:`<div class="seg"><span class="on">Объекты</span><span data-go="staff">Сотрудники</span><span data-go="clients">Клиенты</span></div>
+ <div class="row" style="gap:8px;margin-bottom:6px"><div class="card" style="flex:1;margin:0"><div class="serif" style="font-size:34px;line-height:1">3</div><div class="mut">в работе</div></div><div class="card" style="flex:1;margin:0"><div class="serif" style="font-size:34px;line-height:1">1</div><div class="mut">ждёт согласования</div></div></div>
+ <div class="btn" data-act="Новый объект: адрес, клиент, прораб, этапы по шаблону">+ Новый объект</div>
+ ${OBJS.map(([n,s,p,im])=>`<div class="li"><img class="thumb" src="${I(im)}" alt="" style="width:48px;height:48px"><div style="flex:1;min-width:0"><b>${n}</b><div class="mut">${s}</div>${prog(p)}</div></div>`).join('')}
+ <div class="eb">Архив</div><div class="li"><div class="ava">${svg('doc')}</div><div style="flex:1"><b>Сданные объекты</b><div class="mut">доступ клиента сохраняется ${wait('срок: ждём')}</div></div></div>`});
+S.staff=()=>({t:'Сотрудники',back:1,tab:'office',h:`<div class="btn" data-act="Приглашение отправлено. Роль: прораб">+ Добавить сотрудника</div>${[['П1','Прораб 1','прораб · 2 объекта'],['П2','Прораб 2','прораб · 1 объект'],['М','Менеджер','все объекты']].map(([a,n,r])=>`<div class="li"><div class="ava">${a}</div><div style="flex:1"><b>${n}</b><div class="mut">${r}</div></div><span class="chip click" data-act="Отключён. Фото остались, объекты передайте другому прорабу">Отключить</span></div>`).join('')}`});
+S.clients=()=>({t:'Клиенты',back:1,tab:'office',h:`<div class="btn" data-act="Клиент заведён, ссылка для входа ушла на почту">+ Добавить клиента</div>${[['К1','Клиент 1','Загородный дом'],['К2','Клиент 2','Квартира 64 м²'],['К3','Клиент 3','Квартира 88 м²']].map(([a,n,o])=>`<div class="li"><div class="ava">${a}</div><div style="flex:1"><b>${n}</b><div class="mut">${o}</div></div><span class="chip click" data-act="Ссылка для нового пароля ушла клиенту">Сбросить пароль</span></div>`).join('')}`});
+
+const TABS={client:[['home','Объект','home'],['cal','Календарь','cal'],['docs','Документы','doc'],['appr','Согласования','ok']],
+ foreman:[['objs','Объекты','list'],['upload','Фото','cam']],office:[['office','Панель','grid'],['objs','Объекты','list']]};
+const TABKEY={upload:'up'};
+const HOME={client:'home',foreman:'objs',office:'office'};
+function render(key,push=true){
+  const [k,arg]=key.split(':');const go=k==='home'?HOME[role]:k;
+  const v=S[go](arg!==undefined?+arg:undefined);if(push)stack.push(key);
+  const canBack=v.back&&stack.length>1;
+  document.getElementById('bar').style.display=v.noBar?'none':'';
+  document.getElementById('bar').innerHTML=(canBack?'<button class="back" id="back">‹</button>':'<img class="logo" src="a/emblem.webp" alt="">')+`<div class="t">${v.t||''}</div>`+(v.bell?`<div class="bell click" data-act="Прораб загрузил 12 фото: потолки и свет">${svg('bell','i')}<i></i></div>`:'')+(!canBack&&!v.noBar?`<div class="ex" data-exit title="Выйти">${svg('exit','i')}</div>`:'');
+  const sc=document.getElementById('scr');sc.innerHTML=v.h;sc.scrollTop=0;
+  document.getElementById('tabs').innerHTML=v.noTabs?'':TABS[role].map(([t,n,i])=>`<button data-tab="${t}" class="${(v.tab===t||v.tab===TABKEY[t])?'on':''}">${svg(i,'')}${n}</button>`).join('');
 }
-async function showQ(){
-  const n=await count();
-  if(!navigator.onLine) st('qState','warn',`Нет связи. В очереди: ${n} фото. Отправятся сами, когда связь появится.`);
-  else st('qState','ok',`Связь есть. В очереди: ${n}. Отправлено за сеанс: ${sent}.`);
-  report();
-}
-addEventListener('online',flush);addEventListener('offline',showQ);
-$('btnClear').onclick=async()=>{await req((await tx('readwrite')).clear());showQ()};
-showQ();report();
+function toast(t){const e=document.getElementById('toast');e.querySelector('span').textContent=t;e.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('on'),2800)}
+document.addEventListener('click',e=>{
+  if(e.target.closest('#back')){stack.pop();render(stack[stack.length-1]||HOME[role],false);return}
+  if(e.target.closest('[data-reload]')){e.preventDefault();location.replace(location.pathname+'?v='+Date.now());return}
+  if(e.target.closest('[data-exit]')){stack=[];render('login');return}
+  const L=e.target.closest('[data-login]');if(L){role=L.dataset.login;document.querySelectorAll('[data-r]').forEach(b=>b.classList.toggle('on',b.dataset.r===role));stack=[];render('home');return}
+  const a=e.target.closest('[data-act]');if(a){toast(a.dataset.act);return}
+  const g=e.target.closest('[data-go]');if(g){render(g.dataset.go);return}
+  const t=e.target.closest('[data-tab]');if(t){stack=[];render(t.dataset.tab);return}
+  const r=e.target.closest('[data-r]');if(r){document.querySelectorAll('[data-r]').forEach(b=>b.classList.toggle('on',b===r));role=r.dataset.r;stack=[];render('login')}
+});
+render('login');
 </script>
 </body>
 </html>

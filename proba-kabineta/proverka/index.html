@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Кабинет: проба</title>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="ТОР проба">
+<meta name="theme-color" content="#3D3935">
+<style>
+:root{--ink:#1d1c19;--muted:#6c6961;--line:#e5e2da;--bg:#f6f5f1;--card:#fff;--acc:#3D3935;--ok:#2d6628;--okbg:#e5f0e3;--bad:#8a2a12;--badbg:#f9e3dc;--warnbg:#f9eedf;--warn:#8a5712}
+@media (prefers-color-scheme:dark){:root{--ink:#ecebe6;--muted:#a19d94;--line:#34322d;--bg:#161614;--card:#201f1c;--acc:#ecebe6;--ok:#9fd197;--okbg:#22331f;--bad:#f0a08a;--badbg:#3a201a;--warnbg:#3a2d1b;--warn:#e8b872}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 -apple-system,system-ui,sans-serif;padding:calc(env(safe-area-inset-top) + 16px) 16px calc(env(safe-area-inset-bottom) + 32px)}
+.w{max-width:560px;margin:0 auto}
+h1{font-size:22px;margin:0 0 4px}
+h2{font-size:17px;margin:0 0 8px}
+p{margin:0 0 10px}
+.sub{color:var(--muted);font-size:14px;margin-bottom:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:14px}
+button,.btn{display:block;width:100%;min-height:48px;border:0;border-radius:12px;background:var(--acc);color:var(--bg);font:600 16px/1.2 inherit;padding:12px;margin:8px 0;cursor:pointer}
+button.sec{background:transparent;color:var(--ink);border:1px solid var(--line)}
+button:disabled{opacity:.4}
+.st{border-radius:10px;padding:10px 12px;font-size:14.5px;margin:8px 0}
+.ok{background:var(--okbg);color:var(--ok)}
+.bad{background:var(--badbg);color:var(--bad)}
+.warn{background:var(--warnbg);color:var(--warn)}
+ol{padding-left:20px;margin:6px 0}
+li{margin:4px 0}
+textarea{width:100%;height:96px;font:12px ui-monospace,Menlo,monospace;border:1px solid var(--line);border-radius:10px;padding:8px;background:var(--bg);color:var(--ink)}
+label.file{display:block;text-align:center;min-height:48px;border-radius:12px;background:var(--acc);color:var(--bg);font-weight:600;padding:13px;margin:8px 0}
+label.file input{display:none}
+.ph{display:grid;grid-template-columns:64px 1fr;gap:10px;align-items:center;padding:8px 0;border-top:1px solid var(--line);font-size:14px}
+.ph img{width:64px;height:64px;object-fit:cover;border-radius:8px;background:var(--line)}
+.ph b{font-weight:600}
+.m{color:var(--muted)}
+</style>
+</head>
+<body><div class="w">
+<h1>Кабинет ТОР ГРУПП: проба</h1>
+<p class="sub">Проверка двух вещей на телефоне: уведомления и загрузка фото. На сервер ничего не уходит, это только проверка.</p>
+<a class="btn" href="../" style="text-decoration:none;text-align:center;padding-top:14px">Открыть приложение</a>
+
+<div class="card" id="install">
+  <h2>1. Ярлык на экран</h2>
+  <div id="installState"></div>
+</div>
+
+<div class="card">
+  <h2>2. Уведомления</h2>
+  <div id="pushState"></div>
+  <button id="btnAllow">Разрешить уведомления</button>
+  <button id="btnLocal" class="sec" disabled>Показать пробное уведомление сейчас</button>
+  <div id="subBox" hidden>
+    <p class="m" style="font-size:14px;margin-top:8px">Код для проверки с сервера. Скопируй и пришли Илье, он отправит уведомление на этот телефон:</p>
+    <textarea id="sub" readonly></textarea>
+    <button id="btnCopy" class="sec">Скопировать код</button>
+  </div>
+</div>
+
+<div class="card">
+  <h2>3. Фото с объекта</h2>
+  <p class="m" style="font-size:14px">Сними или выбери 2–3 фото. Покажу, сколько весило и сколько стало после сжатия.</p>
+  <label class="file">Снять или выбрать фото<input id="files" type="file" accept="image/*" multiple></label>
+  <div id="sum"></div>
+  <div id="list"></div>
+</div>
+
+<div class="card">
+  <h2>4. Плохая связь</h2>
+  <p class="m" style="font-size:14px">Включи «Авиарежим» и выбери фото выше: они встанут в очередь. Выключи авиарежим: очередь отправится сама.</p>
+  <div id="qState"></div>
+  <button id="btnClear" class="sec">Очистить очередь</button>
+</div>
+
+<div class="card">
+  <h2>Отчёт для Ильи</h2>
+  <textarea id="rep" readonly></textarea>
+  <button id="btnRep" class="sec">Скопировать отчёт</button>
+</div>
+</div>
+
+<script>
+const VAPID='BOpw4wtPMG_KetqWzdFTjQsuyeCjJBFYg3fmWnseggYdk4r6DOYs9JdMw-HvdPMli_U3cIojOOPNzVQe5oZp4Is';
+const $=id=>document.getElementById(id);
+const ua=navigator.userAgent;
+const isIOS=/iPhone|iPad|iPod/.test(ua)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+const iosVer=(ua.match(/OS (\d+)_(\d+)/)||[]).slice(1).join('.');
+const standalone=matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
+const log={};
+const st=(el,cls,html)=>{$(el).innerHTML=`<div class="st ${cls}">${html}</div>`};
+const kb=n=>n>1048576?(n/1048576).toFixed(1)+' МБ':Math.round(n/1024)+' КБ';
+
+function report(){
+  $('rep').value=[
+    'Устройство: '+(isIOS?'iPhone/iPad iOS '+iosVer:ua.match(/Android [\d.]+/)?.[0]||'другое'),
+    'Открыто с ярлыка: '+(standalone?'да':'нет'),
+    'Уведомления в браузере: '+('Notification' in window?'есть':'нет')+', push: '+('PushManager' in window?'есть':'нет'),
+    'Разрешение: '+('Notification' in window?Notification.permission:'—'),
+    ...Object.entries(log).map(([k,v])=>k+': '+v),
+    'UA: '+ua
+  ].join('\n');
+}
+
+// 1. ярлык
+if(standalone) st('installState','ok','Открыто с ярлыка. Хорошо.');
+else if(isIOS) st('installState','warn','Открыто в браузере. На iPhone уведомления работают только с ярлыка:<ol><li>Внизу Safari нажми «Поделиться» (квадрат со стрелкой).</li><li>«На экран „Домой“» → «Добавить».</li><li>Закрой Safari и открой страницу с нового значка «ТОР проба».</li></ol>');
+else st('installState','ok','Android: можно и без ярлыка. Для проверки ярлыка: меню браузера → «Добавить на главный экран».');
+
+// 2. уведомления
+let reg=null;
+const pushOk='serviceWorker' in navigator&&'PushManager' in window&&'Notification' in window;
+if(!pushOk){
+  st('pushState','bad',isIOS&&!standalone?'Сначала открой с ярлыка (шаг 1).':'Этот браузер не умеет уведомления'+(isIOS?' (нужен iOS 16.4 или новее).':'.'));
+  $('btnAllow').disabled=true;
+} else {
+  navigator.serviceWorker.register('sw.js').then(r=>{reg=r;refresh()}).catch(e=>{st('pushState','bad','Ошибка: '+e.message);log['sw']=e.message;report()});
+}
+function refresh(){
+  const p=Notification.permission;
+  if(p==='granted'){st('pushState','ok','Уведомления разрешены.');$('btnLocal').disabled=false;subscribe()}
+  else if(p==='denied'){st('pushState','bad','Уведомления запрещены. Включить: Настройки → Уведомления → ТОР проба.');}
+  else st('pushState','warn','Пока не разрешены. Нажми кнопку ниже.');
+  report();
+}
+function key(b){const p='='.repeat((4-b.length%4)%4);const r=atob((b+p).replace(/-/g,'+').replace(/_/g,'/'));return Uint8Array.from(r,c=>c.charCodeAt(0))}
+async function subscribe(){
+  try{
+    await navigator.serviceWorker.ready;
+    let s=await reg.pushManager.getSubscription();
+    if(!s) s=await reg.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:key(VAPID)});
+    $('sub').value=JSON.stringify(s);$('subBox').hidden=false;log['подписка']='есть ('+new URL(s.endpoint).host+')';
+  }catch(e){log['подписка']='ошибка: '+e.message;st('pushState','bad','Не получилось подписаться: '+e.message)}
+  report();
+}
+$('btnAllow').onclick=async()=>{const p=await Notification.requestPermission();log['запрос разрешения']=p;refresh()};
+$('btnLocal').onclick=async()=>{
+  try{await (await navigator.serviceWorker.ready).showNotification('ТОР ГРУПП',{body:'Прораб загрузил 12 фото: черновые работы, кухня',icon:'icon-192.png'});log['пробное уведомление']='показано'}
+  catch(e){log['пробное уведомление']='ошибка: '+e.message}
+  report();
+};
+const copy=async id=>{const t=$(id);try{await navigator.clipboard.writeText(t.value)}catch(_){t.select();document.execCommand('copy')}};
+$('btnCopy').onclick=()=>copy('sub');
+$('btnRep').onclick=()=>copy('rep');
+
+// 3. фото
+async function squeeze(file){
+  const t0=performance.now();
+  const url=URL.createObjectURL(file);
+  const img=new Image();img.src=url;await img.decode();
+  const k=Math.min(1,1920/Math.max(img.naturalWidth,img.naturalHeight));
+  const c=document.createElement('canvas');c.width=Math.round(img.naturalWidth*k);c.height=Math.round(img.naturalHeight*k);
+  c.getContext('2d').drawImage(img,0,0,c.width,c.height);URL.revokeObjectURL(url);
+  let q=.8,b;
+  do{b=await new Promise(r=>c.toBlob(r,'image/jpeg',q));q-=.1}while(b.size>500*1024&&q>.4);
+  return {blob:b,w:c.width,h:c.height,ow:img.naturalWidth,oh:img.naturalHeight,ms:Math.round(performance.now()-t0),q:+(q+.1).toFixed(1)};
+}
+let totIn=0,totOut=0;
+$('files').onchange=async e=>{
+  for(const f of e.target.files){
+    const row=document.createElement('div');row.className='ph';row.innerHTML='<img><div>Сжимаю…</div>';$('list').prepend(row);
+    try{
+      const r=await squeeze(f);totIn+=f.size;totOut+=r.blob.size;
+      row.querySelector('img').src=URL.createObjectURL(r.blob);
+      row.lastChild.innerHTML=`<b>${kb(f.size)} → ${kb(r.blob.size)}</b><br><span class="m">${r.ow}×${r.oh} → ${r.w}×${r.h}, ${r.ms} мс</span>`;
+      await enqueue(r.blob,f.name);
+    }catch(err){row.lastChild.textContent='Не получилось: '+err.message;log['сжатие']='ошибка: '+err.message}
+  }
+  st('sum','ok',`Всего: ${kb(totIn)} → ${kb(totOut)}, в ${(totIn/Math.max(totOut,1)).toFixed(0)} раз меньше`);
+  log['сжатие']=`${kb(totIn)} → ${kb(totOut)}`;report();e.target.value='';
+};
+
+// 4. очередь (IndexedDB), «отправка» без сервера
+const db=new Promise((ok,no)=>{const r=indexedDB.open('proba',1);r.onupgradeneeded=()=>r.result.createObjectStore('q',{autoIncrement:true});r.onsuccess=()=>ok(r.result);r.onerror=()=>no(r.error)});
+const tx=async m=>(await db).transaction('q',m).objectStore('q');
+const req=r=>new Promise((ok,no)=>{r.onsuccess=()=>ok(r.result);r.onerror=()=>no(r.error)});
+let sent=0;
+async function enqueue(blob,name){await req((await tx('readwrite')).add({blob,name,t:Date.now()}));flush()}
+async function count(){return req((await tx('readonly')).count())}
+async function flush(){
+  if(!navigator.onLine){showQ();return}
+  const s=await tx('readwrite');const keys=await req(s.getAllKeys());
+  for(const k of keys){await new Promise(r=>setTimeout(r,300));await req((await tx('readwrite')).delete(k));sent++}
+  if(keys.length) log['очередь']=`отправлено ${sent}`;
+  showQ();
+}
+async function showQ(){
+  const n=await count();
+  if(!navigator.onLine) st('qState','warn',`Нет связи. В очереди: ${n} фото. Отправятся сами, когда связь появится.`);
+  else st('qState','ok',`Связь есть. В очереди: ${n}. Отправлено за сеанс: ${sent}.`);
+  report();
+}
+addEventListener('online',flush);addEventListener('offline',showQ);
+$('btnClear').onclick=async()=>{await req((await tx('readwrite')).clear());showQ()};
+showQ();report();
+</script>
+</body>
+</html>
