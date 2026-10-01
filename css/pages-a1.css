@@ -239,7 +239,10 @@ a.stc,a.stc:hover{color:inherit;text-decoration:none}
 .pg-in .formbox .hint{font-size:12.5px}
 .pg-in .cbx,.pg-in .formbox .cbx{font:400 12.5px/1.5 var(--pi-sans);color:var(--pi-muted);gap:10px}
 .pg-in .cbx a,.pg-in .formbox .cbx a{color:var(--pi-ink)}
-.pg-in .cbx input{accent-color:var(--pi-ink)}
+/* свои галочки согласия: в Safari на iPhone нативная отметка с accent-color не видна (белая на белом) */
+.pg-in .cbx input[type=checkbox]{appearance:none;-webkit-appearance:none;flex:none;width:20px;height:20px;min-width:20px;margin:1px 0 0;border:1.5px solid var(--pi-line);border-radius:5px;background:#fff;cursor:pointer;transition:background .15s,border-color .15s}
+.pg-in .cbx input[type=checkbox]:checked{border-color:var(--pi-ink);background:var(--pi-ink) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23fff' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round' d='M5 12.5l4.8 4.8L19 7.5'/%3E%3C/svg%3E") center/13px 13px no-repeat}
+.pg-in .cbx input[type=checkbox]:focus-visible{outline:2px solid var(--pi-ink);outline-offset:2px}
 @media(max-width:900px){.pg-in .formband{grid-template-columns:1fr}}
 @media(max-width:760px){.pg-in .formband{margin:0 calc(var(--pi-gut) * -1);padding:48px var(--pi-gut)}.pg-in .formbox{padding:26px 22px 22px}}
 
@@ -487,10 +490,17 @@ a.stc,a.stc:hover{color:inherit;text-decoration:none}
   .pg-in .pricetbl td,.pg-in .pricetbl th{padding-right:8px}
 }
 
+/* согласия в белой форме внутри тёмной полосы: в main.css цвет задан для тёмного фона и на белом почти не виден */
+.pg-in .formband .formbox .cbx span{color:var(--pi-muted)}
+.pg-in .formband .formbox .cbx a{color:var(--pi-ink)}
+
 /* согласия в тёмной карточке расчёта */
 .pg-in .result .cbx{color:rgba(255,255,255,.72);margin-top:10px}
 .pg-in .result .cbx a{color:#fff}
-.pg-in .result .cbx input{accent-color:#fff}
+/* та же галочка в тёмной карточке расчёта: белый квадрат, тёмная отметка */
+.pg-in .result .cbx input[type=checkbox]{background:transparent;border-color:rgba(255,255,255,.55)}
+.pg-in .result .cbx input[type=checkbox]:checked{border-color:#fff;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%2315171A' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round' d='M5 12.5l4.8 4.8L19 7.5'/%3E%3C/svg%3E") center/13px 13px no-repeat}
+.pg-in .result .cbx input[type=checkbox]:focus-visible{outline:2px solid #fff}
 
 /* варианты ответов в квизе (их рисует скрипт, поэтому стили нужны отдельно) */
 .pg-in .kviz-box .opt,.pg-in .quiz .opt{display:flex;align-items:center;gap:12px;padding:15px 20px;margin-bottom:10px;border:1px solid var(--pi-line);border-radius:999px;font:400 15.5px/1.35 var(--pi-sans);cursor:pointer;transition:border-color .2s,background .2s}

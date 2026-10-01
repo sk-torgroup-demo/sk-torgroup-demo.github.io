@@ -72,7 +72,7 @@
   .b-logo b,.a-logo b{font-size:19px}
 }
 @media(max-width:900px){
-  .a-callico{display:grid;font-size:0}
+  .a-callico{display:grid;place-items:center;font-size:0}  /* без place-items трубка прижималась к верху */
   .a-callico::before{content:"";width:18px;height:18px;background:currentColor;
     -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z'/%3E%3C/svg%3E") center/contain no-repeat;
             mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z'/%3E%3C/svg%3E") center/contain no-repeat}
@@ -424,3 +424,10 @@ body.x-on-hero .a-top:not(:has(.a-mnav.open)):not(.mm-active) .a-logo::before{ba
 /* Первый экран: положение кадра столовой. На телефоне сдвигаем вверх, иначе буквы «РЕМОНТ» попадают на тёмные ниши */
 .x-hero-photo img{object-position:50% 50%}
 @media(max-width:760px){.x-hero-photo img{object-position:50% 28%}}
+
+/* знак рубля системным шрифтом: в Manrope и Cormorant он с засечками и похож на чужой символ */
+.rub{font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue','Segoe UI',Roboto,Arial,sans-serif;font-weight:inherit;font-style:inherit}
+/* трубка в шапке на телефоне: ровно по центру кружка */
+@media(max-width:900px){
+  .a-callico,.b-callico{display:flex !important;align-items:center;justify-content:center;line-height:1;padding:0}
+}
