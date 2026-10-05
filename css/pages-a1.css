@@ -581,3 +581,58 @@ a.stc,a.stc:hover{color:inherit;text-decoration:none}
 .pg-in .ba2-c{grid-column:1 / -1;margin-top:10px;font:500 15px/1.45 var(--pi-sans);color:var(--pi-ink)}
 @media(max-width:900px){.pg-in .ba2-grid{grid-template-columns:1fr;gap:28px}}
 @media(max-width:480px){.pg-in .ba2-i img{aspect-ratio:4/5}}
+
+/* ровная лента кадров: три одинаковых по высоте снимка, кадр обрезается по центру */
+.pg-in .photorow{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.pg-in .photorow figure{margin:0}
+.pg-in .photorow img{width:100%;height:clamp(230px,24vw,320px);object-fit:cover;display:block;border-radius:2px;background:var(--pi-stone)}
+.pg-in .photorow figcaption{font:400 13.5px/1.5 var(--pi-sans);color:var(--pi-muted);margin-top:10px}
+@media(max-width:900px){.pg-in .photorow{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.pg-in .photorow{grid-template-columns:1fr;gap:16px}.pg-in .photorow img{height:58vw}}
+
+/* ---------- каркас блоков вариантов оформления (--стиль 1|2|3) ----------
+   Разметку вставляет build.py (style_blocks): оглавление страницы, полоса фактов
+   первого экрана, лента кадров и широкий кадр. Характер каждого варианта — в style-N.css. */
+.pg-in .sxtoc{border-bottom:1px solid var(--pi-line);padding:18px 0}
+.pg-in .sxtoc .wrap{display:flex;align-items:baseline;gap:22px}
+.pg-in .sxtoc>.wrap>b{flex:none;font:500 11.5px/1.5 var(--pi-sans);letter-spacing:.14em;text-transform:uppercase;color:var(--pi-muted)}
+.pg-in .sxtoc-l{display:flex;flex-wrap:wrap;gap:8px}
+.pg-in .sxtoc-l a{display:inline-flex;align-items:baseline;gap:7px;font:500 13.5px/1 var(--pi-sans);color:var(--pi-ink);text-decoration:none;
+  border:1px solid var(--pi-line);border-radius:999px;padding:9px 14px;transition:background .18s var(--pi-ease),border-color .18s var(--pi-ease)}
+.pg-in .sxtoc-l a i{font-style:normal;font-size:11px;color:var(--pi-muted)}
+.pg-in .sxtoc-l a:hover{background:var(--pi-stone);border-color:var(--pi-ink)}
+@media(max-width:760px){
+  .pg-in .sxtoc .wrap{display:block}
+  .pg-in .sxtoc>.wrap>b{display:block;margin-bottom:10px}
+  .pg-in .sxtoc-l{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 calc(var(--pi-gut) * -1);padding:0 var(--pi-gut)}
+  .pg-in .sxtoc-l::-webkit-scrollbar{display:none}
+  .pg-in .sxtoc-l a{flex:none}
+}
+
+.pg-in .sxhead{display:contents}
+.pg-in .sxfacts{border-bottom:1px solid var(--pi-line)}
+/* полоса без единой цифры — просто строка фактов, не цифровая витрина */
+.pg-in .sxfacts-text .sxf-i{padding-top:16px;padding-bottom:16px}
+.pg-in .sxfacts-text .sxf-i span{font-size:12px;letter-spacing:.14em;margin-top:0}
+.pg-in .sxf{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.pg-in .sxf-i{padding:26px 0 26px 26px;border-left:1px solid var(--pi-line)}
+.pg-in .sxf-i:first-child{padding-left:0;border-left:0}
+.pg-in .sxf-i b{display:block;font:600 clamp(30px,3.2vw,46px)/1 var(--pi-serif);font-feature-settings:"lnum" 1;letter-spacing:-.01em}
+.pg-in .sxf-i span{display:block;font:500 11.5px/1.45 var(--pi-sans);letter-spacing:.1em;text-transform:uppercase;color:var(--pi-muted);margin-top:10px}
+@media(max-width:760px){
+  .pg-in .sxf{grid-template-columns:1fr 1fr}
+  .pg-in .sxf-i{padding:18px 0 18px 16px}
+  .pg-in .sxf-i:nth-child(2n+1){padding-left:0;border-left:0}
+  .pg-in .sxf-i b{font-size:30px}
+}
+
+.pg-in .photorow{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.pg-in .photorow figure{margin:0}
+.pg-in .photorow img{width:100%;height:clamp(230px,24vw,330px);object-fit:cover;display:block;background:var(--pi-stone)}
+.pg-in .photorow figcaption{font:400 13.5px/1.5 var(--pi-sans);color:var(--pi-muted);margin-top:10px}
+@media(max-width:900px){.pg-in .photorow{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.pg-in .photorow{grid-template-columns:1fr;gap:16px}.pg-in .photorow img{height:58vw}}
+
+.pg-in .sxbleed{margin:0;position:relative}
+.pg-in .sxbleed img{width:100%;height:clamp(300px,46vw,620px);object-fit:cover;display:block;background:var(--pi-stone)}
+.pg-in .sxbleed figcaption{font:400 13.5px/1.5 var(--pi-sans);color:var(--pi-muted);margin:12px var(--pi-gut) 0}
