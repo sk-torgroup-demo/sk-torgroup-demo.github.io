@@ -164,5 +164,9 @@
 @media(max-width:860px){.pg-in .pk-zhk{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.pg-in .pk-zhk{grid-template-columns:1fr}}
 
+.pg-in .pk-also .pk-zhk{grid-template-columns:repeat(4,1fr)}   /* четыре карточки — ровно один ряд, без пустых ячеек */
+@media(max-width:1000px){.pg-in .pk-also .pk-zhk{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.pg-in .pk-also .pk-zhk{grid-template-columns:1fr}}
+
 .pg-in .pk-faq .faq{max-width:900px}
 .pg-in .pk-form{padding-top:0}
