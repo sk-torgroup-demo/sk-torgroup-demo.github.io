@@ -1,0 +1,63 @@
+/* Структура 3 «Витрина». Страницу ведут фотографии: кадр под заголовком, разделы идут
+   с кадром то справа, то слева, пакеты показаны карточками с фото.
+   Подключается при сборке --стиль 3. */
+
+.pg-in{--pi-line:#DDDFE3}
+
+/* первый экран: заголовок крупно, кадр полосой под ним */
+.pg-in .phero{padding:44px 0 52px}
+.pg-in .phero .wrap:has(>.pg-ph){display:flex;flex-direction:column;align-items:stretch}
+.pg-in .phero .wrap:has(>.pg-ph)>.pg-ph{order:9}
+.pg-in .phero .lead{max-width:52ch}
+.pg-in .pg-ph{grid-column:1!important;grid-row:auto;aspect-ratio:auto;max-height:none;height:clamp(220px,28vw,380px);
+  margin:36px calc(var(--pi-gut) * -1) 0;width:auto}
+@media(min-width:901px){.pg-in .phero h1{font-size:clamp(42px,5.8vw,88px);max-width:18ch;letter-spacing:-.02em}}
+@media(max-width:900px){.pg-in .pg-ph{height:clamp(190px,48vw,280px);margin:24px calc(var(--pi-gut) * -1) 28px}}
+
+.pg-in .sxfacts{border-top:1px solid var(--pi-line)}
+.pg-in .sxf-i b{font-size:clamp(28px,2.8vw,40px)}
+.pg-in .sxtoc{padding:26px 0}
+.pg-in .sxtoc .wrap{display:block}
+.pg-in .sxtoc>.wrap>b{display:block;margin-bottom:14px}
+.pg-in .sxtoc-l{display:grid;grid-template-columns:1fr 1fr;gap:0 48px}
+.pg-in .sxtoc-l a{border:0;border-top:1px solid var(--pi-line);border-radius:0;padding:12px 0;font-size:15px}
+.pg-in .sxtoc-l a:hover{background:transparent;color:var(--pi-muted)}
+.pg-in .sxtoc-l a i{width:22px;flex:none}
+@media(max-width:620px){.pg-in .sxtoc-l{grid-template-columns:1fr}}
+
+/* кадр сбоку у раздела: стороны чередуются */
+.pg-in .zside{margin:0;position:relative}
+.pg-in .zside img{width:100%;height:100%;object-fit:cover;display:block;background:var(--pi-stone)}
+.pg-in .zside figcaption{font:500 11px/1 var(--pi-sans);letter-spacing:.1em;text-transform:uppercase;color:var(--pi-ink);
+  background:rgba(255,255,255,.92);border-radius:999px;padding:8px 12px;position:absolute;left:14px;bottom:14px}
+@media(min-width:1000px){
+  .pg-in .zside{height:clamp(340px,36vw,480px);width:clamp(320px,38%,520px)}
+  .pg-in .zside.zright{float:right;margin:0 0 40px 48px;shape-outside:inset(0)}
+  .pg-in .zside.zleft{float:left;margin:0 48px 40px 0}
+  .pg-in .sxshots{display:none}
+}
+@media(max-width:999px){
+  .pg-in .zside{height:56vw;max-height:420px;margin:0 0 32px}
+}
+
+/* пакеты карточками с кадром */
+.pg-in .pcards2{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.pg-in .pcard2{display:flex;flex-direction:column;border:1px solid var(--pi-line)}
+.pg-in .pcard2.hot{border-color:var(--pi-ink)}
+.pg-in .pc-ph{height:190px;overflow:hidden;background:var(--pi-stone)}
+.pg-in .pc-ph img{width:100%;height:100%;object-fit:cover;display:block}
+.pg-in .pc-b{padding:22px;display:flex;flex-direction:column;flex:1}
+.pg-in .pc-b h3{font:600 23px/1.2 var(--pi-serif);margin:0 0 10px}
+.pg-in .pc-p{font:600 20px/1.25 var(--pi-serif);font-feature-settings:"lnum" 1}
+.pg-in .pc-p>span:not(.rub){font:400 12.5px/1.4 var(--pi-sans);color:var(--pi-muted);display:block;margin-top:4px}
+.pg-in .pc-t{font:400 14px/1.5 var(--pi-sans);color:var(--pi-muted);margin:8px 0 16px;
+  padding-bottom:16px;border-bottom:1px solid var(--pi-line)}
+.pg-in .pc-b ul{margin:0 0 20px;padding:0;list-style:none}
+.pg-in .pc-b li{font:400 14.5px/1.6 var(--pi-sans);padding-left:16px;position:relative}
+.pg-in .pc-b li::before{content:"";position:absolute;left:0;top:11px;width:6px;height:1px;background:var(--pi-ink)}
+.pg-in .pc-b .btn{margin-top:auto;align-self:flex-start}
+@media(max-width:1000px){.pg-in .pcards2{grid-template-columns:1fr 1fr}}
+@media(max-width:680px){.pg-in .pcards2{grid-template-columns:1fr}.pg-in .pc-ph{height:48vw}}
+
+.pg-in section.sx{padding:84px 0}
+.pg-in h2.sec{font-size:clamp(32px,3.4vw,50px)}
