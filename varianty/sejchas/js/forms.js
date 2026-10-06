@@ -61,16 +61,44 @@ function consentOf(el){
   return {pd: pd?!!pd.checked:true, ads: ads?!!ads.checked:false};
 }
 
+/* ---------- защита от ботов (невидимая для человека) ---------- */
+/* Поле-ловушку вставляет скрипт, поэтому разметку страниц менять не нужно.
+   Человек его не видит и не заполняет, автоматические рассыльщики заполняют все поля подряд.
+   Время открытия формы нужно, чтобы отличить мгновенную отправку ботом от живого заполнения. */
+var ОТКРЫТО = Date.now();
+var КОНТЕЙНЕРЫ='form, .quiz, .kviz-box, .result, .formband, .final';
+function ловушка(){
+  document.querySelectorAll(КОНТЕЙНЕРЫ).forEach(function(f){
+    if(f.querySelector('input[name="site_url"]'))return;
+    var i=document.createElement('input');
+    i.type='text'; i.name='site_url'; i.tabIndex=-1; i.autocomplete='off';
+    i.setAttribute('aria-hidden','true');
+    i.style.cssText='position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none';
+    f.appendChild(i);
+  });
+}
+if(document.readyState!=='loading')ловушка(); else document.addEventListener('DOMContentLoaded',ловушка);
+document.addEventListener('click',function(){setTimeout(ловушка,300)});   /* формы, которые открываются по кнопке */
+
+function ловушка_значение(tel){
+  var sc=tel&&tel.closest?tel.closest(КОНТЕЙНЕРЫ):null;
+  var i=(sc||document).querySelector('input[name="site_url"]');
+  return i?i.value:'';
+}
+
 /* ---------- отправка ---------- */
 function send(tel, box, note){
   if(!valid(tel.value)){tel.focus();tel.style.borderColor='#B6452C';return;}
   var c=consentOf(tel);
   if(!c.pd){alert('Отметьте согласие на обработку персональных данных');return;}
   var payload={phone:tel.value,page:location.pathname,utm:location.search,note:note||'',
-    consent_pd:true,consent_ads:c.ads,policy_version:'1.0',consent_version:'1.0',ts:new Date().toISOString()};
+    consent_pd:true,consent_ads:c.ads,policy_version:'1.0',consent_version:'1.0',ts:new Date().toISOString(),
+    site_url:ловушка_значение(tel), dt:Date.now()-ОТКРЫТО};
   fetch(URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
-   .then(function(r){ if(!r.ok) throw 0;
-     goal('lead_submit',{page:location.pathname});
+   .then(function(r){ if(!r.ok) throw 0; return r.json().catch(function(){return {}}); })
+   .then(function(j){
+     /* сервер пометил заявку как спам: показываем то же, что человеку, но в Метрику конверсию не шлём */
+     if(!j || !j.skip) goal('lead_submit',{page:location.pathname});
      box.innerHTML='<div class="q" style="text-align:center;padding:26px 0">Заявка принята ✓<br><span style="font:300 13.5px var(--body);color:var(--muted)">Перезвоним за 15 минут в рабочее время</span></div>';
    })
    .catch(function(){ alert('Не удалось отправить. Позвоните нам: +7 (495) 256-21-11'); });

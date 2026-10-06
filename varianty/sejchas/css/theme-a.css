@@ -438,6 +438,12 @@ body.x-on-hero .a-top:not(:has(.a-mnav.open)):not(.mm-active) .a-callico{border-
   .x-anim .x-track{overflow:visible;scroll-snap-type:none;padding:0 6vw;will-change:transform}
   .x-anim .x-works-progress{display:block;left:6vw;right:6vw;bottom:5vh}
 }
+/* на телефоне лента тоже едет вбок при прокрутке страницы, экран прилипает под шапкой */
+@media(max-width:900px){
+  .x-anim .x-works-stick{position:sticky;top:56px;height:calc(100svh - 56px);padding:0;display:flex;align-items:center;overflow:hidden}
+  .x-anim .x-track{overflow:visible;scroll-snap-type:none;padding:0 20px;will-change:transform}
+  .x-anim .x-works-progress{display:block;left:20px;right:20px;bottom:18px}
+}
 .x-cursor{position:fixed;left:0;top:0;z-index:95;pointer-events:none}
 .x-cursor span{display:grid;place-items:center;width:104px;height:104px;margin:-52px 0 0 -52px;border-radius:50%;background:var(--a-amber);color:#1A1400;font:500 14px var(--a-ui);transform:scale(0);transition:transform .4s var(--a-ease)}
 .x-cursor.on span{transform:scale(1)}
@@ -542,6 +548,8 @@ body.x-on-hero .a-top:not(:has(.a-mnav.open)):not(.mm-active) .a-callico{border-
   .x-wcard{width:78vw;height:118vw;max-height:560px}
   .x-wcard:nth-of-type(even){margin-top:0}
   .x-track{padding:0 20px;scroll-padding-inline:20px}
+  /* на телефоне вступление уже, чтобы справа выглядывал край карточки: видно, что лента листается вбок */
+  .x-works-intro{width:74vw;padding-right:0}
   .x-srow{grid-template-columns:40px 1fr;grid-template-areas:"n name" "n desc" "n price" "n go";gap:8px 12px;padding:24px 0}
   .x-srow em,.x-srow i{justify-self:start}
   .x-pillars{grid-template-columns:1fr 1fr}

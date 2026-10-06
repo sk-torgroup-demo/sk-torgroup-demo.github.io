@@ -146,14 +146,14 @@ var works=document.querySelector('.x-works'),track=works&&works.querySelector('.
 var wide=matchMedia('(min-width:901px)');
 function worksSize(){
   if(!works||!track)return;
-  if(!wide.matches||reduce){works.style.height='';track.style.transform='';return}
+  if(reduce){works.style.height='';track.style.transform='';return}
   var dist=track.scrollWidth-innerWidth;
   works.style.height=(dist+vh)+'px'; // липкий экран ниже шапки на 64px, высота с запасом
   works.dataset.dist=dist;
 }
 function worksTick(){
-  if(!works||!track||!wide.matches||reduce)return;
-  var p=progress(works,64);
+  if(!works||!track||reduce)return;
+  var p=progress(works,wide.matches?64:56);
   track.style.transform='translate3d('+(-p*(+works.dataset.dist||0))+'px,0,0)';
   if(wprog)wprog.style.transform='scaleX('+p.toFixed(3)+')';
 }
