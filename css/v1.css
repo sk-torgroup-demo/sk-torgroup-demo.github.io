@@ -404,8 +404,11 @@ body.x-on-hero .a-cb-box{color:var(--a-ink)}
 .a-brand{padding:32px 28px 34px;border-right:1px solid var(--a-line);border-bottom:1px solid var(--a-line);background:#fff;
   display:flex;align-items:center;justify-content:center;min-height:132px}
 .a-brand b{display:block;font:600 clamp(24px,2.2vw,32px)/1.1 var(--v1-serif);margin-bottom:10px}
-.a-brand img{display:block;height:clamp(28px,2.6vw,38px);width:auto;max-width:100%;object-fit:contain;
-  object-position:center;margin:0}
+.a-brand img{display:block;width:auto;max-width:78%;object-fit:contain;object-position:center;margin:0}
+/* высота подобрана под пропорции каждого знака: по одной высоте широкий логотип кажется крупнее */
+.a-brand img[alt="КНАУФ"]{height:clamp(30px,2.9vw,42px)}
+.a-brand img[alt="Ротбанд"]{height:clamp(24px,2.2vw,32px)}
+.a-brand img[alt="Vetonit"]{height:clamp(19px,1.8vw,26px)}
 .a-brand span{font:400 15px/1.55 var(--v1-sans);color:var(--a-muted)}
 .a-brand-add{background:var(--a-stone)}
 @media(max-width:760px){.a-brands{grid-template-columns:1fr}}
