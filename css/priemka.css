@@ -37,7 +37,7 @@
 .pg-in .pk-hero-nums span{display:block;font:500 11px/1.45 var(--pi-sans);letter-spacing:.1em;text-transform:uppercase;
   color:rgba(255,255,255,.55);margin-top:10px}
 @media(max-width:900px){
-  .pg-in .pk-hero::after{background:linear-gradient(180deg,rgba(15,17,19,.78) 0%,rgba(15,17,19,.92) 60%)}
+  .pg-in .pk-hero::after{background:linear-gradient(180deg,rgba(15,17,19,.35) 0%,rgba(15,17,19,.62) 42%,rgba(15,17,19,.88) 100%)}
   .pg-in .pk-crumbs{margin-bottom:30px}
   .pg-in .pk-hero-in{padding:20px var(--pi-gut) 44px}
   .pg-in .pk-hero h1{font-size:clamp(32px,8.6vw,42px);max-width:none}
@@ -124,7 +124,8 @@
 .pg-in .pk-plan-hot li::before{background:rgba(255,255,255,.6)}
 .pg-in .pk-plan .btn{margin-top:auto;align-self:flex-start}
 .pg-in .pk-plan-hot .btn-amber{background:#fff;color:#15171A;border-color:#fff}
-@media(max-width:1000px){.pg-in .pk-plans{grid-template-columns:1fr}.pg-in .pk-plan{padding:26px 22px}}
+@media(max-width:1000px){.pg-in .pk-plans{grid-template-columns:1fr}.pg-in .pk-plan{padding:26px 22px}
+  .pg-in .pk-plan-hot{padding-top:58px}}
 
 .pg-in .pk-free{display:flex;align-items:center;gap:32px;justify-content:space-between;
   margin-top:24px;padding:30px 32px;background:var(--pi-stone);flex-wrap:wrap}
