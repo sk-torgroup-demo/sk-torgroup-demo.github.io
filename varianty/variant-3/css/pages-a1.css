@@ -288,7 +288,7 @@ a.stc,a.stc:hover{color:inherit;text-decoration:none}
 .pg-in .phero .article h1{font-size:clamp(36px,4.4vw,64px)}
 .pg-in .ameta{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;font:400 14.5px/1.5 var(--pi-sans);color:var(--pi-muted)}
 .pg-in .ameta b{color:var(--pi-ink)}
-.pg-in .ava{width:40px;height:40px;border-radius:50%;background:var(--pi-stone) url(../img/logo/emblem.webp) center/62% no-repeat;border:1px solid var(--pi-line);flex:none}
+.pg-in .ava{width:40px;height:40px;border-radius:50%;background:var(--pi-stone) url(/img/logo/emblem.webp) center/62% no-repeat;border:1px solid var(--pi-line);flex:none}
 .pg-in .article>p{font:400 18px/1.75 var(--pi-sans);color:#2B2E33;margin:0 0 22px;max-width:none}
 .pg-in .article>p:first-child{font-size:19px;line-height:1.65;color:var(--pi-ink);padding:28px 32px;background:var(--pi-stone);margin-bottom:40px}
 .pg-in .article>h2{font:600 clamp(28px,2.8vw,40px)/1.12 var(--pi-serif);letter-spacing:-.01em;margin:64px 0 20px;scroll-margin-top:110px}
